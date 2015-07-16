@@ -1,0 +1,8 @@
+projetoluciano.web2229.uni5.net
+ftp.web2229.uni5.net
+usuario: projetoluciano
+senha: pro123456
+
+mysql03-farm59.uni5.net
+banco: projetoluciano
+senha: pro123456
