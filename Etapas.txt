@@ -1,0 +1,9 @@
+Etapas
+
+1 - Fazer a modelagem do banco de dados, e criá-lo;
+2 - Criar o layout da área administrativa;
+3 - Desenvolver as funcionalidades da área administrativa;
+4 - Criar o layout da página de exibição dos arquivos;
+5 - Desenvolver a exibição dos arquivos, com cabeçalho, rodapé, calendário, busca e opção de impressão;
+6 - Fase de testes e homologação;
+7 - Entrega do projeto.
