@@ -1,0 +1,48 @@
+body{
+    font-family: Verdana;
+}
+.fieldset{
+    border: solid thin #ccc;
+    border-radius: 5px;
+    padding: 0 0 20px 50px;
+    box-shadow: 0 0 5px silver;
+}
+
+legend{border: none;}
+
+.centralizado {margin-top: 20%;}
+
+.azul{color: #337ab7; font-weight: bold}
+.top10{margin-top: 10px;}
+.top20{margin-top: 20px;}
+.top30{margin-top: 30px;}
+.top40{margin-top: 40px;}
+.top50{margin-top: 50px;}
+.top60{margin-top: 60px;}
+.top70{margin-top: 70px;}
+/*LOGIN*/
+
+.loginTopo{margin-bottom: 10px;display: inline-block}
+
+.topo{background: #238fcf; font-size: 30px; height: 100px; line-height: 100px; color: #fff;font-weight: bold; font-family: Lato; border-top: solid 2px #35DAFA;}
+.topo div{margin-left: 5%;}
+
+/* HOME*/
+.pagHome{margin-top: 20px;}
+.pagHomeBox1 div{border: solid thin #ccc; height: 250px;}
+.pagHomeBox2 {margin-top: 20px;}
+.pagHomeBox2 a {font-size: 18px; text-align: left; margin: 3px 0; background-color: #f58220; color: #fff;}
+.pagHomeBox2 a:hover{color: #fff; background-color: #238fcf}
+.navbar{margin-bottom: 0;}
+.navbar-nav>.active>a:hover,.navbar-nav>.active>a:focus{ background-color: #ccc}
+.navbar-nav>.active>a:hover{}
+.navbar-nav>li{padding-top: 15px;font-size: 14px;}
+.navbar-nav>li>a{padding-top: 0;}
+.titulo{color: #464646}
+
+/* Accordion */
+#accordion{min-height: 300px;}
+.accordion-header {cursor: pointer;background-color: #FFF;color: #333;padding: 10px;border: 1px solid #DDD;font-weight: bold;}
+.accordion-content {min-height: 280px;display: none;background-color: #FFF;color: #333;padding: 10px; border: solid 1px #d5d5d5;}
+.accordion-content.open {display: block;}
+

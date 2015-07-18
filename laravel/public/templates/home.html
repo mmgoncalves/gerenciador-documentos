@@ -1,0 +1,38 @@
+<menu-principal></menu-principal>
+
+<div class="topo col-md-12" ng-controller="TopoCtrl as t">
+    <div>
+        <h1>Olá, <small>Mateus Marques</small></h1>
+        <h5><b>Seu último acesso foi em: 18/07/2015 às 18h</b></h5>
+    </div>
+</div>
+
+<section ng-controller="HomeController as home">
+    <div class="container-fluid">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-9">
+            <h1 class="titulo">Gerenciador de documentos</h1>
+
+            <div id="accordion">
+                <div class="accordion-header passo1" data-step="passo1">Buscar por documentos <a name="passo1"></a></div>
+
+                <div class="accordion-content open" style="min-height: 200px;">
+                    <form action="" class="form-search">
+                        <input type="text" class="input-medium search-query">
+                        <button class="btn"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+                </div>
+
+                <div class="accordion-header passo2" data-step="passo2">Criar novo documento<a name="passo1"></a></div>
+
+                <div class="accordion-content" style="min-height: 200px;">
+                    <form class="form-inline">
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

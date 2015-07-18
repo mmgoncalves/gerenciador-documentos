@@ -1,45 +1,31 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title></title>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 
         <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+        <script src="js/angular.min.js" type="text/javascript"></script>
+        <script src="js/angular-route.min.js" type="text/javascript"></script>
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+        <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+        <script src="js/app.js" type="text/javascript"></script>
+        <script src="js/controller.js" type="text/javascript"></script>
+        <script src="js/services.js" type="text/javascript"></script>
+        <script src="js/directive.js" type="text/javascript"></script>
+        <script src="js/util.js" type="text/javascript"></script>
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
+
     </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
-            </div>
-        </div>
+    <body ng-app="App">
+        <div ng-view></div>
     </body>
 </html>
