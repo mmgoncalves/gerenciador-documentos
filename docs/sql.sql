@@ -168,3 +168,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- Create user for all tables
 grant all ON mydbase.* TO 'user_mydbase' identified by 'dataBP@ss';
+
+-- Create a user defalut
+INSERT INTO adm (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-12", md5("AdmRootPass"), "A", now());
