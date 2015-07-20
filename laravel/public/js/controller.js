@@ -8,4 +8,5 @@ function HomeController(){
     Ctrl = this;
 
     toggleMenu();
+    chamaEditor();
 }

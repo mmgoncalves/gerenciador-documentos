@@ -39,10 +39,12 @@ legend{border: none;}
 .navbar-nav>li{padding-top: 15px;font-size: 14px;}
 .navbar-nav>li>a{padding-top: 0;}
 .titulo{color: #464646}
+/*.textareaHome{height: 500px}*/
 
 /* Accordion */
 #accordion{min-height: 300px;}
 .accordion-header {cursor: pointer;background-color: #FFF;color: #333;padding: 10px;border: 1px solid #DDD;font-weight: bold;}
 .accordion-content {min-height: 280px;display: none;background-color: #FFF;color: #333;padding: 10px; border: solid 1px #d5d5d5;}
 .accordion-content.open {display: block;}
+.accordion-header:hover{opacity: 0.5}
 

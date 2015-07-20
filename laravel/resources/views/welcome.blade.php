@@ -23,6 +23,8 @@
         <script src="js/directive.js" type="text/javascript"></script>
         <script src="js/util.js" type="text/javascript"></script>
 
+        <script src="js/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+
 
     </head>
     <body ng-app="App">

@@ -3,6 +3,7 @@
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/public/directives/menu.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/js/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/tiny_mce/langs/pt_BR.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/home.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/welcome.blade.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
