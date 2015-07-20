@@ -8,6 +8,22 @@ var Mod = angular.module('App', ['ngRoute'])
       templateUrl : 'templates/home.html'
    })
 
+   .when('/adm', {
+       templateUrl : 'templates/adm.html'
+   })
+
+   .when('/categorias', {
+       templateUrl : 'templates/categorias.html'
+   })
+   .when('/config', {
+       templateUrl : 'templates/config.html'
+   })
+   .when('/sair', {
+       controller:function(){
+           alert('teste');
+       }
+   })
+
    // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
     

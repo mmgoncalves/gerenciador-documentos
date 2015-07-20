@@ -3,22 +3,8 @@
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
 -- -----------------------------------------------------
--- Schema mydbase
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema mydbase
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydbase` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydbase`;
-
--- -----------------------------------------------------
--- Table `mydbase`.`adm`
+-- Table `adm`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `adm` (
   `idAdm` 			INT 			NOT NULL AUTO_INCREMENT COMMENT 'Identificador databela adm',
@@ -31,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `adm` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `mydbase`.`categoria`
+-- Table `categoria`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `categoria` (
   `idCategoria` INT 		NOT NULL AUTO_INCREMENT COMMENT 'Identificador da categoria no sistema',
@@ -41,7 +27,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydbase`.`subCategoria`
+-- Table `subCategoria`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `subCategoria` (
   `idSubCategoria` 	INT 		NOT NULL AUTO_INCREMENT 		COMMENT 'Identificador da sub categoria no sistema',
@@ -58,7 +44,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydbase`.`arquivos`
+-- Table `arquivos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `arquivos` (
   `idArquivos`		INT 			NOT NULL AUTO_INCREMENT 	COMMENT 'Identificador dos arquivos no sistema',
@@ -96,7 +82,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydbase`.`configuracoes`
+-- Table `configuracoes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `configuracoes` (
   `idConfig` 	INT 			NOT NULL AUTO_INCREMENT COMMENT 'Identificador da configuracao',
@@ -113,7 +99,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydbase`.`log`
+-- Table `log`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `log` (
   `idLog` 		INT 			NOT NULL 			COMMENT 'Identificador do Log no sistema',
@@ -138,7 +124,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydbase`.`logConfig`
+-- Table `logConfig`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `logConfig` (
   `idLogConfig` 	INT 			NOT NULL 				COMMENT 'Identificador do loCOnfig no sistema',
@@ -160,14 +146,6 @@ CREATE TABLE IF NOT EXISTS `logConfig` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
--- Create user for all tables
-grant all ON * TO 'user_mydbase' identified by 'dataBP@ss';
 
 -- Create a user defalut
 INSERT INTO adm (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-12", md5("AdmRootPass"), "A", now());
