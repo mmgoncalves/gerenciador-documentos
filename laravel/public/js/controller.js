@@ -37,5 +37,17 @@ function AdministradorController(){
 function ConfigController(){
     var Ctrl = this;
 
+    Ctrl.listaConfig = function () {
+
+    };
+
+    Ctrl.addCabecalho = function () {
+
+    };
+
+    Ctrl.addRodape = function () {
+
+    };
+
     toggleMenu();
 }
