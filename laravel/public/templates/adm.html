@@ -19,13 +19,53 @@
                 <!-- BOX 1 -->
                 <div class="accordion-header">Buscar por administradores</div>
                 <div class="accordion-content open">
-
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="search" class="form-control" placeholder="Busca por administrador">
+                                <div class="input-group-addon btn"><i class="glyphicon glyphicon-search"></i></div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
                 <!-- BOX 2 -->
                 <div class="accordion-header">Criar novo administrador</div>
                 <div class="accordion-content">
+                    <form class="form-group">
+                        <div class="form-group form-inline col-md-12">
+                            <div class="form-group has-feedback col-md-5">
+                                <label class="control-label col-sm-3" for="inpNome">Nome</label>
+                                <input type="text" class="form-control" id="inpNome" aria-describedby="inputSuccess2Status">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            </div>
 
+                            <div class="form-group has-feedback col-md-5">
+                                <label class="control-label col-sm-3" for="inpLogin">Login</label>
+                                <input type="text" class="form-control" id="inpLogin" aria-describedby="inputSuccess2Status">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="col-md-1"></div>
+                            <div class="form-group has-feedback col-md-1">
+                                <button class="btn btn-warning">SALVAR</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-inline col-md-12">
+                            <div class="form-group has-feedback col-md-5">
+                                <label class="control-label col-sm-3" for="inpSenha">Senha</label>
+                                <input type="password" class="form-control" id="inpSenha" aria-describedby="inputSuccess2Status">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback col-md-5">
+                                <label class="control-label col-sm-3" for="inpReSenha">Repetir senha</label>
+                                <input type="password" class="form-control" id="inpReSenha" aria-describedby="inputSuccess2Status">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

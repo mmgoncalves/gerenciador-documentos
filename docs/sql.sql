@@ -149,3 +149,6 @@ ENGINE = InnoDB;
 
 -- Create a user defalut
 INSERT INTO adm (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-12", md5("AdmRootPass"), "A", now());
+
+-- Create a blank register in config table
+INSERT INTO configuracoes VALUES(1, "", "", "", "", "", "", "", "");
