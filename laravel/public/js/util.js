@@ -1,3 +1,11 @@
+function datapicker(){
+    $('#datetimepicker2').datetimepicker({
+        sideBySide: true,
+        //format:"DD/MM/YYYY H:mm:ss",
+        locale:"pt-br"
+    });
+}
+
 function toggleMenu(){
     $('#accordion').find('.accordion-header').click(function(){
 

@@ -39,7 +39,7 @@ legend{border: none;}
 .navbar-nav>li{padding-top: 15px;font-size: 14px;}
 .navbar-nav>li>a{padding-top: 0;}
 .titulo{color: #464646}
-/*.textareaHome{height: 500px}*/
+#inpTitulo{width: 80%}
 
 /* Accordion */
 #accordion{min-height: 300px;}

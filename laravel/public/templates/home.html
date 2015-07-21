@@ -41,36 +41,31 @@
                                 <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
                             </div>
 
-                            <div class="form-group has-feedback col-md-7">
-                                <label class="control-label col-sm-3" for="inpCertificado">Certificado</label>
+                            <div class="form-group has-feedback col-md-5">
+                                <label class="control-label col-sm-4" for="inpCertificado">Certificado</label>
                                 <input type="text" class="form-control" id="inpCertificado" aria-describedby="inputError2Status">
                                 <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="col-md-1"></div>
+                            <div class="form-group has-feedback col-md-1">
+                                <button class="btn btn-warning">SALVAR</button>
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
                                 <label class="control-label col-sm-3" for="inpData">Data</label>
-                                <input type="date" class="form-control" id="inpData" aria-describedby="inputError2Status">
-                                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" id="inpData" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                </div>
                             </div>
 
-                            <div class="form-group has-feedback col-md-7">
-                                <label class="control-label col-sm-3" for="inpHora">Hora</label>
-                                <input type="time" class="form-control" id="inpHora" aria-describedby="inputError2Status">
-                                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpTitulo">Titulo</label>
-                                <input type="text" class="form-control" id="inpTitulo" aria-describedby="inputWarning2Status">
-                                <span class="glyphicon glyphicon-warning-sign form-control-feedback hidden" aria-hidden="true"></span>
-                            </div>
-
-                            <div class="form-group has-feedback col-md-7">
-                                <label class="control-label col-sm-3" for="inpCategoria">Categoria</label>
+                                <label class="control-label col-sm-4" for="inpCategoria">Categoria</label>
                                 <select class="form-control" id="inpCategoria" aria-hidden="true">
                                     <option>1</option>
                                     <option>2</option>
@@ -78,11 +73,20 @@
                                     <option>4</option>
                                     <option>5</option>
                                 </select>
+
                             </div>
                         </div>
 
+                            <div class=" form-group form-inline col-md-12">
+                                <div class="form-group has-feedback col-md-9">
+                                    <label class="control-label col-sm-2" for="inpTitulo">Titulo</label>
+                                    <input type="text" class="form-control " id="inpTitulo" aria-describedby="inputWarning2Status">
+                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback hidden" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+
                         <div class="textareaHome">
-                            <label class="" for="inpConteudo">Conteúdo</label>
                             <textarea class="" id="inpConteudo"></textarea>
                         </div>
                     </form>
