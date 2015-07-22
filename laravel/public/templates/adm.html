@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<section ng-controller="HomeController as home">
+<section ng-controller="AdministradorController as adm">
     <div class="container-fluid">
         <div class="col-md-2"></div>
 
@@ -29,6 +29,24 @@
                     </form>
 
                     <hr/>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Login</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="adm in adm.list">
+                                <td>{{ adm.idAdm}}</td>
+                                <td>{{ adm.nome }}</td>
+                                <td>{{ adm.login }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- BOX 2 -->
@@ -38,33 +56,29 @@
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
                                 <label class="control-label col-sm-3" for="inpNome">Nome</label>
-                                <input type="text" class="form-control" id="inpNome" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="inpNome" ng-model="adm.add.nome">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpLogin">Login</label>
-                                <input type="text" class="form-control" id="inpLogin" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <label class="control-label col-sm-3" for="cpf">CPF</label>
+                                <input type="cpf" class="form-control" id="cpf" maxlength="14" ng-model="adm.add.login">
                             </div>
 
                             <div class="col-md-1"></div>
                             <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning">SALVAR</button>
+                                <button class="btn btn-warning" ng-click="adm.addAdm()">SALVAR</button>
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
                                 <label class="control-label col-sm-3" for="inpSenha">Senha</label>
-                                <input type="password" class="form-control" id="inpSenha" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <input type="password" class="form-control" id="inpSenha" ng-model="adm.add.senha" maxlength="20">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
                                 <label class="control-label col-sm-3" for="inpReSenha">Repetir senha</label>
-                                <input type="password" class="form-control" id="inpReSenha" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <input type="password" class="form-control" id="inpReSenha" ng-model="adm.add.reSenha" maxlength="20">
                             </div>
                         </div>
                     </form>

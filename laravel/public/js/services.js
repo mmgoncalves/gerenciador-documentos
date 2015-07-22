@@ -1,37 +1,37 @@
+var URL = 'http://localhost:8000/';
+
 // servico que controla as requisicoes HTTP
-Mod.factory('RequisicaoHttp', ['Request', function(Request){
+Mod.factory('Request', ['RequestHttp', function(RequestHttp){
     return{
         get_request:function(tipo, value, metodo){
             //Loading.func('show');
             
             // verifica qual o tipo de requisicao, e monta a URL adequada
             switch (tipo){
-                case 'logar':
-                    var url = URL+'/logar';
-                    break;
-                    
-                case 'attPass':
-                    var url = URL+'/attPass';
-                    break;
+                case 'logar':       var url = URL + '/logar'; break;
+                case 'attPass':     var url = URL + '/attPass'; break;
+                case 'admList':     var url = URL + '/adm/listAll'; break;
+                case 'admAdd':      var url = URL + '/adm/create'; break;
                     
                 default : return false;
             }
             
             // faz o retorno da requisicao
-            return Request.get_request(url, value, metodo).success(function(data){
-                console.log(data);
-            });
+            return RequestHttp.get_request(url, value, metodo);
+                /*.success(function(data){
+                    console.log(data);
+                });*/
         }
     };
 }])
 
 // servico que executa e retorna uma requisicao POST ou GET
-.factory('Request', ['$http', function($http){
+.factory('RequestHttp', ['$http', function($http){
     return{
         get_request: function(url, value, metodo){
             switch (metodo){
                 case 'GET' : return $http.get(url);
-                case 'POST': return $http.post(url, value);
+                case 'POST': $http.defaults.headers.common['X-Csrf-Token'] = TOKEN; return $http.post(url, value);
             }
         }
     };

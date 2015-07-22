@@ -4,9 +4,9 @@
 -- MySQL Workbench Forward Engineering
 
 -- -----------------------------------------------------
--- Table `adm`
+-- Table `adms`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `adm` (
+CREATE TABLE IF NOT EXISTS `adms` (
   `idAdm` 			INT 			NOT NULL AUTO_INCREMENT COMMENT 'Identificador databela adm',
   `login` 			VARCHAR(14) 	NOT NULL 				COMMENT 'Login (cpf) do usuario adminiatrador no sistema',
   `senha` 			VARCHAR(65) 	NOT NULL 				COMMENT 'Senha do usuario administrador no sistema',
@@ -17,9 +17,9 @@ CREATE TABLE IF NOT EXISTS `adm` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `categoria`
+-- Table `categorias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `categoria` (
+CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategoria` INT 		NOT NULL AUTO_INCREMENT COMMENT 'Identificador da categoria no sistema',
   `nome` 		VARCHAR(60) NULL 					COMMENT 'Nome da categoria',
   PRIMARY KEY (`idCategoria`)  						COMMENT '')
@@ -27,9 +27,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `subCategoria`
+-- Table `sub_categorias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `subCategoria` (
+CREATE TABLE IF NOT EXISTS `sub_categorias` (
   `idSubCategoria` 	INT 		NOT NULL AUTO_INCREMENT 		COMMENT 'Identificador da sub categoria no sistema',
   `nome` 			VARCHAR(60) NULL 							COMMENT 'Nome da sub categoria',
   `id_categoria` 	INT 		NOT NULL 						COMMENT 'Chave estrangeira da cateogira pai',
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `subCategoria` (
   INDEX `fk_subCategoria_categoria1_idx` (`id_categoria` ASC)  	COMMENT '',
   CONSTRAINT `fk_subCategoria_categoria1`
     FOREIGN KEY (`id_categoria`)
-    REFERENCES `categoria` (`idCategoria`)
+    REFERENCES `categorias` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -47,7 +47,7 @@ ENGINE = InnoDB;
 -- Table `arquivos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `arquivos` (
-  `idArquivos`		INT 			NOT NULL AUTO_INCREMENT 	COMMENT 'Identificador dos arquivos no sistema',
+  `idArquivo`		INT 			NOT NULL AUTO_INCREMENT 	COMMENT 'Identificador dos arquivos no sistema',
   `edicao` 			FLOAT 			NULL 						COMMENT 'Numero da edicao do arquivo',
   `titulo` 			VARCHAR(60) 	NULL 						COMMENT 'Titulo do arquivo',
   `descricao` 		TEXT 			NULL 						COMMENT 'Conteudo do arquivo',
@@ -55,36 +55,36 @@ CREATE TABLE IF NOT EXISTS `arquivos` (
   `certificado` 	VARCHAR(128) 	NULL 						COMMENT 'Certificado digital',
   `dataHora` 		DATETIME 		NULL 						COMMENT 'Data e hora definidos pelo administrador',
   `dataHoraCriacao` DATETIME 		NULL 						COMMENT 'Data e hora da criacao do arquivo no sistema',
-  `id_adm` 			INT 			NOT NULL 					COMMENT 'Chave estrangeira do administrador no sistema ',
-  `id_categoria` 	INT 			NOT NULL 					COMMENT 'Chave estrangeira da categoria',
-  `id_subCategoria` INT 			NOT NULL 					COMMENT 'Chave estrangeira da sub categoria',
+  `id_adm` 			INT 			NULL 						COMMENT 'Chave estrangeira do administrador no sistema ',
+  `id_categoria` 	INT 			NULL 						COMMENT 'Chave estrangeira da categoria',
+  `id_subCategoria` INT 			NULL 						COMMENT 'Chave estrangeira da sub categoria',
   `status` 			CHAR 			NULL 						COMMENT 'Status do arquivo no sistema. A = ATIVO, I = INATIVO ',
-  PRIMARY KEY (`idArquivos`)  									COMMENT '',
-  INDEX `fk_arquivos_adm1_idx` (`id_adm` ASC)  					COMMENT '',
+  PRIMARY KEY (`idArquivo`)  									COMMENT '',
+  INDEX `fk_arquivos_adms1_idx` (`id_adm` ASC)  					COMMENT '',
   INDEX `fk_arquivos_categoria1_idx` (`id_categoria` ASC)  		COMMENT '',
   INDEX `fk_arquivos_subCategoria1_idx` (`id_subCategoria` ASC) COMMENT '',
-  CONSTRAINT `fk_arquivos_adm1`
+  CONSTRAINT `fk_arquivos_adms1`
     FOREIGN KEY (`id_adm`)
-    REFERENCES `adm` (`idAdm`)
+    REFERENCES `adms` (`idAdm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_arquivos_categoria1`
     FOREIGN KEY (`id_categoria`)
-    REFERENCES `categoria` (`idCategoria`)
+    REFERENCES `categorias` (`idCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_arquivos_subCategoria1`
+  CONSTRAINT `fk_arquivos_subCategorias1`
     FOREIGN KEY (`id_subCategoria`)
-    REFERENCES `subCategoria` (`idSubCategoria`)
+    REFERENCES `sub_categorias` (`idSubCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `configuracoes`
+-- Table `sys_configs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `configuracoes` (
+CREATE TABLE IF NOT EXISTS `sys_configs` (
   `idConfig` 	INT 			NOT NULL AUTO_INCREMENT COMMENT 'Identificador da configuracao',
   `nome` 		VARCHAR(128) 	NULL 					COMMENT '',
   `endereco` 	VARCHAR(128) 	NULL 					COMMENT '',
@@ -99,25 +99,25 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `log`
+-- Table `sys_logs`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `log` (
+CREATE TABLE IF NOT EXISTS `sys_logs` (
   `idLog` 		INT 			NOT NULL 			COMMENT 'Identificador do Log no sistema',
   `data` 		DATETIME 		NULL 				COMMENT 'Data e hora da criacao do log',
   `alteracao` 	VARCHAR(100) 	NULL 				COMMENT 'Texto informando a alteracao feita',
   `id_adm` 		INT 			NOT NULL 			COMMENT 'Chave estrangeira do administrador',
-  `id_arquivos` INT 			NOT NULL 			COMMENT 'Chave estrangeire do arquivo',
+  `id_arquivo` 	INT 			NOT NULL 			COMMENT 'Chave estrangeire do arquivo',
   PRIMARY KEY (`idLog`)  							COMMENT '',
-  INDEX `fk_log_adm1_idx` (`id_adm` ASC)  			COMMENT '',
-  INDEX `fk_log_arquivos1_idx` (`id_arquivos` ASC)  COMMENT '',
-  CONSTRAINT `fk_log_adm1`
+  INDEX `fk_log_adms1_idx` (`id_adm` ASC)  			COMMENT '',
+  INDEX `fk_log_arquivos1_idx` (`id_arquivo` ASC)  COMMENT '',
+  CONSTRAINT `fk_log_adms1`
     FOREIGN KEY (`id_adm`)
-    REFERENCES `adm` (`idAdm`)
+    REFERENCES `adms` (`idAdm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_log_arquivos1`
-    FOREIGN KEY (`id_arquivos`)
-    REFERENCES `arquivos` (`idArquivos`)
+    FOREIGN KEY (`id_arquivo`)
+    REFERENCES `arquivos` (`idArquivo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -126,29 +126,42 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `logConfig`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `logConfig` (
+CREATE TABLE IF NOT EXISTS `sys_log_configs` (
   `idLogConfig` 	INT 			NOT NULL 				COMMENT 'Identificador do loCOnfig no sistema',
   `data` 			DATETIME 		NULL 					COMMENT 'Data e hora da criacao do log',
   `alteracao` 		VARCHAR(100) 	NULL 					COMMENT 'Texto informando a alteracao feita',
   `id_config` 		INT 			NOT NULL 				COMMENT 'Chave estrangeira do Config',
   `id_adm` 			INT 			NOT NULL 				COMMENT 'Chave estrangeira do administrador',
   PRIMARY KEY (`idLogConfig`)  								COMMENT '',
-  INDEX `fk_logConfig_configuracoes1_idx` (`id_config` ASC) COMMENT '',
-  INDEX `fk_logConfig_adm1_idx` (`id_adm` ASC)  			COMMENT '',
-  CONSTRAINT `fk_logConfig_configuracoes1`
+  INDEX `fk_logConfig_config1_idx` (`id_config` ASC) COMMENT '',
+  INDEX `fk_logConfig_adms1_idx` (`id_adm` ASC)  			COMMENT '',
+  CONSTRAINT `fk_logConfig_config1`
     FOREIGN KEY (`id_config`)
-    REFERENCES `configuracoes` (`idConfig`)
+    REFERENCES `sys_configs` (`idConfig`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_logConfig_adm1`
+  CONSTRAINT `fk_logConfig_adms1`
     FOREIGN KEY (`id_adm`)
-    REFERENCES `adm` (`idAdm`)
+    REFERENCES `adms` (`idAdm`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- Create a user defalut
-INSERT INTO adm (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-12", md5("AdmRootPass"), "A", now());
+INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-10", md5("AdmRootPass"), "A", now());
 
 -- Create a blank register in config table
-INSERT INTO configuracoes VALUES(1, "", "", "", "", "", "", "", "");
+INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "");
+
+/*
+SET FOREIGN_KEY_CHECKS=0; 
+DROP TABLE adms; 
+DROP TABLE arquivos; 
+DROP TABLE categorias; 
+DROP TABLE sys_configs; 
+DROP TABLE sub_categorias; 
+DROP TABLE sys_logs; 
+DROP TABLE sys_log_configs; 
+SET FOREIGN_KEY_CHECKS=1; 
+
+*/

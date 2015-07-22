@@ -28,10 +28,25 @@ function CategoriaController(){
     toggleMenu();
 }
 
-function AdministradorController(){
+
+function AdministradorController(Request){
     var Ctrl = this;
 
+    Ctrl.listaAdm = function(){
+
+        Request.get_request('admList', '', 'GET')
+            .success(function(data){
+                console.log(data);
+                Ctrl.list = data[0];
+            });
+    };
+
+    Ctrl.addAdm = function () {
+        console.log(Ctrl.add);
+    };
+
     toggleMenu();
+    Ctrl.listaAdm();
 }
 
 function ConfigController(){

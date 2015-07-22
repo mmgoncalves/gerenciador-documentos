@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'arq'], function(){
+    Route::get('', 'ArquivoController@index');
+    Route::get('create', 'ArquivoController@create');
+});
+
+Route::group(['prefix' => 'adm'], function(){
+    Route::get('', 'AdmController@index');
+    Route::get('{id}/find', 'AdmController@find');
+    Route::get('listAll', 'AdmController@listAll');
+    Route::post('create', 'AdmController@create');
+});
