@@ -14,6 +14,7 @@
         <!-- ANGULAR -->
         <script src="js/angular.min.js" type="text/javascript"></script>
         <script src="js/angular-route.min.js" type="text/javascript"></script>
+        <script src="js/loading-bar.js" type="text/javascript"></script>
 
         <!-- JQUERY BOOTSTRAP -->
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
@@ -29,6 +30,7 @@
         <script src="js/services.js" type="text/javascript"></script>
         <script src="js/directive.js" type="text/javascript"></script>
         <script src="js/util.js" type="text/javascript"></script>
+
 
         <!-- TINY_MCE EDITOR -->
         <script src="js/tiny_mce/tiny_mce.js" type="text/javascript"></script>

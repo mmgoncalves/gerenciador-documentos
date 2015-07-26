@@ -19,23 +19,31 @@
                 <!-- BOX 1 -->
                 <div class="accordion-header">Buscar por administradores</div>
                 <div class="accordion-content open">
+
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Busca por administrador">
-                                <div class="input-group-addon btn"><i class="glyphicon glyphicon-search"></i></div>
+                                <input type="search" class="form-control" placeholder="Busca por NOME ou CPF" maxlength="30" ng-model="adm.search">
+                                <div class="input-group-addon btn" ng-click="adm.listaAdm()"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
+
                     </form>
+                    <div class="form-group form-inline has-error col-md-12" ng-show="adm.erroSearch">
+                        <label class="control-label col-sm-6">
+                            {{ adm.erroSearch }}
+                        </label>
+                    </div>
 
                     <hr/>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped" ng-show="adm.list">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
                                 <th>Login</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -44,6 +52,10 @@
                                 <td>{{ adm.idAdm}}</td>
                                 <td>{{ adm.nome }}</td>
                                 <td>{{ adm.login }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning" title="Editar" ng-click=""> <i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-warning" title="Excluir" ng-click=""> <i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -55,13 +67,13 @@
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpNome">Nome</label>
-                                <input type="text" class="form-control" id="inpNome" ng-model="adm.add.nome">
+
+                                <input type="text" class="form-control" id="inpNome" ng-model="adm.add.nome" maxlength="30" placeholder="Nome">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="cpf">CPF</label>
-                                <input type="cpf" class="form-control" id="cpf" maxlength="14" ng-model="adm.add.login">
+
+                                <input type="text" ng-keyup="adm.validaNumero()" class="form-control" id="cpf" maxlength="11" placeholder="CPF: Apenas números" ng-model="adm.add.login">
                             </div>
 
                             <div class="col-md-1"></div>
@@ -72,14 +84,31 @@
 
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpSenha">Senha</label>
-                                <input type="password" class="form-control" id="inpSenha" ng-model="adm.add.senha" maxlength="20">
+
+                                <input type="password" class="form-control" id="inpSenha" ng-model="adm.add.senha" maxlength="20" placeholder="Senha">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpReSenha">Repetir senha</label>
-                                <input type="password" class="form-control" id="inpReSenha" ng-model="adm.add.reSenha" maxlength="20">
+
+                                <input type="password" class="form-control" id="inpReSenha" ng-model="adm.add.reSenha" maxlength="20" placeholder="Repetir senha">
                             </div>
+                        </div>
+
+                        <div class="form-group form-inline has-error col-md-12" ng-show="adm.hasError">
+                            <label class="control-label col-sm-6">
+                                <span class="glyphicon glyphicon-warning-sign"></span>
+                                Erro ao enviar <br/>
+                                <ul>
+                                    <li ng-repeat="e in adm.erro"> {{ e.erro }}</li>
+                                </ul>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-inline has-success col-md-12" ng-show="adm.hasSuccess">
+                            <label class="control-label col-sm-6">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                Administrador cadastrado com sucesso.
+                            </label>
                         </div>
                     </form>
                 </div>

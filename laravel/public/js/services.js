@@ -1,4 +1,4 @@
-var URL = 'http://localhost:8000/';
+var URL = 'http://localhost:8000';
 
 // servico que controla as requisicoes HTTP
 Mod.factory('Request', ['RequestHttp', function(RequestHttp){
@@ -11,6 +11,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                 case 'logar':       var url = URL + '/logar'; break;
                 case 'attPass':     var url = URL + '/attPass'; break;
                 case 'admList':     var url = URL + '/adm/listAll'; break;
+                case 'admSearch':   var url = URL + '/adm/search'; break;
                 case 'admAdd':      var url = URL + '/adm/create'; break;
                     
                 default : return false;
@@ -31,7 +32,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
         get_request: function(url, value, metodo){
             switch (metodo){
                 case 'GET' : return $http.get(url);
-                case 'POST': $http.defaults.headers.common['X-Csrf-Token'] = TOKEN; return $http.post(url, value);
+                case 'POST': return $http.post(url, value);
             }
         }
     };
@@ -52,4 +53,28 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             window.localStorage.removeItem("user");
         }
     };
-}]);
+}])
+
+.factory('validaFormAdm', [function(){
+    return{
+        do: function(values){
+            var resp = [];
+
+            if(values.nome == undefined || values.nome == ""){resp.push({erro:'Digite o nome corretamente.'})}
+
+            if(values.login == undefined || values.login == "" || values.login.length != 11){resp.push({erro:'Digite o CPF corretamente.'})}
+
+            else if(!ValidarCPF(values.login)){resp.push({erro:'CPF inválido.'})}
+
+            if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
+
+            else if(values.senha != values.reSenha){resp.push({erro:'Os campos SENHA e REPETIR SENHA estão diferentes.'})}
+
+            if(resp.length > 0){
+                return {success:false, resp:resp}
+            }
+
+            return {success:true}
+        }
+    };
+}])

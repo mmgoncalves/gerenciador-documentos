@@ -5,7 +5,9 @@
     <file url="file://$PROJECT_DIR$/public/directives/menu.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/js/app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/js/controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/services.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/js/tiny_mce/langs/pt_BR.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/js/util.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/adm.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/categorias.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/config.html" charset="UTF-8" />
