@@ -2,6 +2,32 @@ function TopoCtrl(){
 
 }
 
+function ConfigController($scope, Request, Dialog){
+    $scope.config = {};
+
+    $scope.lista = function () {
+        Request.get_request("confList", "", "GET")
+            .success(function(data, status){
+                if(status == 201){
+                    $scope.config = data;
+                }
+            });
+    };
+
+    $scope.salvar = function () {
+        Request.get_request("confUpdade", $scope.config, "POST")
+            .success(function(data, status){
+                if(status == 201){
+                    console.log(data);
+                    Dialog.show({tipo:"notify", titulo:"Configurações atualizadas."});
+                }
+            });
+    };
+
+    toggleMenu();
+    $scope.lista();
+}
+
 function HomeController(){
     var Ctrl = this;
 
@@ -29,7 +55,7 @@ function CategoriaController(){
 }
 
 
-function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialogs){
+function AdministradorController($scope, Request, validaFormAdm, Dialog){
     $scope.hasSuccess = false;
     $scope.search = "";
     $scope.add = {};
@@ -89,7 +115,7 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
 
     $scope.editar = function ($index) {
         var values = {id:$scope.list[$index].idAdm};
-        
+
         Request.get_request("admFind", values, "GET")
             .success(function(data, status){
                 $scope.add = data;
@@ -122,20 +148,3 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
     toggleMenu();
 }
 
-function ConfigController(){
-    var Ctrl = this;
-
-    Ctrl.listaConfig = function () {
-
-    };
-
-    Ctrl.addCabecalho = function () {
-
-    };
-
-    Ctrl.addRodape = function () {
-
-    };
-
-    toggleMenu();
-}

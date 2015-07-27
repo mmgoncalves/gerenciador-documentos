@@ -1,5 +1,5 @@
-var URL = 'http://projetoluciano.web2229.uni5.net';
-//var URL = 'http://localhost:8000';
+//var URL = 'http://projetoluciano.web2229.uni5.net';
+var URL = 'http://localhost:8000';
 
 // servico que controla as requisicoes HTTP
 Mod.factory('Request', ['RequestHttp', function(RequestHttp){
@@ -9,15 +9,16 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             
             // verifica qual o tipo de requisicao, e monta a URL adequada
             switch (tipo){
-                case 'logar':       var url = URL + '/logar'; break;
-                case 'attPass':     var url = URL + '/attPass'; break;
+                case 'confList':    var url = URL + '/config'; break;
+                case 'confUpdade':  var url = URL + '/config/update'; break;
+
                 case 'admList':     var url = URL + '/adm/listAll'; break;
                 case 'admSearch':   var url = URL + '/adm/search'; break;
                 case 'admAdd':      var url = URL + '/adm/create'; break;
                 case 'admDelete':   var url = URL + '/adm/delete/'+value.id; break;
                 case 'admFind':     var url = URL + '/adm/find/'+value.id; break;
                 case 'admUpdate':   var url = URL + '/adm/update/'; break;
-                    
+
                 default : return false;
             }
             

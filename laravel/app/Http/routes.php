@@ -21,11 +21,15 @@ Route::group(['prefix' => 'arq'], function(){
 });
 
 Route::group(['prefix' => 'adm'], function(){
-    Route::get('', 'AdmController@index');
     Route::get('find/{id}', 'AdmController@find');
     Route::get('listAll', 'AdmController@listAll');
     Route::post('search', 'AdmController@search');
     Route::post('update', 'AdmController@onUpdate');
     Route::post('create', 'AdmController@onCreate');
     Route::get('delete/{id}', 'AdmController@onDelete');
+});
+
+Route::group(['prefix' => 'config'], function(){
+    Route::get('', 'ConfigController@index');
+    Route::post('update', 'ConfigController@onUpdate');
 });

@@ -17,7 +17,8 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap
        templateUrl : 'templates/categorias.html'
    })
    .when('/config', {
-       templateUrl : 'templates/config.html'
+       templateUrl : 'templates/config.html',
+       controller: 'ConfigController'
    })
    .when('/sair', {
        controller:function(){

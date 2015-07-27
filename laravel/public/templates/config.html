@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<section ng-controller="HomeController as home">
+<section>
     <div class="container-fluid">
         <div class="col-md-2"></div>
 
@@ -18,82 +18,79 @@
 
                 <!-- BOX 1 -->
                 <div class="accordion-header">Cabeçalho</div>
-                <div class="accordion-content open">
+                <div class="accordion-content">
+
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-6">
-                                <label class="control-label col-sm-3" for="inpNome">Nome da empresa</label>
-                                <input type="text" class="form-control" id="inpNome" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-6">
+                                <input type="text" class="form-control" placeholder="Nome da empresa" ng-model="config.nome">
                             </div>
 
                             <div class="col-md-5"></div>
-                            <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning">SALVAR</button>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-warning" ng-click="salvar()">SALVAR</button>
                             </div>
                         </div>
 
-                        <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-6">
+                        <div class="form-group col-md-12">
+                            <div class="form-group col-md-6">
                                 <label class="control-label col-sm-3" for="inpLogo">Logo</label>
-                                <input type="file" class="form-control" id="inpLogo" aria-describedby="inputSuccess2Status" >
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <input type="file" class="form-control" ng-model="config.logo">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="form-group col-md-4">
+                                <img ng-src="{{ config.link }}" class="img-thumbnail img-responsive"/>
                             </div>
                         </div>
                     </form>
+
                 </div>
 
                 <!-- BOX 2 -->
                 <div class="accordion-header">Rodapé</div>
                 <div class="accordion-content">
-                    <form class="form-group">
+
+                    <form class="form-group formEndereco">
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpEnd">Endereço</label>
-                                <input type="text" class="form-control" id="inpEnd" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="Endereço" ng-model="config.endereco">
                             </div>
 
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpBairro">Bairro</label>
-                                <input type="text" class="form-control" id="inpBairro" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="Bairro" ng-model="config.bairro">
                             </div>
 
                             <div class="col-md-1"></div>
-                            <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning">SALVAR</button>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-warning" ng-click="salvar()">SALVAR</button>
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpNumero">Número</label>
-                                <input type="password" class="form-control" id="inpNumero" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="Número" ng-model="config.numero">
+
                             </div>
 
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpCep">CEP</label>
-                                <input type="password" class="form-control" id="inpCep" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="CEP" ng-model="config.cep">
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpEmail">E-mail</label>
-                                <input type="password" class="form-control" id="inpEmail" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="email" class="form-control" placeholder="E-mail" ng-model="config.email">
+
                             </div>
 
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpCnpj">CNPJ</label>
-                                <input type="password" class="form-control" id="inpCnpj" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="CNPJ" ng-model="config.cnpj">
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

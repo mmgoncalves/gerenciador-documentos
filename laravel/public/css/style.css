@@ -45,7 +45,7 @@ legend{border: none;}
 #accordion{min-height: 300px;}
 .accordion-header {cursor: pointer;background-color: #FFF;color: #333;padding: 10px;border: 1px solid #DDD;font-weight: bold;}
 .accordion-content {min-height: 280px;display: none;background-color: #FFF;color: #333;padding: 10px; border: solid 1px #d5d5d5;}
-.accordion-content.open {display: block;}
+.accordion-content.open {display: inline-block;}
 .accordion-header:hover{opacity: 0.5}
 
 
@@ -174,3 +174,9 @@ legend{border: none;}
 /* Ease Display */
 
 .pad { padding: 25px; }
+
+
+/* TELA CONFIGURACOES */
+
+.imgLogo{width: 50%;}
+.formEndereco .form-inline .form-control{width: 100%; !important}
