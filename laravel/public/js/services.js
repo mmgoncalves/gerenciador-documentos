@@ -13,15 +13,13 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                 case 'admList':     var url = URL + '/adm/listAll'; break;
                 case 'admSearch':   var url = URL + '/adm/search'; break;
                 case 'admAdd':      var url = URL + '/adm/create'; break;
+                case 'admDelete':   var url = URL + '/adm/delete/'+value.id; break;
                     
                 default : return false;
             }
             
             // faz o retorno da requisicao
             return RequestHttp.get_request(url, value, metodo);
-                /*.success(function(data){
-                    console.log(data);
-                });*/
         }
     };
 }])

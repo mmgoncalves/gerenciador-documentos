@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<section ng-controller="AdministradorController as adm">
+<section>
     <div class="container-fluid">
         <div class="col-md-2"></div>
 
@@ -23,21 +23,21 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Busca por NOME ou CPF" maxlength="30" ng-model="adm.search">
-                                <div class="input-group-addon btn" ng-click="adm.listaAdm()"><i class="glyphicon glyphicon-search"></i></div>
+                                <input type="search" class="form-control" placeholder="Busca por NOME ou CPF" maxlength="30" ng-model="search">
+                                <div class="input-group-addon btn" ng-click="listaAdm()"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
 
                     </form>
-                    <div class="form-group form-inline has-error col-md-12" ng-show="adm.erroSearch">
+                    <div class="form-group form-inline has-error col-md-12" ng-show="erroSearch">
                         <label class="control-label col-sm-6">
-                            {{ adm.erroSearch }}
+                            {{ erroSearch }}
                         </label>
                     </div>
 
                     <hr/>
 
-                    <table class="table table-striped" ng-show="adm.list">
+                    <table class="table table-striped" ng-show="list">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -48,13 +48,13 @@
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="adm in adm.list">
+                            <tr ng-repeat="adm in list">
                                 <td>{{ adm.idAdm}}</td>
                                 <td>{{ adm.nome }}</td>
                                 <td>{{ adm.login }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" title="Editar" ng-click=""> <i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-warning" title="Excluir" ng-click=""> <i class="glyphicon glyphicon-remove"></i></button>
+                                    <button class="btn btn-sm btn-warning" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-warning" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -68,43 +68,43 @@
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
 
-                                <input type="text" class="form-control" id="inpNome" ng-model="adm.add.nome" maxlength="30" placeholder="Nome">
+                                <input type="text" class="form-control" id="inpNome" ng-model="add.nome" maxlength="30" placeholder="Nome">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
 
-                                <input type="text" ng-keyup="adm.validaNumero()" class="form-control" id="cpf" maxlength="11" placeholder="CPF: Apenas números" ng-model="adm.add.login">
+                                <input type="text" ng-keyup="validaNumero()" class="form-control" id="cpf" maxlength="11" placeholder="CPF: Apenas números" ng-model="add.login">
                             </div>
 
                             <div class="col-md-1"></div>
                             <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning" ng-click="adm.addAdm()">SALVAR</button>
+                                <button class="btn btn-warning" ng-click="addAdm()">SALVAR</button>
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
 
-                                <input type="password" class="form-control" id="inpSenha" ng-model="adm.add.senha" maxlength="20" placeholder="Senha">
+                                <input type="password" class="form-control" id="inpSenha" ng-model="add.senha" maxlength="20" placeholder="Senha">
                             </div>
 
                             <div class="form-group has-feedback col-md-5">
 
-                                <input type="password" class="form-control" id="inpReSenha" ng-model="adm.add.reSenha" maxlength="20" placeholder="Repetir senha">
+                                <input type="password" class="form-control" id="inpReSenha" ng-model="add.reSenha" maxlength="20" placeholder="Repetir senha">
                             </div>
                         </div>
 
-                        <div class="form-group form-inline has-error col-md-12" ng-show="adm.hasError">
+                        <div class="form-group form-inline has-error col-md-12" ng-show="hasError">
                             <label class="control-label col-sm-6">
                                 <span class="glyphicon glyphicon-warning-sign"></span>
                                 Erro ao enviar <br/>
                                 <ul>
-                                    <li ng-repeat="e in adm.erro"> {{ e.erro }}</li>
+                                    <li ng-repeat="e in erro"> {{ e.erro }}</li>
                                 </ul>
                             </label>
                         </div>
 
-                        <div class="form-group form-inline has-success col-md-12" ng-show="adm.hasSuccess">
+                        <div class="form-group form-inline has-success col-md-12" ng-show="hasSuccess">
                             <label class="control-label col-sm-6">
                                 <span class="glyphicon glyphicon-ok"></span>
                                 Administrador cadastrado com sucesso.

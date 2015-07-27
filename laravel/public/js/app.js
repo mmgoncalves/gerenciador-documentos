@@ -9,7 +9,8 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar'])
    })
 
    .when('/adm', {
-       templateUrl : 'templates/adm.html'
+       templateUrl : 'templates/adm.html',
+       controller: 'AdministradorController'
    })
 
    .when('/categorias', {

@@ -35,9 +35,11 @@ class Adm extends Model
             $qtd = count($arrBusca);
 
             // verifica se o array contem apenas uma posicao, e se o valor digitado foi numerico (busca por cpf)
-            if($qtd == 1 && is_numeric($arrBusca[0])){
+            if($input['busca'] == ""){
+
+            }else if($qtd == 1 && is_numeric($arrBusca[0])){
                 $where = ' WHERE login LIKE "%'.$arrBusca[0].'%" ';
-            }else if($qtd > 1){
+            }else if($qtd > 0){
                 // entra aqui caso a busca seja por nome
                 for($i = 0; $i < $qtd; $i++){
                     $where .= ' WHERE nome LIKE "%'.$arrBusca[$i].'%" ';
@@ -51,9 +53,7 @@ class Adm extends Model
                 return false;
             }
 
-            $sql .= $where;
-
-            print_r($sql);
+            $sql .= $where . ' WHERE status = "A" ORDER BY idAdm DESC';
 
             $query = DB::select($sql);
 

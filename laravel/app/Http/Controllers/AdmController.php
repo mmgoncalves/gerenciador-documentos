@@ -8,25 +8,27 @@ use Illuminate\Http\Request;
 
 class AdmController extends Controller
 {
-    public function index(){
-
+    public function __construct(Adm $adm){
+        $this->adm = $adm;
     }
 
+    /*
+     * Metodo para encontrar um administrador por id
+     */
     public function find($id){
+        $adm = $this->adm->find($id);
 
+        print_r($adm);
+        return $adm;
     }
 
-    public function listAll(){
-        $admDao = new Adm();
-
-        return array($admDao->listAll());
-    }
-
+    /*
+     * Faz a busca por adm, por nome ou cpf
+     */
     public function search(Request $request){
         $input = $request->json()->all();
 
-        $admDao = new Adm();
-        if(($retorno = $admDao->search($input))){
+        if(($retorno = $this->adm->search($input))){
 
             return response()->json($retorno, 201);
         }else{
@@ -34,13 +36,28 @@ class AdmController extends Controller
         }
     }
 
-    public function create(Request $request){
+    /*
+     * Metodo para criar novo administrador
+     * FALTA VERIFICA SE O CPF JA EXISTE
+     */
+    public function onCreate(Request $request){
         $input = $request->json()->all();
-        $admDao = new Adm();
-        if(($idAdm = $admDao->newAdm($input))){
+
+        if(($idAdm = $this->adm->newAdm($input))){
             return response()->json(['idAdm' => $idAdm], 201);
         }else{
             return response()->json(['erroMsg' => 'Erro no sistema, tente novamente.'], 200);
         }
+    }
+
+    /*
+     * Metodo para deletar um administrador
+     */
+    public function onDelete($id){
+        $adm = $this->adm->find($id);
+        $adm->status = "I";
+        $adm->save();
+
+        return response()->json([], 201);
     }
 }

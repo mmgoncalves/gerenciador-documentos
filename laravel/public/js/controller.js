@@ -29,50 +29,65 @@ function CategoriaController(){
 }
 
 
-function AdministradorController(Request, validaFormAdm){
-    var Ctrl = this;
-    Ctrl.hasSuccess = false;
-    Ctrl.add = {};
+function AdministradorController($scope, Request, validaFormAdm){
+    $scope.hasSuccess = false;
+    $scope.search = "";
+    $scope.add = {};
 
-    Ctrl.listaAdm = function(){
-        Ctrl.erroSearch = false;
-        if(Ctrl.search != undefined && Ctrl.search != ""){
-            Request.get_request('admSearch', {busca:Ctrl.search}, 'POST')
-                .success(function(data, status){
-                    if(status == 201){
-                        Ctrl.list = data;
-                    }else{
-                        Ctrl.erroSearch = data.erroMsg;
-                        Ctrl.list = false;
-                    }
-                });
-        }
+    $scope.listaAdm = function(){
+        $scope.erroSearch = false;
+        Request.get_request('admSearch', {busca:$scope.search}, 'POST')
+            .success(function(data, status){
+                if(status == 201){
+                    $scope.list = data;
+                }else{
+                    $scope.erroSearch = data.erroMsg;
+                    $scope.list = false;
+                }
+            });
+
     };
 
-    Ctrl.addAdm = function () {
-        var values = {nome:Ctrl.add.nome, login:Ctrl.add.login, senha:Ctrl.add.senha, reSenha:Ctrl.add.reSenha};
+    $scope.addAdm = function () {
+        var values = {nome:$scope.add.nome, login:$scope.add.login, senha:$scope.add.senha, reSenha:$scope.add.reSenha};
 
-        if(Ctrl.validaForm(values)){
+        if($scope.validaForm(values)){
             Request.get_request("admAdd", values, "POST")
                 .success(function(data, status){
                     if(status == 201){
-                        Ctrl.hasError = false;
-                        Ctrl.hasSuccess = true;
+                        $scope.hasError = false;
+                        $scope.hasSuccess = true;
+                        $scope.add = {};
                     }else{
-                        Ctrl.erro = [{erro:data.erroMsg}];
-                        Ctrl.hasError = true;
+                        $scope.erro = [{erro:data.erroMsg}];
+                        $scope.hasError = true;
                     }
                 });
         }
     };
 
-    Ctrl.validaForm = function (values) {
-        Ctrl.hasError = false;
+    $scope.excluir = function($index){
+        var values = {id:$scope.list[$index].idAdm};
+
+        Request.get_request("admDelete", values, "GET")
+            .success(function (data, status) {
+                if(status == 201){
+                    $scope.list.splice($index, 1);
+                }
+            });
+    };
+
+    $scope.editar = function ($index) {
+
+    };
+
+    $scope.validaForm = function (values) {
+        $scope.hasError = false;
         var retorno = validaFormAdm.do(values)
 
         if(!retorno.success){
-            Ctrl.erro = retorno.resp;
-            Ctrl.hasError = true;
+            $scope.erro = retorno.resp;
+            $scope.hasError = true;
             return false;
         }else{
             return true;
@@ -80,8 +95,8 @@ function AdministradorController(Request, validaFormAdm){
 
     };
 
-    Ctrl.validaNumero = function(){
-        Ctrl.add.login = apenasNumero(Ctrl.add.login);
+    $scope.validaNumero = function(){
+        $scope.add.login = apenasNumero($scope.add.login);
     };
 
     toggleMenu();

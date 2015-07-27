@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `arquivos` (
   `id_subCategoria` INT 			NULL 						COMMENT 'Chave estrangeira da sub categoria',
   `status` 			CHAR 			NULL 						COMMENT 'Status do arquivo no sistema. A = ATIVO, I = INATIVO ',
   PRIMARY KEY (`idArquivo`)  									COMMENT '',
-  INDEX `fk_arquivos_adms1_idx` (`id_adm` ASC)  					COMMENT '',
+  INDEX `fk_arquivos_adms1_idx` (`id_adm` ASC)  				COMMENT '',
   INDEX `fk_arquivos_categoria1_idx` (`id_categoria` ASC)  		COMMENT '',
   INDEX `fk_arquivos_subCategoria1_idx` (`id_subCategoria` ASC) COMMENT '',
   CONSTRAINT `fk_arquivos_adms1`
