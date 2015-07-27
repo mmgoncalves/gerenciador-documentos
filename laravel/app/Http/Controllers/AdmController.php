@@ -45,10 +45,24 @@ class AdmController extends Controller
         $input = $request->json()->all();
 
         if(($idAdm = $this->adm->newAdm($input))){
-            return response()->json(['idAdm' => $idAdm], 201);
+            return response()->json(['idAdm' => $idAdm, 'successMsg' => 'Administrador cadastrado com sucesso.'], 201);
         }else{
             return response()->json(['erroMsg' => 'Erro no sistema, tente novamente.'], 200);
         }
+    }
+
+    public function onUpdate(Request $request){
+        $input = $request->json()->all();
+
+        $adm = $this->adm->find($input['idAdm']);
+
+        $adm->nome = $input['nome'];
+        $adm->login = $input['login'];
+        $adm->senha = md5($input['senha']);
+
+        $adm->save();
+
+        return response()->json(['idAdm' => $adm->idAdm, 'successMsg' => "Atualizado com sucesso."], 201);
     }
 
     /*

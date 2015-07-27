@@ -104,10 +104,10 @@
                             </label>
                         </div>
 
-                        <div class="form-group form-inline has-success col-md-12" ng-show="hasSuccess">
+                        <div class="form-group form-inline has-success col-md-12" ng-show="hasSuccess != ''">
                             <label class="control-label col-sm-6">
                                 <span class="glyphicon glyphicon-ok"></span>
-                                Administrador cadastrado com sucesso.
+                                {{ hasSuccess }}
                             </label>
                         </div>
                     </form>

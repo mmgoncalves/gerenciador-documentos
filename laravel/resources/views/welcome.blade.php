@@ -19,6 +19,8 @@
         <!-- JQUERY BOOTSTRAP -->
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/ui-bootstrap-tpls-0.6.js" type="text/javascript"></script>
+        <script src="js/dialogs.js" type="text/javascript"></script>
 
         <!-- MASKED INPUT -->
         <script src="js/jquery.maskedinput-1.3.1.min.js" type="text/javascript"></script>

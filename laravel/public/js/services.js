@@ -78,3 +78,23 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
         }
     };
 }])
+
+.factory('Dialog', ['$dialogs', '$rootScope', '$timeout', function($dialogs, $rootScope, $timeout){
+    return{
+        show: function(values){
+            switch (values.tipo){
+                case "confirm":
+                    dlg = $dialogs.confirm(values.titulo, "");
+                    return dlg.result;
+
+                case "error":
+                    dlg = $dialogs.error(values.titulo);
+                    return true;
+
+                case "notify":
+                    dlg = $dialogs.notify(values.titulo);
+                    return true;
+            }
+        }
+    };
+}])

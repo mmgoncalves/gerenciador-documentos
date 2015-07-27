@@ -29,12 +29,13 @@ function CategoriaController(){
 }
 
 
-function AdministradorController($scope, Request, validaFormAdm){
+function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialogs){
     $scope.hasSuccess = false;
     $scope.search = "";
     $scope.add = {};
 
     $scope.listaAdm = function(){
+        $scope.hasSuccess = '';
         $scope.erroSearch = false;
         Request.get_request('admSearch', {busca:$scope.search}, 'POST')
             .success(function(data, status){
@@ -49,20 +50,21 @@ function AdministradorController($scope, Request, validaFormAdm){
     };
 
     $scope.addAdm = function () {
-        var values = {nome:$scope.add.nome, login:$scope.add.login, senha:$scope.add.senha, reSenha:$scope.add.reSenha};
+        var values = $scope.add;
 
         if($scope.validaForm(values)){
-            
             if($scope.add.idAdm == undefined){
                 // novo
+                var tipo = "admAdd";
             }else{
-                editar
+                //editar
+                var tipo = "admUpdate";
             }
-            Request.get_request("admAdd", values, "POST")
+            Request.get_request(tipo, values, "POST")
                 .success(function(data, status){
                     if(status == 201){
                         $scope.hasError = false;
-                        $scope.hasSuccess = true;
+                        Dialog.show({tipo:"notify", titulo:data.successMsg});
                         $scope.add = {};
                     }else{
                         $scope.erro = [{erro:data.erroMsg}];
@@ -73,13 +75,19 @@ function AdministradorController($scope, Request, validaFormAdm){
     };
 
     $scope.excluir = function($index){
-        var values = {id:$scope.list[$index].idAdm};
 
-        Request.get_request("admDelete", values, "GET")
-            .success(function (data, status) {
-                if(status == 201){
-                    $scope.list.splice($index, 1);
-                }
+        Dialog.show({tipo:"confirm", titulo:"Deseja remover este registro?"})
+            .then(function(r){
+                //successo
+                var values = {id:$scope.list[$index].idAdm};
+                Request.get_request("admDelete", values, "GET")
+                    .success(function (data, status) {
+                        if(status == 201){
+                            $scope.list.splice($index, 1);
+                        }
+                    });
+            },function(e){
+                //erro
             });
     };
 
@@ -88,9 +96,8 @@ function AdministradorController($scope, Request, validaFormAdm){
         
         Request.get_request("admFind", values, "GET")
             .success(function(data, status){
-                console.log(data);
                 $scope.add = data;
-                toggleMenu2();
+                toggleMenu2(".box2");
             });
     };
 
