@@ -36,24 +36,20 @@ class Adm extends Model
 
             // verifica se o array contem apenas uma posicao, e se o valor digitado foi numerico (busca por cpf)
             if($input['busca'] == ""){
-
+                $where = " WHERE ";
             }else if($qtd == 1 && is_numeric($arrBusca[0])){
-                $where = ' WHERE login LIKE "%'.$arrBusca[0].'%" ';
+                $where = ' WHERE login LIKE "%'.$arrBusca[0].'%" AND ';
             }else if($qtd > 0){
                 // entra aqui caso a busca seja por nome
                 for($i = 0; $i < $qtd; $i++){
-                    $where .= ' WHERE nome LIKE "%'.$arrBusca[$i].'%" ';
-
-                    if(isset($arrBusca[$i + 1])){
-                        $where .= ' AND ';
-                    }
+                    $where .= ' WHERE nome LIKE "%'.$arrBusca[$i].'%" AND';
                 }
             }else{
                 // retorna false, caso a busca nao gere nenhum resultado
                 return false;
             }
 
-            $sql .= $where . ' WHERE status = "A" ORDER BY idAdm DESC';
+            $sql .= $where . ' status = "A" ORDER BY idAdm DESC';
 
             $query = DB::select($sql);
 

@@ -52,6 +52,12 @@ function AdministradorController($scope, Request, validaFormAdm){
         var values = {nome:$scope.add.nome, login:$scope.add.login, senha:$scope.add.senha, reSenha:$scope.add.reSenha};
 
         if($scope.validaForm(values)){
+            
+            if($scope.add.idAdm == undefined){
+                // novo
+            }else{
+                editar
+            }
             Request.get_request("admAdd", values, "POST")
                 .success(function(data, status){
                     if(status == 201){
@@ -78,7 +84,14 @@ function AdministradorController($scope, Request, validaFormAdm){
     };
 
     $scope.editar = function ($index) {
-
+        var values = {id:$scope.list[$index].idAdm};
+        
+        Request.get_request("admFind", values, "GET")
+            .success(function(data, status){
+                console.log(data);
+                $scope.add = data;
+                toggleMenu2();
+            });
     };
 
     $scope.validaForm = function (values) {

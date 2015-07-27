@@ -1,7 +1,6 @@
 function datapicker(){
     $('#datetimepicker2').datetimepicker({
         sideBySide: true,
-        //format:"DD/MM/YYYY H:mm:ss",
         locale:"pt-br"
     });
 }
@@ -14,6 +13,11 @@ function toggleMenu(){
 
     });
 }
+function toggleMenu2(box){
+    $(".accordion-content").slideUp('fast');
+    $(box).slideToggle('fast');
+}
+
 function chamaEditor(){
     tinyMCE.init({
         // General options

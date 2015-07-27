@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `sys_log_configs` (
 ENGINE = InnoDB;
 
 -- Create a user defalut
-INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "123.456.789-10", md5("AdmRootPass"), "A", now());
+INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "12345678910", md5("AdmRootPass"), "A", now());
 
 -- Create a blank register in config table
 INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "");

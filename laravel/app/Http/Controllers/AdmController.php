@@ -17,9 +17,10 @@ class AdmController extends Controller
      */
     public function find($id){
         $adm = $this->adm->find($id);
+        unset($adm->senha);
+        
 
-        print_r($adm);
-        return $adm;
+        return response()->json($adm, 201);
     }
 
     /*

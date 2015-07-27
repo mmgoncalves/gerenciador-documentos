@@ -25,6 +25,7 @@ Route::group(['prefix' => 'adm'], function(){
     Route::get('find/{id}', 'AdmController@find');
     Route::get('listAll', 'AdmController@listAll');
     Route::post('search', 'AdmController@search');
+    Route::post('update', 'AdmController@onUpdate');
     Route::post('create', 'AdmController@onCreate');
     Route::get('delete/{id}', 'AdmController@onDelete');
 });
