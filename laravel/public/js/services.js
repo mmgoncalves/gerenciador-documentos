@@ -1,4 +1,5 @@
-var URL = 'http://localhost:8000';
+var URL = 'http://projetoluciano.web2229.uni5.net';
+//var URL = 'http://localhost:8000';
 
 // servico que controla as requisicoes HTTP
 Mod.factory('Request', ['RequestHttp', function(RequestHttp){

@@ -65,7 +65,7 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
                     if(status == 201){
                         $scope.hasError = false;
                         Dialog.show({tipo:"notify", titulo:data.successMsg});
-                        $scope.add = {};
+                        $scope.limpaForm();
                     }else{
                         $scope.erro = [{erro:data.erroMsg}];
                         $scope.hasError = true;
@@ -75,10 +75,8 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
     };
 
     $scope.excluir = function($index){
-
         Dialog.show({tipo:"confirm", titulo:"Deseja remover este registro?"})
             .then(function(r){
-                //successo
                 var values = {id:$scope.list[$index].idAdm};
                 Request.get_request("admDelete", values, "GET")
                     .success(function (data, status) {
@@ -86,8 +84,6 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
                             $scope.list.splice($index, 1);
                         }
                     });
-            },function(e){
-                //erro
             });
     };
 
@@ -117,6 +113,10 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog, $dialog
 
     $scope.validaNumero = function(){
         $scope.add.login = apenasNumero($scope.add.login);
+    };
+
+    $scope.limpaForm = function(){
+        $scope.add = {};
     };
 
     toggleMenu();
