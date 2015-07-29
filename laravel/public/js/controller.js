@@ -18,7 +18,6 @@ function ConfigController($scope, Request, Dialog){
         Request.get_request("confUpdade", $scope.config, "POST")
             .success(function(data, status){
                 if(status == 201){
-                    console.log(data);
                     Dialog.show({tipo:"notify", titulo:"Configurações atualizadas."});
                 }
             });
