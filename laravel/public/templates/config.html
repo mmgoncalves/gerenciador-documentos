@@ -34,14 +34,18 @@
 
                         <div class="form-group col-md-12">
                             <div class="form-group col-md-6">
-                                <label class="control-label col-sm-3" for="inpLogo">Logo</label>
-                                <input type="file" class="form-control" ng-model="config.logo">
+                                <!-- vc precisa desse input file na pagina, geralmente eu uso css para esconder esse input -->
+                                <input style="float:right; margin-top:-1000px; z-index:-999;" placeholder="Escolha um imagem"  id="take-picture" accept="image/*" type="file" name="file[]"/>
+
+                                <div id="foto_perfil" ng-click="upload()">
+                                    <i class="glyphicon glyphicon-picture"></i> Alterar logo
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group col-md-12">
                             <div class="form-group col-md-4">
-                                <img ng-src="{{ config.link }}" class="img-thumbnail img-responsive"/>
+                                <img ng-src="logo/{{ config.logo }}" id="show-picture" class="img-thumbnail img-responsive"/>
                             </div>
                         </div>
                     </form>

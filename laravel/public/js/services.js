@@ -100,3 +100,68 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
         }
     };
 }])
+// servico de upload de fotos
+.factory('UpLogo', ['CSRF_TOKEN', function(CSRF_TOKEN){
+    return {
+        do:function(input){
+            var i = 0, len = input.files.length, img, reader, file, formdata = new FormData();
+
+            for ( ; i < len; i++ ) {
+                file = input.files[i];
+                if (!!file.type.match(/image.*/)) {
+                    formdata.append("images[]", file);
+                }
+            }
+
+            console.log(formdata);
+
+            $.ajax({
+                beforeSend: function (r){r.setRequestHeader("X-Csrf-Token", CSRF_TOKEN);},
+                url: URL + '/config/logo',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (data) {}
+            });
+        },
+        init:function(){
+            var takePicture = document.querySelector("#take-picture"), showPicture = document.querySelector("#show-picture");
+            if (takePicture && showPicture) {
+                // Set events
+                takePicture.onchange = function (event) {
+                    // Get a reference to the taken picture or chosen file
+                    var files = event.target.files,file;
+                    if (files && files.length > 0) {
+                        file = files[0];
+                        try {
+                            // Get window.URL object
+                            var URL = window.URL || window.webkitURL;
+
+                            // Create ObjectURL
+                            var imgURL = URL.createObjectURL(file);
+
+                            // Set img src to ObjectURL
+                            showPicture.src = imgURL;
+
+                            // Revoke ObjectURL
+                            URL.revokeObjectURL(imgURL);
+                        }catch (e) {
+                            try {
+                                // Fallback if createObjectURL is not supported
+                                var fileReader = new FileReader();
+                                fileReader.onload = function (event) {
+                                    showPicture.src = event.target.result;
+                                };
+                                fileReader.readAsDataURL(file);
+                            }
+                            catch (e) {
+                                alert('deu ruim');
+                            }
+                        }
+                    }
+                };
+            }
+        }
+    };
+}]);

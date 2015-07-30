@@ -32,4 +32,5 @@ Route::group(['prefix' => 'adm'], function(){
 Route::group(['prefix' => 'config'], function(){
     Route::get('', 'ConfigController@index');
     Route::post('update', 'ConfigController@onUpdate');
+    Route::post('logo', 'ConfigController@upLogo');
 });

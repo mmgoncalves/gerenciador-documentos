@@ -2,7 +2,7 @@ function TopoCtrl(){
 
 }
 
-function ConfigController($scope, Request, Dialog){
+function ConfigController($scope, Request, Dialog, UpLogo){
     $scope.config = {};
 
     $scope.lista = function () {
@@ -15,6 +15,13 @@ function ConfigController($scope, Request, Dialog){
     };
 
     $scope.salvar = function () {
+        // verifica se a logo foi alterada
+        var input = document.getElementById("take-picture");
+        if($(input).val() != ''){
+            // upload da foto
+            UpLogo.do(input);
+        }
+
         Request.get_request("confUpdade", $scope.config, "POST")
             .success(function(data, status){
                 if(status == 201){
@@ -23,8 +30,13 @@ function ConfigController($scope, Request, Dialog){
             });
     };
 
+    $scope.upload = function(){
+        $('#take-picture').click();
+    };
+
     toggleMenu();
     $scope.lista();
+    UpLogo.init();
 }
 
 function HomeController(){
