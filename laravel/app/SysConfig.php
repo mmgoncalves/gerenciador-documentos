@@ -27,4 +27,16 @@ class SysConfig extends Model
 
         return $config->idConfig;
     }
+
+    public function verificaUrl($url) {
+        $file_headers = @get_headers($url);
+
+        if($file_headers[0] == 'HTTP/1.1 404 Not Found'){
+            return FALSE;
+        }else if ($file_headers[0] == 'HTTP/1.1 302 Found' && $file_headers[7] == 'HTTP/1.1 404 Not Found'){
+            return FALSE;
+        }
+
+        return TRUE;
+    }
 }

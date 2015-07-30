@@ -143,6 +143,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
 
                             // Set img src to ObjectURL
                             showPicture.src = imgURL;
+                            console.log('foi');
 
                             // Revoke ObjectURL
                             URL.revokeObjectURL(imgURL);
@@ -156,7 +157,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                                 fileReader.readAsDataURL(file);
                             }
                             catch (e) {
-                                alert('deu ruim');
+                                //alert('deu ruim');
                             }
                         }
                     }

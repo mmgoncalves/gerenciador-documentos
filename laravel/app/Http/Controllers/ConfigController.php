@@ -20,28 +20,13 @@ class ConfigController extends Controller
      */
     public function index(){
         $config = $this->config->all()->first();
-        /*print_r(__DIR__);
 
         // verifica se a logo existe
-        $file = $_SERVER['HTTP_HOST'] . '/logo/' . $config->logo;
+        $file = 'http://'.$_SERVER['HTTP_HOST'] . '/' . $config->logo;
 
-
-        //$file = 'http://www.domain.com/somefile.jpg';
-        $file_headers = @get_headers($file);
-        if($file_headers[0] == 'HTTP/1.1 404 Not Found') {
-            $config->logo = $file;
+        if(!$this->config->verificaUrl($file)){
+            $config->logo = '';
         }
-        else {
-            $config->logo = '';
-        }*/
-
-        /*
-        if(file_exists($logo)){
-            $config->logo = $logo;
-        }else{
-            //echo $logo;
-            $config->logo = '';
-        }*/
 
         return response()->json($config, 201);
     }
@@ -51,6 +36,7 @@ class ConfigController extends Controller
      */
     public function onUpdate(Request $request){
         $input = $request->json()->all();
+        unset($input['logo']);
 
         $resp = $this->config->onUpdate($input);
 
