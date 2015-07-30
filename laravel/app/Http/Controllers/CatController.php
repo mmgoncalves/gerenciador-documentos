@@ -28,7 +28,7 @@ class CatController extends Controller
         if($resp){
             return response()->json(['idCategoria' => $resp, 'successMsg' => 'Categoria criada com sucesso.'], 201);
         }else{
-            return response()->json(['erroMsg' => 'Erro no sistema, tente novamente.'], 200);
+            return response()->json(['errorMsg' => 'Erro no sistema, tente novamente.'], 200);
         }
     }
 

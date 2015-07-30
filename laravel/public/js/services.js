@@ -9,6 +9,8 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             
             // verifica qual o tipo de requisicao, e monta a URL adequada
             switch (tipo){
+                case 'subAdd':     var url = URL + '/sub/create'; break;
+
                 case 'catList':     var url = URL + '/cat'; break;
                 case 'catAdd':      var url = URL + '/cat/create'; break;
 

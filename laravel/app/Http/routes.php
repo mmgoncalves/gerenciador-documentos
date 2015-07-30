@@ -42,4 +42,5 @@ Route::group(['prefix' => 'cat'], function(){
 
 Route::group(['prefix' => 'sub'], function(){
     Route::get('', 'SubController@index');
+    Route::post('create', 'SubController@onCreate');
 });

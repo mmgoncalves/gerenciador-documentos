@@ -19,4 +19,16 @@ class SubController extends Controller
 
         return response()->json($sub, 201);
     }
+
+    public function onCreate(Request $request){
+        $input = $request->json()->all();
+
+        $resp = $this->sub->newSub($input);
+
+        if($resp){
+            return response()->json(['idSubCategoria' => $resp, 'successMsg' => 'Sub categoria criada com sucesso.'], 201);
+        }else{
+            return response()->json(['errorMsg' => 'Erro no sistema, tente novamente.'], 200);
+        }
+    }
 }

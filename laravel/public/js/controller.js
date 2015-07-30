@@ -24,15 +24,27 @@ function CategoriaController($scope, Request, Dialog){
             Request.get_request("catAdd", $scope.cat, "POST")
                 .success(function(data, status){
                     if(status == 201){
+                        // Mensagem de sucesso
                         Dialog.show({tipo:"notify", titulo:data.successMsg});
+                        // atualiza a lista de categorias
                         $scope.listCat.push({idCategoria:data.idCategoria, nome:$scope.cat.nome});
+                        // limpa o form
+                        $scope.cat = {};
                     }
                 });
         }
     };
 
     $scope.addSubCategoria = function () {
-
+        Request.get_request("subAdd", $scope.sub, "POST")
+            .success(function (data, status) {
+                if(status == 201){
+                    // Mensagem de sucesso
+                    Dialog.show({tipo:"notify", titulo:data.successMsg});
+                    // limpa o form
+                    $scope.sub = {};
+                }
+            });
     };
 
     $scope.buscaCat();
