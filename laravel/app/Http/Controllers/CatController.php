@@ -19,4 +19,17 @@ class CatController extends Controller
 
         return response()->json($cat, 201);
     }
+
+    public function onCreate(Request $request){
+        $input = $request->json()->all();
+
+        $resp = $this->cat->newCat($input);
+
+        if($resp){
+            return response()->json(['idCategoria' => $resp, 'successMsg' => 'Categoria criada com sucesso.'], 201);
+        }else{
+            return response()->json(['erroMsg' => 'Erro no sistema, tente novamente.'], 200);
+        }
+    }
+
 }

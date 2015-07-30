@@ -22,14 +22,11 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Busca por categorias">
-                                <div class="input-group-addon btn"><i class="glyphicon glyphicon-search"></i></div>
+                                <input type="search" class="form-control" placeholder="Busca por categorias" ng-model="searchCat">
+                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
                     </form>
-
-                    <hr/>
-
                 </div>
 
                 <!-- BOX 2 -->
@@ -37,45 +34,52 @@
                 <div class="accordion-content">
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-7">
-                                <label class="control-label col-sm-4" for="inpNomeCat">Nome da categoria</label>
-                                <input type="text" class="form-control" id="inpNomeCat" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-7">
+                                <label class="control-label col-sm-4">Nome da categoria</label>
+                                <input type="text" class="form-control" ng-model="cat.nome" maxlength="40">
                             </div>
 
                             <div class="col-md-4"></div>
-                            <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning">SALVAR</button>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-warning" ng-click="addCategoria()">SALVAR</button>
                             </div>
                         </div>
                     </form>
                 </div>
 
                 <!-- BOX 3 -->
+                <div class="accordion-header">Buscar por sub categorias</div>
+                <div class="accordion-content">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="search" class="form-control" placeholder="Busca por sub categorias" ng-model="searchSub">
+                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- BOX 4 -->
                 <div class="accordion-header">Criar nova sub categoria</div>
                 <div class="accordion-content">
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-4" for="inpCategoria">Categoria pai</label>
-                                <select class="form-control" id="inpCategoria" aria-hidden="true">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                            <div class="form-group col-md-5">
+                                <label class="control-label col-sm-4">Categoria pai</label>
+                                <select class="form-control" ng-model="sub.idCat">
+                                    <option ng-repeat="l in listCat" value="{{ l.idCategoria }}">{{ l.nome }}</option>
                                 </select>
                             </div>
 
-                            <div class="form-group has-feedback col-md-4">
-                                <label class="control-label col-sm-3" for="inpNomeSubCat">Nome</label>
-                                <input type="text" class="form-control" id="inpNomeSubCat" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <div class="form-group col-md-4">
+                                <label class="control-label col-sm-3">Nome</label>
+                                <input type="text" class="form-control" ng-model="sub.nome">
                             </div>
 
                             <div class="col-md-2"></div>
-                            <div class="form-group has-feedback col-md-1">
-                                <button class="btn btn-warning">SALVAR</button>
+                            <div class="form-group col-md-1">
+                                <button class="btn btn-warning" ng-clicl="">SALVAR</button>
                             </div>
                         </div>
                     </form>

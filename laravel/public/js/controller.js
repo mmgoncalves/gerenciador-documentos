@@ -9,18 +9,33 @@ function CategoriaController($scope, Request, Dialog){
     $scope.listCat = {};
     $scope.listSub = {};
 
-    $scope.buscaPorCategoria = function () {
-
+    $scope.buscaCat = function () {
+        Request.get_request("catList", "", "GET")
+            .success(function(data, status){
+                if(status == 201){
+                    $scope.listCat = data;
+                }
+            });
     };
 
+    // Funcao que cira uma nova categoria
     $scope.addCategoria = function () {
-
+        if($scope.cat.nome != undefined && $scope.cat.nome != ''){
+            Request.get_request("catAdd", $scope.cat, "POST")
+                .success(function(data, status){
+                    if(status == 201){
+                        Dialog.show({tipo:"notify", titulo:data.successMsg});
+                        $scope.listCat.push({idCategoria:data.idCategoria, nome:$scope.cat.nome});
+                    }
+                });
+        }
     };
 
     $scope.addSubCategoria = function () {
 
     };
 
+    $scope.buscaCat();
     toggleMenu();
 }
 

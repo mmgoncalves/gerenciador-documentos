@@ -37,4 +37,9 @@ Route::group(['prefix' => 'config'], function(){
 
 Route::group(['prefix' => 'cat'], function(){
     Route::get('', 'CatController@index');
+    Route::post('create', 'CatController@onCreate');
+});
+
+Route::group(['prefix' => 'sub'], function(){
+    Route::get('', 'SubController@index');
 });
