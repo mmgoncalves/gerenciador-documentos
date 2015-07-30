@@ -34,3 +34,7 @@ Route::group(['prefix' => 'config'], function(){
     Route::post('update', 'ConfigController@onUpdate');
     Route::post('logo', 'ConfigController@upLogo');
 });
+
+Route::group(['prefix' => 'cat'], function(){
+    Route::get('', 'CatController@index');
+});

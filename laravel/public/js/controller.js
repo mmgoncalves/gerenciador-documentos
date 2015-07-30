@@ -2,6 +2,31 @@ function TopoCtrl(){
 
 }
 
+/*
+ * TELA CATEGORIAS
+ */
+function CategoriaController($scope, Request, Dialog){
+    $scope.listCat = {};
+    $scope.listSub = {};
+
+    $scope.buscaPorCategoria = function () {
+
+    };
+
+    $scope.addCategoria = function () {
+
+    };
+
+    $scope.addSubCategoria = function () {
+
+    };
+
+    toggleMenu();
+}
+
+/*
+ * TELA CONFIGURACOES
+ */
 function ConfigController($scope, Request, Dialog, UpLogo){
     $scope.config = {};
 
@@ -47,32 +72,17 @@ function HomeController(){
     chamaEditor();
 }
 
-function CategoriaController(){
-    var Ctrl = this;
-
-    Ctrl.buscaPorCategoria = function () {
-
-    };
-
-    Ctrl.addCategoria = function () {
-
-    };
-
-    Ctrl.addSubCategoria = function () {
-
-    };
-
-    toggleMenu();
-}
-
-
+/*
+ * TELA ADMINISTRADOR
+ */
 function AdministradorController($scope, Request, validaFormAdm, Dialog){
-    $scope.hasSuccess = false;
+    //$scope.hasSuccess = false;
     $scope.search = "";
     $scope.add = {};
 
+    // Funcao que faz a busca por adm no banco
     $scope.listaAdm = function(){
-        $scope.hasSuccess = '';
+        //$scope.hasSuccess = '';
         $scope.erroSearch = false;
         Request.get_request('admSearch', {busca:$scope.search}, 'POST')
             .success(function(data, status){
@@ -86,16 +96,15 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
 
     };
 
+    // Funcao que cadastra um novo ADM, ou edita um existente
     $scope.addAdm = function () {
         var values = $scope.add;
 
         if($scope.validaForm(values)){
             if($scope.add.idAdm == undefined){
-                // novo
-                var tipo = "admAdd";
+                var tipo = "admAdd"; // novo
             }else{
-                //editar
-                var tipo = "admUpdate";
+                var tipo = "admUpdate"; // editar
             }
             Request.get_request(tipo, values, "POST")
                 .success(function(data, status){
@@ -111,6 +120,7 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
         }
     };
 
+    // Funcao que exclui um adm
     $scope.excluir = function($index){
         Dialog.show({tipo:"confirm", titulo:"Deseja remover este registro?"})
             .then(function(r){
@@ -124,16 +134,22 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
             });
     };
 
+    // Funcao que
     $scope.editar = function ($index) {
         var values = {id:$scope.list[$index].idAdm};
 
+        $scope.add = $scope.list[$index];
+        toggleMenu2(".box2");
+        /*
         Request.get_request("admFind", values, "GET")
             .success(function(data, status){
                 $scope.add = data;
                 toggleMenu2(".box2");
             });
+            */
     };
 
+    // Funcao para validar o formulario principal
     $scope.validaForm = function (values) {
         $scope.hasError = false;
         var retorno = validaFormAdm.do(values)
@@ -148,14 +164,17 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
 
     };
 
+    // Funcao que forca o campo cpf para ter apenas numeros
     $scope.validaNumero = function(){
         $scope.add.login = apenasNumero($scope.add.login);
     };
 
+    // Funcao para limpar o formulario
     $scope.limpaForm = function(){
         $scope.add = {};
     };
 
+    // Chama a funcao que contrala os Boxers
     toggleMenu();
 }
 
