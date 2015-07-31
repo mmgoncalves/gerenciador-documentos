@@ -23,13 +23,22 @@ function CategoriaController($scope, Request, Dialog){
     // Funcao que cira uma nova categoria
     $scope.addCategoria = function () {
         if($scope.cat.nome != undefined && $scope.cat.nome != ''){
-            Request.get_request("catAdd", $scope.cat, "POST")
+
+            if($scope.cat.idCategoria == undefined){
+                var tipo = "catAdd";
+            }else{
+                var tipo = "catUpdate";
+            }
+            Request.get_request(tipo, $scope.cat, "POST")
                 .success(function(data, status){
                     if(status == 201){
                         // Mensagem de sucesso
                         Dialog.show({tipo:"notify", titulo:data.successMsg});
-                        // atualiza a lista de categorias
-                        $scope.listCat.push({idCategoria:data.idCategoria, nome:$scope.cat.nome});
+                        if(data.idCategoria != undefined){
+                            // atualiza a lista de categorias
+                            $scope.listCat.push({idCategoria:data.idCategoria, nome:$scope.cat.nome});
+                        }
+
                         // limpa o form
                         $scope.cat = {};
                     }
@@ -39,7 +48,13 @@ function CategoriaController($scope, Request, Dialog){
 
     $scope.addSubCategoria = function () {
         if($scope.sub != undefined && $scope.sub != ''){
-            Request.get_request("subAdd", $scope.sub, "POST")
+
+            if($scope.sub.idSubCategoria == undefined){
+                var tipo = "subAdd";
+            }else{
+                var tipo = "subUpdate";
+            }
+            Request.get_request(tipo, $scope.sub, "POST")
                 .success(function (data, status) {
                     if(status == 201){
                         // Mensagem de sucesso
@@ -69,6 +84,16 @@ function CategoriaController($scope, Request, Dialog){
                     $scope.listSub = data;
                 }
             });
+    };
+
+    $scope.editarCat = function ($index) {
+        $scope.cat = $scope.listCat[$index];
+        toggleMenu2('.box2');
+    };
+
+    $scope.editarSub = function ($index) {
+        $scope.sub = $scope.listSub[$index];
+        toggleMenu2('.box4');
     };
 
     $scope.buscaCat();

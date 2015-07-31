@@ -20,14 +20,6 @@ class ConfigController extends Controller
      */
     public function index(){
         $config = $this->config->all()->first();
-
-        // verifica se a logo existe
-        $file = 'http://'.$_SERVER['HTTP_HOST'] . '/' . $config->logo;
-
-        if(!$this->config->verificaUrl($file)){
-            $config->logo = '';
-        }
-
         return response()->json($config, 201);
     }
 

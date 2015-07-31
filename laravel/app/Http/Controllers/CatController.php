@@ -32,6 +32,17 @@ class CatController extends Controller
         }
     }
 
+    public function onUpdate(Request $request){
+        $input = $request->json()->all();
+
+        $cat = $this->cat->find($input['idCategoria']);
+        $cat->nome = $input['nome'];
+
+        $cat->save();
+
+        return response()->json(['successMsg' => 'Editado com sucesso.'], 201);
+    }
+
     public function search(Request $request){
         $input = $request->json()->all();
 

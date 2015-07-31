@@ -32,6 +32,18 @@ class SubController extends Controller
         }
     }
 
+    public function onUpdate(Request $request){
+        $input = $request->json()->all();
+
+        $sub = $this->sub->find($input['idSubCategoria']);
+
+        $sub->nome = $input['nome'];
+        $sub->id_categoria = $input['id_categoria'];
+        $sub->save();
+
+        return response()->json(['successMsg' => 'Editado com sucesso.'], 201);
+    }
+
     public function search(Request $request){
         $input = $request->json()->all();
 

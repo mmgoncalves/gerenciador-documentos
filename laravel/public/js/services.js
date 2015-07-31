@@ -11,9 +11,11 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             switch (tipo){
                 case 'subAdd':      var url = URL + '/sub/create'; break;
                 case 'subSearch':   var url = URL + '/sub/search'; break;
+                case 'subUpdate':   var url = URL + '/sub/update'; break;
 
                 case 'catList':     var url = URL + '/cat'; break;
                 case 'catAdd':      var url = URL + '/cat/create'; break;
+                case 'catUpdate':   var url = URL + '/cat/update'; break;
                 case 'catSearch':   var url = URL + '/cat/search'; break;
 
                 case 'confList':    var url = URL + '/config'; break;
