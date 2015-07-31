@@ -31,4 +31,15 @@ class SubController extends Controller
             return response()->json(['errorMsg' => 'Erro no sistema, tente novamente.'], 200);
         }
     }
+
+    public function search(Request $request){
+        $input = $request->json()->all();
+
+        if(($retorno = $this->sub->busca($input))){
+            return response()->json($retorno, 201);
+        }else{
+            return response()->json(['errorMsg' => 'Nenhum resultado encontrado.'], 200);
+        }
+
+    }
 }

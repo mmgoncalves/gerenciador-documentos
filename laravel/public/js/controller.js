@@ -8,6 +8,8 @@ function TopoCtrl(){
 function CategoriaController($scope, Request, Dialog){
     $scope.listCat = {};
     $scope.listSub = {};
+    $scope.searchCat = '';
+    $scope.searchSub = '';
 
     $scope.buscaCat = function () {
         Request.get_request("catList", "", "GET")
@@ -36,13 +38,35 @@ function CategoriaController($scope, Request, Dialog){
     };
 
     $scope.addSubCategoria = function () {
-        Request.get_request("subAdd", $scope.sub, "POST")
+        if($scope.sub != undefined && $scope.sub != ''){
+            Request.get_request("subAdd", $scope.sub, "POST")
+                .success(function (data, status) {
+                    if(status == 201){
+                        // Mensagem de sucesso
+                        Dialog.show({tipo:"notify", titulo:data.successMsg});
+                        // limpa o form
+                        $scope.sub = {};
+                    }
+                });
+        }
+    };
+
+    $scope.buscaCategoria = function (){
+        var values = {busca:$scope.searchCat};
+        Request.get_request("catSearch", values, "POST")
             .success(function (data, status) {
                 if(status == 201){
-                    // Mensagem de sucesso
-                    Dialog.show({tipo:"notify", titulo:data.successMsg});
-                    // limpa o form
-                    $scope.sub = {};
+                    $scope.listCat = data;
+                }
+            });
+    };
+
+    $scope.buscaSubCategoria = function (){
+        var values = {busca:$scope.searchSub};
+        Request.get_request("subSearch", values, "POST")
+            .success(function (data, status) {
+                if(status == 201){
+                    $scope.listSub = data;
                 }
             });
     };

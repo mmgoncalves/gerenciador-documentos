@@ -23,10 +23,29 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="search" class="form-control" placeholder="Busca por categorias" ng-model="searchCat">
-                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
+                                <div class="input-group-addon btn" ng-click="buscaCategoria()"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
                     </form>
+
+                    <table class="table table-striped col-md-5" ng-show="listCat">
+                        <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="list in listCat">
+                            <td>{{ list.nome}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info" title="Editar" ng-click="editarCat($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluirCat($index)"> <i class="glyphicon glyphicon-remove"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- BOX 2 -->
@@ -54,10 +73,31 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="search" class="form-control" placeholder="Busca por sub categorias" ng-model="searchSub">
-                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
+                                <div class="input-group-addon btn" ng-click="buscaSubCategoria()"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
                     </form>
+
+                    <table class="table table-striped col-md-5" ng-show="listSub">
+                        <thead>
+                        <tr>
+                            <th>Sub Categoria</th>
+                            <th>Categoria</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="list in listSub">
+                            <td>{{ list.nome}}</td>
+                            <td>{{ list.categoria}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-info" title="Editar" ng-click="editarSub($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluirSub($index)"> <i class="glyphicon glyphicon-remove"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <!-- BOX 4 -->

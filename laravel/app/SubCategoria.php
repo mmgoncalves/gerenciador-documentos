@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SubCategoria extends Model
 {
@@ -22,6 +23,28 @@ class SubCategoria extends Model
         }else{
             return false;
         }
+    }
+
+    public function busca($input){
+        $sql = 'SELECT idSubCategoria, sub.nome, cat.nome AS categoria, id_categoria FROM sub_categorias AS sub INNER JOIN categorias AS cat ON id_categoria = cat.idCategoria ';
+        $where = 'WHERE ';
+
+        $arrSub = explode(' ', $input['busca']);
+        $qtd = count($arrSub);
+
+        for($i = 0; $i < $qtd; $i++){
+            $where .= ' sub.nome LIKE "%'.$arrSub[$i].'%" ';
+
+            if(isset($arrSub[$i+1])){
+                $where .= ' AND ';
+            }
+        }
+
+        $sql .= $where;
+
+        $query = DB::select($sql);
+
+        return $query;
     }
 
     /*

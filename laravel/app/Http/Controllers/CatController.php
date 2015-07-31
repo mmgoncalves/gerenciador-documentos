@@ -32,4 +32,14 @@ class CatController extends Controller
         }
     }
 
+    public function search(Request $request){
+        $input = $request->json()->all();
+
+        if(($retorno = $this->cat->busca($input))){
+            return response()->json($retorno, 201);
+        }else{
+            return response()->json(['errorMsg' => 'Nenhum resultado encontrado.'], 200);
+        }
+    }
+
 }
