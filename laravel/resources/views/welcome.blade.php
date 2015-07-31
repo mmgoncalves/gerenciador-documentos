@@ -12,9 +12,10 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
 
         <!-- ANGULAR -->
-        <script src="js/angular.min.js" type="text/javascript"></script>
+        <script src="js/angular-1.3.min.js" type="text/javascript"></script>
         <script src="js/angular-route.min.js" type="text/javascript"></script>
         <script src="js/loading-bar.js" type="text/javascript"></script>
+        <script src="js/dirPagination.js" type="text/javascript"></script>
 
         <!-- JQUERY BOOTSTRAP -->
         <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>

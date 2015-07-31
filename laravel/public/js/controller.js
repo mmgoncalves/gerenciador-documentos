@@ -1,7 +1,7 @@
-function TopoCtrl(){
-
-}
-
+Mod.controller('CategoriaController', CategoriaController)
+    .controller('ConfigController', ConfigController)
+    .controller('AdministradorController', AdministradorController)
+    .controller('HomeController', HomeController);
 /*
  * TELA CATEGORIAS
  */
@@ -10,6 +10,7 @@ function CategoriaController($scope, Request, Dialog){
     $scope.listSub = {};
     $scope.searchCat = '';
     $scope.searchSub = '';
+    $scope.currentPage = 1;
 
     $scope.buscaCat = function () {
         Request.get_request("catList", "", "GET")
@@ -155,6 +156,7 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
     //$scope.hasSuccess = false;
     $scope.search = "";
     $scope.add = {};
+    $scope.currentPage = 1;
 
     // Funcao que faz a busca por adm no banco
     $scope.listaAdm = function(){
@@ -253,4 +255,3 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
     // Chama a funcao que contrala os Boxers
     toggleMenu();
 }
-

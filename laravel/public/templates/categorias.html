@@ -1,6 +1,6 @@
 <menu-principal></menu-principal>
 
-<div class="topo col-md-12" ng-controller="TopoCtrl as t">
+<div class="topo col-md-12">
     <div>
         <h1>Olá, <small>Mateus Marques</small></h1>
         <h5><b>Seu último acesso foi em: 18/07/2015 às 18h</b></h5>
@@ -37,7 +37,8 @@
                         </thead>
 
                         <tbody>
-                        <tr ng-repeat="list in listCat">
+
+                        <tr dir-paginate="list in listCat | filter:q | itemsPerPage: 5" current-page="currentPage">
                             <td>{{ list.nome}}</td>
                             <td>
                                 <button class="btn btn-sm btn-info" title="Editar" ng-click="editarCat($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
@@ -46,6 +47,10 @@
                         </tr>
                         </tbody>
                     </table>
+
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
                 </div>
 
                 <!-- BOX 2 -->

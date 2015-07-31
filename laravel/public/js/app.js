@@ -1,4 +1,4 @@
-var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap', 'dialogs'])
+var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap', 'dialogs', 'angularUtils.directives.dirPagination'])
 .config(['$routeProvider', '$locationProvider', function($routeProvider) {
     // remove o # da url
    //$locationProvider.html5Mode(true);

@@ -1,6 +1,6 @@
 <menu-principal></menu-principal>
 
-<div class="topo col-md-12" ng-controller="TopoCtrl as t">
+<div class="topo col-md-12">
     <div>
         <h1>Olá, <small>Mateus Marques</small></h1>
         <h5><b>Seu último acesso foi em: 18/07/2015 às 18h</b></h5>
@@ -48,7 +48,7 @@
                         </thead>
 
                         <tbody>
-                            <tr ng-repeat="adm in list">
+                            <tr dir-paginate="adm in list | filter:q | itemsPerPage: 5" current-page="currentPage">
                                 <td>{{ adm.idAdm}}</td>
                                 <td>{{ adm.nome }}</td>
                                 <td>{{ adm.login }}</td>
@@ -59,6 +59,11 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="text-center" ng-show="list">
+                        <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+
                 </div>
 
                 <!-- BOX 2 -->
