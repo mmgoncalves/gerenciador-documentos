@@ -68,7 +68,7 @@ class Adm extends Model
         }
 
         $input['ultimo_acesso'] = date('Y-m-d');
-        $input['status'] = "A";
+        //$input['status'] = "A";
 
         $create = $this->create($input);
 

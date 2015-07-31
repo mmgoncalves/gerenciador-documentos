@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `adms` (
   `login` 			VARCHAR(14) 	NOT NULL 				COMMENT 'Login (cpf) do usuario adminiatrador no sistema',
   `senha` 			VARCHAR(65) 	NOT NULL 				COMMENT 'Senha do usuario administrador no sistema',
   `ultimo_acesso` 	DATE 			NULL 					COMMENT 'Data do ultimo acesso do administrador no sistema',
-  `status` 			CHAR 			NULL 					COMMENT 'Status do administrador. A = ATIVO, I = INATIVO',
+  `status` 			CHAR 			NULL DEFAULT 'A'		COMMENT 'Status do administrador. A = ATIVO, I = INATIVO',
   `nome` 			VARCHAR(60) 	NULL 					COMMENT 'Nome do administrador',
   PRIMARY KEY (`idAdm`)  									COMMENT '')
 ENGINE = InnoDB;
@@ -22,6 +22,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `categorias` (
   `idCategoria` INT 		NOT NULL AUTO_INCREMENT COMMENT 'Identificador da categoria no sistema',
   `nome` 		VARCHAR(60) NULL 					COMMENT 'Nome da categoria',
+  `status` 		CHAR 		NULL DEFAULT 'A'		COMMENT 'Status do administrador. A = ATIVO, I = INATIVO',  
   PRIMARY KEY (`idCategoria`)  						COMMENT '')
 ENGINE = InnoDB;
 
@@ -33,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `sub_categorias` (
   `idSubCategoria` 	INT 		NOT NULL AUTO_INCREMENT 		COMMENT 'Identificador da sub categoria no sistema',
   `nome` 			VARCHAR(60) NULL 							COMMENT 'Nome da sub categoria',
   `id_categoria` 	INT 		NOT NULL 						COMMENT 'Chave estrangeira da cateogira pai',
+  `status` 			CHAR 		NULL DEFAULT 'A'				COMMENT 'Status do administrador. A = ATIVO, I = INATIVO',  
   PRIMARY KEY (`idSubCategoria`)  								COMMENT '',
   INDEX `fk_subCategoria_categoria1_idx` (`id_categoria` ASC)  	COMMENT '',
   CONSTRAINT `fk_subCategoria_categoria1`
@@ -58,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `arquivos` (
   `id_adm` 			INT 			NULL 						COMMENT 'Chave estrangeira do administrador no sistema ',
   `id_categoria` 	INT 			NULL 						COMMENT 'Chave estrangeira da categoria',
   `id_subCategoria` INT 			NULL 						COMMENT 'Chave estrangeira da sub categoria',
-  `status` 			CHAR 			NULL 						COMMENT 'Status do arquivo no sistema. A = ATIVO, I = INATIVO ',
+  `status` 			CHAR 			NULL DEFAULT 'A'			COMMENT 'Status do arquivo no sistema. A = ATIVO, I = INATIVO ',
   PRIMARY KEY (`idArquivo`)  									COMMENT '',
   INDEX `fk_arquivos_adms1_idx` (`id_adm` ASC)  				COMMENT '',
   INDEX `fk_arquivos_categoria1_idx` (`id_categoria` ASC)  		COMMENT '',
@@ -93,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `sys_configs` (
   `cep` 		VARCHAR(10) 	NULL 					COMMENT '',
   `email` 		VARCHAR(100) 	NULL 					COMMENT '',
   `cnpj` 		VARCHAR(45) 	NULL 					COMMENT '',
-  `logo` 		VARCHAR(128) 	NULL 					COMMENT '',
+  `logo` 		CHAR(8)	 		NULL 					COMMENT '',
   PRIMARY KEY (`idConfig`)  							COMMENT '')
 ENGINE = InnoDB;
 
@@ -151,7 +153,7 @@ ENGINE = InnoDB;
 INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "12345678910", md5("AdmRootPass"), "A", now());
 
 -- Create a blank register in config table
-INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "");
+INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "logo/logo.jpg");
 
 /*
 SET FOREIGN_KEY_CHECKS=0; 

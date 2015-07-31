@@ -10,7 +10,7 @@ class SubCategoria extends Model
     public $timestamps = false;
     protected $primaryKey = 'idSubCategoria';
     protected $table = 'sub_categorias';
-    protected $fillable = ['nome', 'id_categoria'];
+    protected $fillable = ['nome', 'id_categoria', 'status'];
 
     /*
      * Metodo para criar nova sub categoria

@@ -9,7 +9,7 @@ class Categoria extends Model
 {
     public $timestamps = false;
     protected $primaryKey = 'idCategoria';
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'status'];
 
     /*
      * Metodo que cria uma nova categoria no sistema
