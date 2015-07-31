@@ -53,4 +53,14 @@ class CatController extends Controller
         }
     }
 
+    public function onDelete($id){
+        $cat = $this->cat->find($id);
+
+        $cat->status = "I";
+
+        $cat->save();
+
+        return response()->json(['successMsg' => 'Removido com successo.'], 201);
+    }
+
 }

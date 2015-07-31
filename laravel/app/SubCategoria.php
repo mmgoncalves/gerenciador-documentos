@@ -33,14 +33,10 @@ class SubCategoria extends Model
         $qtd = count($arrSub);
 
         for($i = 0; $i < $qtd; $i++){
-            $where .= ' sub.nome LIKE "%'.$arrSub[$i].'%" ';
-
-            if(isset($arrSub[$i+1])){
-                $where .= ' AND ';
-            }
+            $where .= ' sub.nome LIKE "%'.$arrSub[$i].'%" AND ';
         }
 
-        $sql .= $where;
+        $sql .= $where . ' sub.status = "A"';
 
         $query = DB::select($sql);
 

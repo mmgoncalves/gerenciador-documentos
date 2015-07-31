@@ -5,18 +5,18 @@ var URL = 'http://localhost:8000';
 Mod.factory('Request', ['RequestHttp', function(RequestHttp){
     return{
         get_request:function(tipo, value, metodo){
-            //Loading.func('show');
-            
             // verifica qual o tipo de requisicao, e monta a URL adequada
             switch (tipo){
                 case 'subAdd':      var url = URL + '/sub/create'; break;
                 case 'subSearch':   var url = URL + '/sub/search'; break;
                 case 'subUpdate':   var url = URL + '/sub/update'; break;
+                case 'subDelete':   var url = URL + '/sub/delete/'+value.id; break;
 
                 case 'catList':     var url = URL + '/cat'; break;
                 case 'catAdd':      var url = URL + '/cat/create'; break;
                 case 'catUpdate':   var url = URL + '/cat/update'; break;
                 case 'catSearch':   var url = URL + '/cat/search'; break;
+                case 'catDelete':   var url = URL + '/cat/delete/'+value.id; break;
 
                 case 'confList':    var url = URL + '/config'; break;
                 case 'confUpdade':  var url = URL + '/config/update'; break;

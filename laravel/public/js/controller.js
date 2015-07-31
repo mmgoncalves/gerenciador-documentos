@@ -97,6 +97,32 @@ function CategoriaController($scope, Request, Dialog){
         toggleMenu2('.box4');
     };
 
+    $scope.excluirCat = function($index){
+        Dialog.show({tipo:"confirm", titulo:"Deseja remover esta categoria?"})
+            .then(function(r){
+                var values = {id:$scope.listCat[$index].idCategoria};
+                Request.get_request("catDelete", values, "GET")
+                    .success(function (data, status) {
+                        if(status == 201){
+                            $scope.listCat.splice($index, 1);
+                        }
+                    });
+            });
+    };
+
+    $scope.excluirSub = function($index){
+        Dialog.show({tipo:"confirm", titulo:"Deseja remover esta sub categoria?"})
+            .then(function(r){
+                var values = {id:$scope.listSub[$index].idSubCategoria};
+                Request.get_request("subDelete", values, "GET")
+                    .success(function (data, status) {
+                        if(status == 201){
+                            $scope.listSub.splice($index, 1);
+                        }
+                    });
+            });
+    };
+
     $scope.buscaCat();
     toggleMenu();
 }

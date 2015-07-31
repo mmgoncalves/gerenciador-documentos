@@ -15,7 +15,7 @@ class SubController extends Controller
     }
 
     public function index(){
-        $sub = $this->sub->all();
+        $sub = $this->sub->where('status', 'A');
 
         return response()->json($sub, 201);
     }
@@ -52,6 +52,13 @@ class SubController extends Controller
         }else{
             return response()->json(['errorMsg' => 'Nenhum resultado encontrado.'], 200);
         }
+    }
 
+    public function onDelete($id){
+        $sub = $this->sub->find($id);
+        $sub->status = "I";
+        $sub->save();
+
+        return response()->json(['successMsg' => 'Removido com sucesso'], 201);
     }
 }

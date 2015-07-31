@@ -40,6 +40,7 @@ Route::group(['prefix' => 'cat'], function(){
     Route::post('create', 'CatController@onCreate');
     Route::post('update', 'CatController@onUpdate');
     Route::post('search', 'CatController@search');
+    Route::get('delete/{id}', 'CatController@onDelete');
 });
 
 Route::group(['prefix' => 'sub'], function(){
@@ -47,4 +48,5 @@ Route::group(['prefix' => 'sub'], function(){
     Route::post('create', 'SubController@onCreate');
     Route::post('search', 'SubController@search');
     Route::post('update', 'SubController@onUpdate');
+    Route::get('delete/{id}', 'SubController@onDelete');
 });

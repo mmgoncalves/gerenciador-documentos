@@ -32,14 +32,10 @@ class Categoria extends Model
         $qtd = count($arrBusca);
 
         for($i = 0; $i < $qtd; $i++){
-            $where .= 'nome LIKE "%'.$arrBusca[$i].'%" ';
-
-            if(isset($arrBusca[$i+1])){
-                $where .= ' AND ';
-            }
+            $where .= 'nome LIKE "%'.$arrBusca[$i].'%" AND ';
         }
 
-        $sql .= $where;
+        $sql .= $where . ' status = "A"';
 
         $query = DB::select($sql);
 
