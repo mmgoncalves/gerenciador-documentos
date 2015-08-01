@@ -18,7 +18,7 @@
 
                 <!-- BOX 1 -->
                 <div class="accordion-header">Buscar por administradores</div>
-                <div class="accordion-content open">
+                <div class="accordion-content">
 
                     <form class="form-inline">
                         <div class="form-group">
@@ -69,6 +69,11 @@
                 <!-- BOX 2 -->
                 <div class="accordion-header">Criar novo administrador</div>
                 <div class="accordion-content box2">
+                    <div class="form-group form-inline pull-right">
+                        <button class="btn btn-warning" ng-click="addAdm()">SALVAR</button>
+                        <button class="btn btn-warning" ng-click="limpaForm()">LIMPAR</button>
+                    </div>
+
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group has-feedback col-md-5">
@@ -79,12 +84,6 @@
                             <div class="form-group has-feedback col-md-4">
 
                                 <input type="text" ng-keyup="validaNumero()" class="form-control" id="cpf" maxlength="11" placeholder="CPF: Apenas números" ng-model="add.login">
-                            </div>
-
-
-                            <div class="form-group form-inline has-feedback col-md-3">
-                                <button class="btn btn-warning" ng-click="addAdm()">SALVAR</button>
-                                <button class="btn btn-warning" ng-click="limpaForm()">LIMPAR</button>
                             </div>
                         </div>
 

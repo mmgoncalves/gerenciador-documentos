@@ -56,16 +56,15 @@
                 <!-- BOX 2 -->
                 <div class="accordion-header row">Criar nova categoria</div>
                 <div class="accordion-content row box2">
+                    <div class="form-group pull-right">
+                        <button class="btn btn-warning" ng-click="addCategoria()">SALVAR</button>
+                    </div>
+
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group col-md-7">
                                 <label class="control-label col-sm-4">Nome da categoria</label>
                                 <input type="text" class="form-control" ng-model="cat.nome" maxlength="40">
-                            </div>
-
-                            <div class="col-md-4"></div>
-                            <div class="form-group col-md-1">
-                                <button class="btn btn-warning" ng-click="addCategoria()">SALVAR</button>
                             </div>
                         </div>
                     </form>
@@ -112,6 +111,10 @@
                 <!-- BOX 4 -->
                 <div class="accordion-header row">Criar nova sub categoria</div>
                 <div class="accordion-content row box4">
+                    <div class="form-group pull-right">
+                        <button class="btn btn-warning" ng-click="addSubCategoria()">SALVAR</button>
+                    </div>
+
                     <form class="form-group">
                         <div class="form-group form-inline col-md-12">
                             <div class="form-group col-md-5">
@@ -124,11 +127,6 @@
                             <div class="form-group col-md-4">
                                 <label class="control-label col-sm-3">Nome</label>
                                 <input type="text" class="form-control" ng-model="sub.nome" maxlength="40">
-                            </div>
-
-                            <div class="col-md-2"></div>
-                            <div class="form-group col-md-1">
-                                <button class="btn btn-warning" ng-click="addSubCategoria()">SALVAR</button>
                             </div>
                         </div>
                     </form>
