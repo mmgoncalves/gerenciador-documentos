@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `sys_configs` (
   `email` 		VARCHAR(100) 	NULL 					COMMENT '',
   `cnpj` 		VARCHAR(45) 	NULL 					COMMENT '',
   `logo` 		CHAR(8)	 		NULL 					COMMENT '',
+  `site` 		VARCHAR(100)	NULL 					COMMENT '',
   PRIMARY KEY (`idConfig`)  							COMMENT '')
 ENGINE = InnoDB;
 
@@ -153,7 +154,7 @@ ENGINE = InnoDB;
 INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "12345678910", md5("AdmRootPass"), "A", now());
 
 -- Create a blank register in config table
-INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "logo/logo.jpg");
+INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "logo/logo.jpg", "");
 
 /*
 SET FOREIGN_KEY_CHECKS=0; 
