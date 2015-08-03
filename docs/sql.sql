@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `sys_configs` (
   `cep` 		VARCHAR(10) 	NULL 					COMMENT '',
   `email` 		VARCHAR(100) 	NULL 					COMMENT '',
   `cnpj` 		VARCHAR(45) 	NULL 					COMMENT '',
-  `logo` 		CHAR(8)	 		NULL 					COMMENT '',
+  `logo` 		CHAR(13)	 		NULL 					COMMENT '',
   `site` 		VARCHAR(100)	NULL 					COMMENT '',
   PRIMARY KEY (`idConfig`)  							COMMENT '')
 ENGINE = InnoDB;

@@ -1,7 +1,29 @@
 Mod.controller('CategoriaController', CategoriaController)
     .controller('ConfigController', ConfigController)
     .controller('AdministradorController', AdministradorController)
+    .controller('LoginController', LoginController)
     .controller('HomeController', HomeController);
+
+/*
+ * TELA LOGIN
+ */
+function LoginController($scope, Request, Dialog){
+    $scope.adm = {};
+
+    $scope.logar = function(){
+        Request.get_request("admAuth", $scope.adm, "POST")
+            .success(function(data, status){
+                console.log(data);
+                if(status == 201 && data.idAdm != undefined && data.idAdm != ""){
+                    console.log("logado..");
+                }else{
+                    Dialog.show({tipo:"error", titulo:"Login ou senha incorretos."});
+                }
+            });
+    };
+}
+
+
 /*
  * TELA CATEGORIAS
  */

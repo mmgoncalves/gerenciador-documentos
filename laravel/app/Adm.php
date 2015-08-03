@@ -68,12 +68,27 @@ class Adm extends Model
         }
 
         $input['ultimo_acesso'] = date('Y-m-d');
-        //$input['status'] = "A";
 
         $create = $this->create($input);
 
         if($create->attributes['idAdm'] > 0){
             return $create->attributes['idAdm'];
+        }else{
+            return false;
+        }
+    }
+
+    /*
+     * Verifica os dados de um adm, e autentica no sistema
+     */
+    public function authAdm($input){
+        $sql = 'SELECT idAdm FROM adms WHERE login = :login AND senha = md5(:senha)';
+
+        $auth = DB::select($sql, [':login' => $input['login'], ':senha' => $input['senha']]);
+
+        echo count($auth);
+        if(count($auth) != 1){
+            return $auth[0]->idAdm;
         }else{
             return false;
         }

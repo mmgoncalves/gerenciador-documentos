@@ -26,6 +26,10 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap
            alert('teste');
        }
    })
+       .when('/login', {
+           templateUrl: 'templates/login.html',
+           controller: 'LoginController'
+       })
 
    // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
