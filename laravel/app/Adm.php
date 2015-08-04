@@ -4,20 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-
-class Adm extends Model
+class Adm extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
+
     public $timestamps = false;
     protected $primaryKey = 'idAdm';
-
-    protected $fillable = ['nome','login', 'senha', 'ultimo_acesso', 'status'];
+    protected $hidden = ['senha'];
+    protected $fillable = ['nome','cpf', 'password', 'ultimo_acesso', 'status'];
 
     /*
      * BUSCA TODOS OS REGISTROS
      */
     public function listAll(){
-        $query = DB::select('SELECT nome, login, status, idAdm FROM adms');
+        $query = DB::select('SELECT nome, cpf, status, idAdm FROM adms');
 
         return $query;
     }
@@ -27,7 +30,7 @@ class Adm extends Model
      */
     public function search($input){
         if(isset($input['busca'])){
-            $sql = 'SELECT nome, login, status, idAdm FROM adms ';
+            $sql = 'SELECT nome, cpf, status, idAdm FROM adms ';
             $where = '';
 
             // separa as palavras em array
@@ -38,7 +41,7 @@ class Adm extends Model
             if($input['busca'] == ""){
                 $where = " WHERE ";
             }else if($qtd == 1 && is_numeric($arrBusca[0])){
-                $where = ' WHERE login LIKE "%'.$arrBusca[0].'%" AND ';
+                $where = ' WHERE cpf LIKE "%'.$arrBusca[0].'%" AND ';
             }else if($qtd > 0){
                 // entra aqui caso a busca seja por nome
                 for($i = 0; $i < $qtd; $i++){
@@ -63,8 +66,8 @@ class Adm extends Model
      * CADASTRA UM NOVO ADMINISTRADOR NO BANCO
      */
     public function newAdm($input){
-        if(isset($input['senha'])){
-            $input['senha'] = md5($input['senha']);
+        if(isset($input['password'])){
+            $input['password'] = md5($input['password']);
         }
 
         $input['ultimo_acesso'] = date('Y-m-d');
@@ -82,12 +85,13 @@ class Adm extends Model
      * Verifica os dados de um adm, e autentica no sistema
      */
     public function authAdm($input){
-        $sql = 'SELECT idAdm FROM adms WHERE login = :login AND senha = md5(:senha)';
+        $sql = 'SELECT idAdm FROM adms WHERE cpf = :cpf AND password = md5(:password)';
 
-        $auth = DB::select($sql, [':login' => $input['login'], ':senha' => $input['senha']]);
+        $auth = DB::select($sql, [':cpf' => $input['cpf'], ':password' => $input['password']]);
 
-        echo count($auth);
-        if(count($auth) != 1){
+        //echo count($auth);print_r($auth);
+
+        if(count($auth) == 1){
             return $auth[0]->idAdm;
         }else{
             return false;

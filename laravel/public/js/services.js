@@ -45,6 +45,8 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             switch (metodo){
                 case 'GET' : return $http.get(url);
                 case 'POST': return $http.post(url, value);
+                case 'PUT': return $http.put(url, value);
+                case 'DEL': return $http.delete(url);
             }
         }
     };
@@ -81,6 +83,26 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
 
             else if(values.senha != values.reSenha){resp.push({erro:'Os campos SENHA e REPETIR SENHA estão diferentes.'})}
+
+            if(resp.length > 0){
+                return {success:false, resp:resp}
+            }
+
+            return {success:true}
+        }
+    };
+}])
+
+.factory('validaFormLogin', [function(){
+    return{
+        do: function(values){
+            var resp = [];
+
+            if(values.login == undefined || values.login == "" || values.login.length != 11){resp.push({erro:'Digite o CPF corretamente.'})}
+
+            else if(!ValidarCPF(values.login)){resp.push({erro:'CPF inválido.'})}
+
+            if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
 
             if(resp.length > 0){
                 return {success:false, resp:resp}

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Adm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdmController extends Controller
 {
@@ -17,8 +18,6 @@ class AdmController extends Controller
      */
     public function find($id){
         $adm = $this->adm->find($id);
-        unset($adm->senha);
-        
 
         return response()->json($adm, 201);
     }
@@ -80,13 +79,28 @@ class AdmController extends Controller
      * Metodo que faz a autenticacao do adm no sistema
      */
     public function onAuth(Request $request){
+        Auth::logout();
+        $input = $request->all();
+
+        if(($idAdm = $this->adm->authAdm($input))){
+            $adm = $this->adm->find($idAdm);
+            Auth::login($adm);
+        }
+
+        if(Auth::check()){
+            return response()->json(['idAdm' => $idAdm], 201);
+        }else{
+            return response()->json(['errorMsg' => 'Login ou senha incorretos.'], 200);
+        }
+
+        /*
         $input = $request->json()->all();
 
         if(($retorno = $this->adm->authAdm($input))){
             return response()->json(['idAdm' => $retorno], 201);
         }else{
             return response()->json(['errorMsg' => 'Login ou senha incorretos.'], 200);
-        }
+        }*/
 
 
     }

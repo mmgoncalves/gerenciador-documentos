@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Auth;
 use App\User;
+use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -33,6 +34,20 @@ class AuthController extends Controller
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
+    public function postLogin(Request $request){
+        $input = $request->all();
+
+        //$input['password'] = md5($input['password']);print_r($input);
+
+        if (Auth::attempt([ 'cpf' => $input['cpf'], 'password' => md5($input['password']) ])) {
+            // Authentication passed...
+            //return redirect(['to' => 'home']);
+            return redirect()->intended('dashboard');
+        }else{
+            return ['erro' => 'Usuario nao encontrado'];
+        }
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -42,8 +57,7 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'cpf' => 'required|max:11',
             'password' => 'required|confirmed|min:6',
         ]);
     }

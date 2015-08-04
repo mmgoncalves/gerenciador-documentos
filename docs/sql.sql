@@ -8,11 +8,12 @@
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `adms` (
   `idAdm` 			INT 			NOT NULL AUTO_INCREMENT COMMENT 'Identificador databela adm',
-  `login` 			VARCHAR(14) 	NOT NULL 				COMMENT 'Login (cpf) do usuario adminiatrador no sistema',
-  `senha` 			VARCHAR(65) 	NOT NULL 				COMMENT 'Senha do usuario administrador no sistema',
+  `cpf` 			VARCHAR(11) 	NOT NULL UNIQUE			COMMENT 'cpf do usuario adminiatrador no sistema',
+  `password` 		VARCHAR(65) 	NOT NULL 				COMMENT 'Senha do usuario administrador no sistema',
   `ultimo_acesso` 	DATE 			NULL 					COMMENT 'Data do ultimo acesso do administrador no sistema',
   `status` 			CHAR 			NULL DEFAULT 'A'		COMMENT 'Status do administrador. A = ATIVO, I = INATIVO',
   `nome` 			VARCHAR(60) 	NULL 					COMMENT 'Nome do administrador',
+  `remember_token`  VARCHAR(100) 	NULL 					COMMENT 'Token de autorizacao',
   PRIMARY KEY (`idAdm`)  									COMMENT '')
 ENGINE = InnoDB;
 
@@ -151,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `sys_log_configs` (
 ENGINE = InnoDB;
 
 -- Create a user defalut
-INSERT INTO adms (nome, login, senha, status, ultimo_acesso) VALUES("Adm Root", "12345678910", md5("AdmRootPass"), "A", now());
+INSERT INTO adms (nome, cpf, password, status, ultimo_acesso) VALUES("Adm Root", "27851984254", md5("AdmRootPass"), "A", now());
 
 -- Create a blank register in config table
 INSERT INTO sys_configs VALUES(1, "", "", "", "", "", "", "", "logo/logo.jpg", "");

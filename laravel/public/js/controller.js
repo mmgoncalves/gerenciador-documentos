@@ -7,19 +7,38 @@ Mod.controller('CategoriaController', CategoriaController)
 /*
  * TELA LOGIN
  */
-function LoginController($scope, Request, Dialog){
+function LoginController($scope, Request, Dialog, validaFormLogin){
     $scope.adm = {};
 
     $scope.logar = function(){
-        Request.get_request("admAuth", $scope.adm, "POST")
-            .success(function(data, status){
-                console.log(data);
-                if(status == 201 && data.idAdm != undefined && data.idAdm != ""){
-                    console.log("logado..");
-                }else{
-                    Dialog.show({tipo:"error", titulo:"Login ou senha incorretos."});
-                }
-            });
+        if($scope.validaForm()){
+            Request.get_request("admAuth", $scope.adm, "POST")
+                .success(function(data, status){
+                    console.log(data);
+                    if(status == 201 && data.idAdm != undefined && data.idAdm != ""){
+                        console.log("logado..");
+                    }else{
+                        $scope.error = [{erro:"Login ou senha incorretos."}];
+                        $scope.hasError = true;
+                    }
+                });
+        }
+    };
+
+    $scope.validaForm = function(){
+        $scope.hasError = false;
+        var retorno = validaFormLogin.do($scope.adm);
+        if(!retorno.success){
+            $scope.error = retorno.resp;
+            $scope.hasError = true;
+            return false;
+        }else{
+            return true;
+        }
+    };
+
+    $scope.validaNumero = function(){
+        $scope.adm.login = apenasNumero($scope.adm.login);
     };
 }
 
