@@ -89,8 +89,14 @@ class Adm extends Model implements AuthenticatableContract
 
         $auth = DB::select($sql, [':cpf' => $input['cpf'], ':password' => $input['password']]);
 
-        if(count($auth) == 1){
-            return $auth[0]->idAdm;
+        if(count($auth) == 1 && ($adm = $this->find($auth[0]->idAdm))){
+            // guarda no variavel retorno as informacoes do administrador
+            $retorno = $adm;
+            // altera a data do ultimo acesso do administrador no sistema
+            $adm->ultimo_acesso = date('Y-d-m');
+            $adm->save();
+            // retorna os dados do administrador
+            return $retorno;
         }else{
             return false;
         }

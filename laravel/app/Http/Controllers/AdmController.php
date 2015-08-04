@@ -75,19 +75,4 @@ class AdmController extends Controller
         return response()->json([], 201);
     }
 
-    /*
-     * Metodo que faz a autenticacao do adm no sistema
-     */
-    public function onAuth(Request $request){
-        Auth::logout();
-        $input = $request->all();
-
-        if(($idAdm = $this->adm->authAdm($input))){
-            $adm = $this->adm->find($idAdm);
-            Auth::login($adm);
-            return redirect('home');
-        }else{
-            return view('auth.login', ['error' => 'true']);
-        }
-    }
 }

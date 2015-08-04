@@ -77,9 +77,9 @@ class AuthController extends Controller
 
         // chamo o metodo que valida os dados
         $admDao = new Adm();
-        if(($idAdm = $admDao->authAdm($input))){
+        if(($adm = $admDao->authAdm($input))){
             // abre a sessao e redireciona para home
-            $adm = $admDao->find($idAdm);
+            //$adm = $admDao->find($idAdm);
             Auth::login($adm);
             return redirect('home');
         }else{
