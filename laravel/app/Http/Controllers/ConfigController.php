@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SysConfig;
+use App\SysLogConfig;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -31,6 +32,10 @@ class ConfigController extends Controller
         unset($input['logo']);
 
         $resp = $this->config->onUpdate($input);
+
+        // chama a classe que gera o log de alteracoes
+        $log = new SysLogConfig();
+        $log->newLog();
 
         return response()->json(["idConfig" => $resp, "successMsg" => utf8_encode("Configurações atualizadas")], 201);
     }

@@ -106,14 +106,14 @@ ENGINE = InnoDB;
 -- Table `sys_logs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sys_logs` (
-  `idLog` 		INT 			NOT NULL 			COMMENT 'Identificador do Log no sistema',
-  `data` 		DATETIME 		NULL 				COMMENT 'Data e hora da criacao do log',
-  `alteracao` 	VARCHAR(100) 	NULL 				COMMENT 'Texto informando a alteracao feita',
-  `id_adm` 		INT 			NOT NULL 			COMMENT 'Chave estrangeira do administrador',
-  `id_arquivo` 	INT 			NOT NULL 			COMMENT 'Chave estrangeire do arquivo',
-  PRIMARY KEY (`idLog`)  							COMMENT '',
-  INDEX `fk_log_adms1_idx` (`id_adm` ASC)  			COMMENT '',
-  INDEX `fk_log_arquivos1_idx` (`id_arquivo` ASC)  COMMENT '',
+  `idLog` 		INT 			NOT NULL auto_increment	COMMENT 'Identificador do Log no sistema',
+  `data` 		DATETIME 		NULL 					COMMENT 'Data e hora da criacao do log',
+  `alteracao` 	VARCHAR(100) 	NULL 					COMMENT 'Texto informando a alteracao feita',
+  `id_adm` 		INT 			NOT NULL 				COMMENT 'Chave estrangeira do administrador',
+  `id_arquivo` 	INT 			NOT NULL 				COMMENT 'Chave estrangeire do arquivo',
+  PRIMARY KEY (`idLog`)  								COMMENT '',
+  INDEX `fk_log_adms1_idx` (`id_adm` ASC)  				COMMENT '',
+  INDEX `fk_log_arquivos1_idx` (`id_arquivo` ASC)  		COMMENT '',
   CONSTRAINT `fk_log_adms1`
     FOREIGN KEY (`id_adm`)
     REFERENCES `adms` (`idAdm`)
@@ -131,19 +131,12 @@ ENGINE = InnoDB;
 -- Table `logConfig`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sys_log_configs` (
-  `idLogConfig` 	INT 			NOT NULL 				COMMENT 'Identificador do loCOnfig no sistema',
+  `idLogConfig` 	INT 			NOT NULL auto_increment COMMENT 'Identificador do loCOnfig no sistema',
   `data` 			DATETIME 		NULL 					COMMENT 'Data e hora da criacao do log',
   `alteracao` 		VARCHAR(100) 	NULL 					COMMENT 'Texto informando a alteracao feita',
-  `id_config` 		INT 			NOT NULL 				COMMENT 'Chave estrangeira do Config',
   `id_adm` 			INT 			NOT NULL 				COMMENT 'Chave estrangeira do administrador',
   PRIMARY KEY (`idLogConfig`)  								COMMENT '',
-  INDEX `fk_logConfig_config1_idx` (`id_config` ASC) COMMENT '',
   INDEX `fk_logConfig_adms1_idx` (`id_adm` ASC)  			COMMENT '',
-  CONSTRAINT `fk_logConfig_config1`
-    FOREIGN KEY (`id_config`)
-    REFERENCES `sys_configs` (`idConfig`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_logConfig_adms1`
     FOREIGN KEY (`id_adm`)
     REFERENCES `adms` (`idAdm`)
