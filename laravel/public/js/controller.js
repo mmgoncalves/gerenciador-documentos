@@ -2,7 +2,15 @@ Mod.controller('CategoriaController', CategoriaController)
     .controller('ConfigController', ConfigController)
     .controller('AdministradorController', AdministradorController)
     .controller('LoginController', LoginController)
+    .controller('TopoController', TopoController)
     .controller('HomeController', HomeController);
+
+/*
+ * TOPO CONTROLLER
+ */
+function TopoController($scope, ADM){
+    $scope.adm = ADM;
+}
 
 /*
  * TELA LOGIN

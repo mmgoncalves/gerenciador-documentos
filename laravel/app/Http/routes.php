@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/home', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return view('auth.login');
 });
+
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'arq'], function(){
     Route::get('', 'ArquivoController@index');

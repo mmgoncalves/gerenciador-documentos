@@ -26,7 +26,7 @@
         <!-- MASKED INPUT -->
         <script src="js/jquery.maskedinput-1.3.1.min.js" type="text/javascript"></script>
 
-        <script type="text/javascript">var CONSTTK = "{{ csrf_token() }}";</script>
+        <script type="text/javascript">var CONSTTK = "{{ csrf_token() }}"; var CONSTTK_US = { "idAdm": {{ $adm->idAdm  }}, "nome":"{{ $adm->nome }}", "ultimo_acesso": "{{ $adm->ultimo_acesso }}" }</script>
 
         <script src="js/app.js" type="text/javascript"></script>
         <script src="js/controller.js" type="text/javascript"></script>
@@ -48,6 +48,7 @@
 
     </head>
     <body ng-app="App">
+        <menu-principal></menu-principal>
         <div ng-view></div>
     </body>
 </html>

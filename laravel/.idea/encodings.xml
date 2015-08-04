@@ -13,7 +13,7 @@
     <file url="file://$PROJECT_DIR$/public/templates/config.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/home.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/templates/login.html" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/welcome.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/home.blade.php" charset="UTF-8" />
     <file url="PROJECT" charset="windows-1252" />
   </component>
 </project>

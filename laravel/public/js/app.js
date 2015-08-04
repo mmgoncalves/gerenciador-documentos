@@ -21,21 +21,17 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap
        templateUrl : 'templates/config.html',
        controller: 'ConfigController'
    })
-   .when('/sair', {
-       controller:function(){
-           alert('teste');
-       }
+   .when('/login', {
+       templateUrl: 'templates/login.html',
+       controller: 'LoginController'
    })
-       .when('/login', {
-           templateUrl: 'templates/login.html',
-           controller: 'LoginController'
-       })
 
    // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
 }]);
 
-Mod.constant("CSRF_TOKEN", CONSTTK);
+Mod.constant("CSRF_TOKEN", CONSTTK)
+.constant("ADM", CONSTTK_US);
 Mod.run(['$http', 'CSRF_TOKEN', function($http, CSRF_TOKEN) {
     $http.defaults.headers.common['X-Csrf-Token'] = CSRF_TOKEN;
 }])

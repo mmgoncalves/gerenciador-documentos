@@ -17,9 +17,15 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#/sair"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
+                    <li><a href="/auth/logout"><span class="glyphicon glyphicon-log-in"></span> Sair</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="topo col-md-12" ng-controller="TopoController">
+        <div>
+            <h1>Olá, <small>{{ adm.nome }}</small></h1>
+            <h5><b>Seu último acesso foi em: {{ adm.ultimo_acesso | date : "dd/MM/yyyy"}}</b></h5>
+        </div>
+    </div>
 </section>
