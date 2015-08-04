@@ -1,7 +1,6 @@
 Mod.controller('CategoriaController', CategoriaController)
     .controller('ConfigController', ConfigController)
     .controller('AdministradorController', AdministradorController)
-    .controller('LoginController', LoginController)
     .controller('TopoController', TopoController)
     .controller('HomeController', HomeController);
 
@@ -11,45 +10,6 @@ Mod.controller('CategoriaController', CategoriaController)
 function TopoController($scope, ADM){
     $scope.adm = ADM;
 }
-
-/*
- * TELA LOGIN
- */
-function LoginController($scope, Request, Dialog, validaFormLogin){
-    $scope.adm = {};
-
-    $scope.logar = function(){
-        if($scope.validaForm()){
-            Request.get_request("admAuth", $scope.adm, "POST")
-                .success(function(data, status){
-                    console.log(data);
-                    if(status == 201 && data.idAdm != undefined && data.idAdm != ""){
-                        console.log("logado..");
-                    }else{
-                        $scope.error = [{erro:"Login ou senha incorretos."}];
-                        $scope.hasError = true;
-                    }
-                });
-        }
-    };
-
-    $scope.validaForm = function(){
-        $scope.hasError = false;
-        var retorno = validaFormLogin.do($scope.adm);
-        if(!retorno.success){
-            $scope.error = retorno.resp;
-            $scope.hasError = true;
-            return false;
-        }else{
-            return true;
-        }
-    };
-
-    $scope.validaNumero = function(){
-        $scope.adm.login = apenasNumero($scope.adm.login);
-    };
-}
-
 
 /*
  * TELA CATEGORIAS

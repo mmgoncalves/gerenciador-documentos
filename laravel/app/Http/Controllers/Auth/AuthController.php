@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Adm;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'cpf' => 'required|max:11',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6',
         ]);
     }
 
@@ -63,7 +64,33 @@ class AuthController extends Controller
         ]);
     }
 
+    /*
+     * Metodo que recebe uma requisicao de login, chama o model ADM para validar os dados.
+     * Caso os dados estejam corretos, abre a sessao e redireciona para a pagina home.
+     * Caso esteja erro, chama a view de login, informando que houve um erro.
+     */
+    public function postLogin(Request $request){
+        // Encerro todas as sessoes por garantia
+        Auth::logout();
+        // recupero os dados da requisicao
+        $input = $request->all();
 
+        // chamo o metodo que valida os dados
+        $admDao = new Adm();
+        if(($idAdm = $admDao->authAdm($input))){
+            // abre a sessao e redireciona para home
+            $adm = $admDao->find($idAdm);
+            Auth::login($adm);
+            return redirect('home');
+        }else{
+            // chama a view de login, e informa que houve um erro
+            return view('auth.login', ['error' => 'true']);
+        }
+    }
+
+    /*
+     * Metodo que encerrar a sessao do usuario, e redireciona para pagina de login
+     */
     public function getLogout(){
         Auth::logout();
         return redirect('auth/login');

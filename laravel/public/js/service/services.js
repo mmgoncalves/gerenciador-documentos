@@ -27,7 +27,6 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                 case 'admDelete':   var url = URL + '/adm/delete/'+value.id; break;
                 case 'admFind':     var url = URL + '/adm/find/'+value.id; break;
                 case 'admUpdate':   var url = URL + '/adm/update/'; break;
-                case 'admAuth':     var url = URL + '/adm/auth'; break;
 
                 default : return false;
             }

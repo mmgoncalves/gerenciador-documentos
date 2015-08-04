@@ -13,7 +13,7 @@ class Adm extends Model implements AuthenticatableContract
 
     public $timestamps = false;
     protected $primaryKey = 'idAdm';
-    protected $hidden = ['senha'];
+    protected $hidden = ['password'];
     protected $fillable = ['nome','cpf', 'password', 'ultimo_acesso', 'status'];
 
     /*

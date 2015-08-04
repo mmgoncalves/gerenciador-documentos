@@ -15,14 +15,14 @@ Route::get('/', function(){
     return view('auth.login');
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 
-Route::group(['prefix' => 'arq'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
     Route::get('', 'ArquivoController@index');
     Route::get('create', 'ArquivoController@create');
 });
 
-Route::group(['prefix' => 'adm'], function(){
+Route::group(['middleware' => 'auth','prefix' => 'adm'], function(){
     Route::get('find/{id}', 'AdmController@find');
     Route::get('listAll', 'AdmController@listAll');
     Route::post('search', 'AdmController@search');
@@ -32,13 +32,13 @@ Route::group(['prefix' => 'adm'], function(){
     Route::get('delete/{id}', 'AdmController@onDelete');
 });
 
-Route::group(['prefix' => 'config'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'config'], function(){
     Route::get('', 'ConfigController@index');
     Route::post('update', 'ConfigController@onUpdate');
     Route::post('logo', 'ConfigController@upLogo');
 });
 
-Route::group(['prefix' => 'cat'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'cat'], function(){
     Route::get('', 'CatController@index');
     Route::post('create', 'CatController@onCreate');
     Route::post('update', 'CatController@onUpdate');
@@ -46,7 +46,7 @@ Route::group(['prefix' => 'cat'], function(){
     Route::get('delete/{id}', 'CatController@onDelete');
 });
 
-Route::group(['prefix' => 'sub'], function(){
+Route::group(['middleware' => 'auth', 'prefix' => 'sub'], function(){
     Route::get('', 'SubController@index');
     Route::post('create', 'SubController@onCreate');
     Route::post('search', 'SubController@search');
