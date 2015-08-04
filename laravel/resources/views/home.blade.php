@@ -12,27 +12,27 @@
         <link href="css/style.css" rel="stylesheet" type="text/css">
 
         <!-- ANGULAR -->
-        <script src="js/angular-1.3.min.js" type="text/javascript"></script>
-        <script src="js/angular-route.min.js" type="text/javascript"></script>
-        <script src="js/loading-bar.js" type="text/javascript"></script>
-        <script src="js/dirPagination.js" type="text/javascript"></script>
+        <script src="js/angular/angular-1.3.min.js" type="text/javascript"></script>
+        <script src="js/angular/angular-route.min.js" type="text/javascript"></script>
+        <script src="js/lib/loading-bar.js" type="text/javascript"></script>
+        <script src="js/lib/dirPagination.js" type="text/javascript"></script>
 
         <!-- JQUERY BOOTSTRAP -->
-        <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/ui-bootstrap-tpls-0.6.js" type="text/javascript"></script>
-        <script src="js/dialogs.js" type="text/javascript"></script>
+        <script src="js/jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap/ui-bootstrap-tpls-0.6.js" type="text/javascript"></script>
+        <script src="js/lib/dialogs.js" type="text/javascript"></script>
 
         <!-- MASKED INPUT -->
-        <script src="js/jquery.maskedinput-1.3.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery/jquery.maskedinput-1.3.1.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">var CONSTTK = "{{ csrf_token() }}"; var CONSTTK_US = { "idAdm": {{ $adm->idAdm  }}, "nome":"{{ $adm->nome }}", "ultimo_acesso": "{{ $adm->ultimo_acesso }}" }</script>
 
         <script src="js/app.js" type="text/javascript"></script>
-        <script src="js/controller.js" type="text/javascript"></script>
-        <script src="js/services.js" type="text/javascript"></script>
-        <script src="js/directive.js" type="text/javascript"></script>
-        <script src="js/util.js" type="text/javascript"></script>
+        <script src="js/controller/controller.js" type="text/javascript"></script>
+        <script src="js/service/services.js" type="text/javascript"></script>
+        <script src="js/directive/directive.js" type="text/javascript"></script>
+        <script src="js/lib/util.js" type="text/javascript"></script>
 
 
         <!-- TINY_MCE EDITOR -->
