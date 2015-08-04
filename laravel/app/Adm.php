@@ -89,8 +89,6 @@ class Adm extends Model implements AuthenticatableContract
 
         $auth = DB::select($sql, [':cpf' => $input['cpf'], ':password' => $input['password']]);
 
-        //echo count($auth);print_r($auth);
-
         if(count($auth) == 1){
             return $auth[0]->idAdm;
         }else{

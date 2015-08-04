@@ -87,7 +87,7 @@ class AdmController extends Controller
             Auth::login($adm);
             return redirect('home');
         }else{
-            return response()->json(['errorMsg' => 'Login ou senha incorretos.'], 200);
+            return view('auth.login', ['error' => 'true']);
         }
     }
 }

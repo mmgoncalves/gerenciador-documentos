@@ -93,26 +93,6 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
     };
 }])
 
-.factory('validaFormLogin', [function(){
-    return{
-        do: function(values){
-            var resp = [];
-
-            if(values.login == undefined || values.login == "" || values.login.length != 11){resp.push({erro:'Digite o CPF corretamente.'})}
-
-            else if(!ValidarCPF(values.login)){resp.push({erro:'CPF inválido.'})}
-
-            if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
-
-            if(resp.length > 0){
-                return {success:false, resp:resp}
-            }
-
-            return {success:true}
-        }
-    };
-}])
-
 .factory('Dialog', ['$dialogs', '$rootScope', '$timeout', function($dialogs, $rootScope, $timeout){
     return{
         show: function(values){
