@@ -1,0 +1,6 @@
+-É preciso alterar o arquivo ".env", e inserir as informações do banco de dados
+-A Collation(Colação) do banco de dados precisa ser utf8_general_ci
+-Após criar o banco de dados, abra o arquivo "sql.sql", copie tudo, abra o PhpMyAdmin, e vá na aba "SQL" e cole 
+tudo dentro da caixa de texto e mande executar.
+-Altere a primeira linha do arquivo "services.js", que fica dentro da pasta "public/js/service/". Altere o texto 
+'http://localhost:8000' pelo endereço onde os arquivos do sistema estão sendo executados.
