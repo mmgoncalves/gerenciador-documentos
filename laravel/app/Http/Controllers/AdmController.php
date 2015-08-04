@@ -85,9 +85,6 @@ class AdmController extends Controller
         if(($idAdm = $this->adm->authAdm($input))){
             $adm = $this->adm->find($idAdm);
             Auth::login($adm);
-        }
-
-        if(Auth::check()){
             return response()->json(['idAdm' => $idAdm], 201);
         }else{
             return response()->json(['errorMsg' => 'Login ou senha incorretos.'], 200);
