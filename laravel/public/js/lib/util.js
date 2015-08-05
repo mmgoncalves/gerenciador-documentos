@@ -7,10 +7,8 @@ function datapicker(){
 
 function toggleMenu(){
     $('#accordion').find('.accordion-header').click(function(){
-
         $(".accordion-content").not($(this).next()).slideUp('fast');
         $(this).next().slideToggle('fast');
-
     });
 }
 function toggleMenu2(box){

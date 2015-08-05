@@ -7,20 +7,30 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
         get_request:function(tipo, value, metodo){
             // verifica qual o tipo de requisicao, e monta a URL adequada
             switch (tipo){
+                // ARQUIVOS
+                case 'arqListCat':  var url = URL + '/arq/listAll'; break;
+
+                // SUB CATEGORIA
                 case 'subAdd':      var url = URL + '/sub/create'; break;
                 case 'subSearch':   var url = URL + '/sub/search'; break;
                 case 'subUpdate':   var url = URL + '/sub/update'; break;
+                case 'subFind':     var url = URL + '/sub/find/'+value.id; break;
+                case 'subFindCat':  var url = URL + '/sub/findCat/'+value.id; break;
                 case 'subDelete':   var url = URL + '/sub/delete/'+value.id; break;
 
+                // CATEGORIA
                 case 'catList':     var url = URL + '/cat'; break;
                 case 'catAdd':      var url = URL + '/cat/create'; break;
                 case 'catUpdate':   var url = URL + '/cat/update'; break;
                 case 'catSearch':   var url = URL + '/cat/search'; break;
+                case 'catFind':     var url = URL + '/cat/find/'+value.id; break;
                 case 'catDelete':   var url = URL + '/cat/delete/'+value.id; break;
 
+                // CONFIGURACOES
                 case 'confList':    var url = URL + '/config'; break;
                 case 'confUpdade':  var url = URL + '/config/update'; break;
 
+                // ADMINISTRADOR
                 case 'admList':     var url = URL + '/adm/listAll'; break;
                 case 'admSearch':   var url = URL + '/adm/search'; break;
                 case 'admAdd':      var url = URL + '/adm/create'; break;
@@ -69,6 +79,30 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
 }])
 
 .factory('validaFormAdm', [function(){
+    return{
+        do: function(values){
+            var resp = [];
+
+            if(values.nome == undefined || values.nome == ""){resp.push({erro:'Digite o nome corretamente.'})}
+
+            if(values.login == undefined || values.login == "" || values.login.length != 11){resp.push({erro:'Digite o CPF corretamente.'})}
+
+            else if(!ValidarCPF(values.login)){resp.push({erro:'CPF inválido.'})}
+
+            if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
+
+            else if(values.senha != values.reSenha){resp.push({erro:'Os campos SENHA e REPETIR SENHA estão diferentes.'})}
+
+            if(resp.length > 0){
+                return {success:false, resp:resp}
+            }
+
+            return {success:true}
+        }
+    };
+}])
+
+.factory('validaFormArq', [function(){
     return{
         do: function(values){
             var resp = [];

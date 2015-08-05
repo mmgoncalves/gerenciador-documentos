@@ -12,6 +12,45 @@ function TopoController($scope, ADM){
 }
 
 /*
+ * HOME CONTROLLER
+ */
+function HomeController($scope, Request, Dialog, validaFormArq){
+    $scope.listCat = {};
+    $scope.listSub = {};
+    $scope.arq = {};
+
+    // Buscando todas as categorias
+    $scope.buscaCat = function(){
+        Request.get_request("catList", "", "GET")
+            .success(function (data, status) {
+                if(status == 201){
+                    $scope.listCat = data;
+                }else{
+                    // categoria nao encontrada
+                }
+            });
+    };
+
+    // Buscando todas as subcategorias de uma categoria especifica
+    $scope.buscaSub = function () {
+        if($scope.arq.id_categoria != undefined && $scope.arq.id_categoria != ''){
+            var values = {id:$scope.arq.id_categoria};
+            Request.get_request("subFindCat", values, "GET")
+                .success(function (data, status) {
+                    if(status == 201){
+                        $scope.listSub = data;
+                    }else{
+                        // sub categoria nao encontrada
+                    }
+                });
+        }
+    };
+    $scope.buscaCat();
+    toggleMenu();
+    chamaEditor();
+}
+
+/*
  * TELA CATEGORIAS
  */
 function CategoriaController($scope, Request, Dialog){
@@ -176,13 +215,6 @@ function ConfigController($scope, Request, Dialog, UpLogo){
     UpLogo.init();
 }
 
-function HomeController(){
-    var Ctrl = this;
-
-    toggleMenu();
-    datapicker();
-    chamaEditor();
-}
 
 /*
  * TELA ADMINISTRADOR
@@ -253,13 +285,6 @@ function AdministradorController($scope, Request, validaFormAdm, Dialog){
 
         $scope.add = $scope.list[$index];
         toggleMenu2(".box2");
-        /*
-        Request.get_request("admFind", values, "GET")
-            .success(function(data, status){
-                $scope.add = data;
-                toggleMenu2(".box2");
-            });
-            */
     };
 
     // Funcao para validar o formulario principal

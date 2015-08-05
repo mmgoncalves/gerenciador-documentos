@@ -64,61 +64,66 @@
                 <div class="accordion-header">Criar novo documento</div>
                 <div class="accordion-content">
                     <form class="form-group">
-                        <div class="form-group pull-right">
+                        <!-- BTN SALVAR -->
+                        <div class="form-group pull-right" ng-click="enviar()">
                             <button class="btn btn-warning">SALVAR</button>
                         </div>
+
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpEdicao">Edição</label>
-                                <input type="text" class="form-control" id="inpEdicao" aria-describedby="inputSuccess2Status">
-                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                            <!-- EDICAO -->
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="Edição" ng-model="arq.edicao">
                             </div>
 
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-4" for="inpCertificado">Certificado</label>
-                                <input type="text" class="form-control" id="inpCertificado" aria-describedby="inputError2Status">
-                                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+                            <!-- CERTIFICADO -->
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" placeholder="Certificado" ng-model="arq.certificado">
                             </div>
-
-                            <div class="col-md-2"></div>
-
                         </div>
 
                         <div class="form-group form-inline col-md-12">
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-3" for="inpData">Data</label>
-                                <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" id="inpData" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                </div>
+                            <!-- DESCRICAO -->
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control " placeholder="Descrição" ng-model="arq.descricao">
                             </div>
 
-                            <div class="form-group has-feedback col-md-5">
-                                <label class="control-label col-sm-4" for="inpCategoria">Categoria</label>
-                                <select class="form-control" id="inpCategoria" aria-hidden="true">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                            <!-- CATEGORIA -->
+                            <div class="form-group col-md-3">
+                                <select class="form-control" ng-model="arq.id_categoria" ng-change="buscaSub()">
+                                    <option value="">Escolha uma categoria</option>
+                                    <option ng-repeat="cat in listCat" value="{{ cat.idCategoria }}" >{{ cat.nome }}</option>
                                 </select>
+                            </div>
 
+                            <!-- SUB CATEGORIA -->
+                            <div class="form-group col-md-3">
+                                <select class="form-control" ng-model="arq.id_subCategoria">
+                                    <option value="">Sub Categoria</option>
+                                    <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
+                                </select>
                             </div>
                         </div>
 
-                            <div class=" form-group form-inline col-md-12">
-                                <div class="form-group has-feedback col-md-9">
-                                    <label class="control-label col-sm-2" for="inpTitulo">Titulo</label>
-                                    <input type="text" class="form-control " id="inpTitulo" aria-describedby="inputWarning2Status">
-                                    <span class="glyphicon glyphicon-warning-sign form-control-feedback hidden" aria-hidden="true"></span>
-                                </div>
+                        <div class=" form-group form-inline col-md-12">
+                            <!-- TITULO -->
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control " placeholder="Título" ng-model="arq.titulo">
                             </div>
 
+                            <!-- DATA E HORA -->
+                            <div class="form-group col-md-5">
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" id="inpData" placeholder="Data e hora" ng-model="arq.dataHora"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
+                        <!-- CONTEUDO -->
                         <div class="textareaHome">
-                            <textarea class="" id="inpConteudo"></textarea>
+                            <textarea class="" id="inpConteudo" ng-model="arq.conteudo"></textarea>
                         </div>
                     </form>
                 </div>
