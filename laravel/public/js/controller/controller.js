@@ -35,7 +35,7 @@ function HomeController($scope, Request, Dialog, validaFormArq){
     $scope.buscaSub = function () {
         if($scope.arq.id_categoria != undefined && $scope.arq.id_categoria != ''){
             var values = {id:$scope.arq.id_categoria};
-            Request.get_request("subFindCat", values, "GET")
+            Request.get_request("findSubCat", values, "GET")
                 .success(function (data, status) {
                     if(status == 201){
                         $scope.listSub = data;
@@ -43,6 +43,8 @@ function HomeController($scope, Request, Dialog, validaFormArq){
                         // sub categoria nao encontrada
                     }
                 });
+        }else{
+            $scope.listSub = {}
         }
     };
     $scope.buscaCat();

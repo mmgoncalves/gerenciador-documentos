@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Mockery\Exception;
 
 class SubController extends Controller
 {
@@ -63,8 +64,8 @@ class SubController extends Controller
     }
 
     public function find($id){
-        return $this->sub->find($id)->where('status', 'A')->get();
-
+        $sub = $this->sub->where(['status' => 'A', 'idSubCategoria' => $id])->get();
+        return response()->json($sub, 201);
 
     }
 }

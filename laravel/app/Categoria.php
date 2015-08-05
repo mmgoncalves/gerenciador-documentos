@@ -42,6 +42,14 @@ class Categoria extends Model
         return $query;
     }
 
+    public function buscaSubCategoria($id){
+        $sql = 'SELECT cat.nome AS categoria, sub.nome, idSubCategoria FROM categorias AS cat INNER JOIN sub_categorias AS sub ON cat.idCategoria = sub.id_categoria WHERE idCategoria = :id';
+
+        $query = DB::select($sql, [':id' => $id]);
+
+        return $query;
+    }
+
     /*
      * Metodo que faz referencia ao model SubCategoria
      */

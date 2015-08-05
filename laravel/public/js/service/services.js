@@ -10,12 +10,14 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                 // ARQUIVOS
                 case 'arqListCat':  var url = URL + '/arq/listAll'; break;
 
+                // AREA PUBLICA FIND
+                case 'findSubCat':  var url = URL + '/find/subInCat/'+value.id; break;
+
                 // SUB CATEGORIA
                 case 'subAdd':      var url = URL + '/sub/create'; break;
                 case 'subSearch':   var url = URL + '/sub/search'; break;
                 case 'subUpdate':   var url = URL + '/sub/update'; break;
                 case 'subFind':     var url = URL + '/sub/find/'+value.id; break;
-                case 'subFindCat':  var url = URL + '/sub/findCat/'+value.id; break;
                 case 'subDelete':   var url = URL + '/sub/delete/'+value.id; break;
 
                 // CATEGORIA

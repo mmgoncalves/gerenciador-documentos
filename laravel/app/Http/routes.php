@@ -23,6 +23,7 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('allCat', 'CatController@index');
     Route::get('cat/{id}', 'CatController@find');
     Route::get('sub/{id}', 'SubController@find');
+    Route::get('subInCat/{id}', 'CatController@inCat');
 });
 
 
