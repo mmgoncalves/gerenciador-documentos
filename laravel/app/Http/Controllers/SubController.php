@@ -61,4 +61,10 @@ class SubController extends Controller
 
         return response()->json(['successMsg' => 'Removido com sucesso'], 201);
     }
+
+    public function find($id){
+        return $this->sub->find($id)->where('status', 'A')->get();
+
+
+    }
 }

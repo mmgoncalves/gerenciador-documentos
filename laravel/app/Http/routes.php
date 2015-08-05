@@ -15,8 +15,24 @@ Route::get('/', function(){
     return view('auth.login');
 });
 
+/*
+ * AREA PUBLICA
+ */
+
+Route::group(['prefix' => 'find'], function(){
+    Route::get('allCat', 'CatController@index');
+    Route::get('cat/{id}', 'CatController@find');
+    Route::get('sub/{id}', 'SubController@find');
+});
+
+
+
+/*
+ * AREA ADMINISTRATIVA PRIVADA
+ */
 Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 
+// ARQUIVOS
 Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
     Route::get('', 'ArquivoController@index');
     Route::get('create', 'ArquivoController@create');
@@ -27,6 +43,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
     Route::get('delete/{id}', 'ArquivoController@onDelete');
 });
 
+// ADMINISTRADOR
 Route::group(['middleware' => 'auth','prefix' => 'adm'], function(){
     Route::get('find/{id}', 'AdmController@find');
     Route::get('listAll', 'AdmController@listAll');
@@ -37,12 +54,14 @@ Route::group(['middleware' => 'auth','prefix' => 'adm'], function(){
     Route::get('delete/{id}', 'AdmController@onDelete');
 });
 
+// CONFIGURACOES
 Route::group(['middleware' => 'auth', 'prefix' => 'config'], function(){
     Route::get('', 'ConfigController@index');
     Route::post('update', 'ConfigController@onUpdate');
     Route::post('logo', 'ConfigController@upLogo');
 });
 
+// CATEGORIAS
 Route::group(['middleware' => 'auth', 'prefix' => 'cat'], function(){
     Route::get('', 'CatController@index');
     Route::post('create', 'CatController@onCreate');
@@ -51,6 +70,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'cat'], function(){
     Route::get('delete/{id}', 'CatController@onDelete');
 });
 
+// SUB CATEGORIAS
 Route::group(['middleware' => 'auth', 'prefix' => 'sub'], function(){
     Route::get('', 'SubController@index');
     Route::post('create', 'SubController@onCreate');

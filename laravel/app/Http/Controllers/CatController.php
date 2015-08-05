@@ -63,4 +63,8 @@ class CatController extends Controller
         return response()->json(['successMsg' => 'Removido com successo.'], 201);
     }
 
+    public function find($id){
+        return $this->cat->find($id);
+    }
+
 }

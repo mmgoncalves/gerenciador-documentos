@@ -96,7 +96,7 @@
                             </div>
 
                             <!-- SUB CATEGORIA -->
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-3" ng-hide="listSub == '' || listSub == undefined">
                                 <select class="form-control" ng-model="arq.id_subCategoria">
                                     <option value="">Sub Categoria</option>
                                     <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
