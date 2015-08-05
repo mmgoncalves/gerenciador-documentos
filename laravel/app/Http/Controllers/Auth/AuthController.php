@@ -80,7 +80,7 @@ class AuthController extends Controller
         if(($adm = $admDao->authAdm($input))){
             // abre a sessao e redireciona para home
             //$adm = $admDao->find($idAdm);
-            Auth::login($adm);
+            Auth::login($adm, true);
             return redirect('home');
         }else{
             // chama a view de login, e informa que houve um erro

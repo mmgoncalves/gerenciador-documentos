@@ -13,8 +13,7 @@ class SysLogConfig extends Model
     protected $fillable = ['id_adm', 'data', 'alteracao'];
 
     public function newLog(){
-        $adm = Auth::user();
-        $log = ['id_adm' => $adm->idAdm, 'data' => date('Y-m-d H:i:s')];
+        $log = ['id_adm' => Auth::user()->idAdm, 'data' => date('Y-m-d H:i:s')];
         $this->create($log);
     }
 }

@@ -20,6 +20,11 @@ Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
     Route::get('', 'ArquivoController@index');
     Route::get('create', 'ArquivoController@create');
+    Route::get('find/{id}', 'ArquivoController@find');
+    Route::get('listAll', 'ArquivoController@listAll');
+    Route::post('search', 'ArquivoController@search');
+    Route::post('update', 'ArquivoController@onUpdate');
+    Route::get('delete/{id}', 'ArquivoController@onDelete');
 });
 
 Route::group(['middleware' => 'auth','prefix' => 'adm'], function(){

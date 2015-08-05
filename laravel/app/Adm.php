@@ -85,7 +85,7 @@ class Adm extends Model implements AuthenticatableContract
      * Verifica os dados de um adm, e autentica no sistema
      */
     public function authAdm($input){
-        $sql = 'SELECT idAdm FROM adms WHERE cpf = :cpf AND password = md5(:password)';
+        $sql = 'SELECT idAdm FROM adms WHERE cpf = :cpf AND password = md5(:password) AND status = "A"';
 
         $auth = DB::select($sql, [':cpf' => $input['cpf'], ':password' => $input['password']]);
 
