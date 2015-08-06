@@ -7,6 +7,9 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap
     .when('/', {
       templateUrl : 'templates/home.html'
    })
+   .when('/st/:st', {
+       templateUrl : 'templates/home.html'
+   })
 
    .when('/adm', {
        templateUrl : 'templates/adm.html',
@@ -32,6 +35,9 @@ var Mod = angular.module('App', ['ngRoute', 'angular-loading-bar', 'ui.bootstrap
 
 Mod.constant("CSRF_TOKEN", CONSTTK)
 .constant("ADM", CONSTTK_US);
+
+delete CONSTTK;
+delete CONSTTK_US;
 Mod.run(['$http', 'CSRF_TOKEN', function($http, CSRF_TOKEN) {
     $http.defaults.headers.common['X-Csrf-Token'] = CSRF_TOKEN;
 }])

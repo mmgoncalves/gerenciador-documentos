@@ -105,7 +105,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
     };
 }])
 
-.factory('validaFormArq', [function(){
+.factory('validaFormArq', ['Dialog', function(Dialog){
     return{
         do: function(values){
             var resp = [];
@@ -131,6 +131,19 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             }
 
             return {success:true}
+        },
+        resp: function (st) {
+            switch (st){
+                case '1':
+                    msg = 'Arquivo criado com sucesso';
+                    break;
+                case '2':
+                    msg = 'Erro ao criar arquivo, tente novamente';
+                    break;
+                default :return;
+            }
+
+            Dialog.show({tipo:'notify', titulo:msg});
         }
     };
 }])

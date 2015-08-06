@@ -6,7 +6,8 @@ use App\Arquivo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+
 
 class ArquivoController extends Controller
 {
@@ -18,17 +19,24 @@ class ArquivoController extends Controller
      * CRIA NOVO ARQUIVO
      */
     public function onCreate(Request $request){
+        // recuperando os dados da requisica
         $input = $request->all();
 
-        $resp = $this->arq->newArq($input);
-
-        if(isset($resp['idArquivo'])){
-            return redirect('/home#/');
-            //return response()->json($resp, 201);
-        }else{
-            return response()->json(['errorMsg' => 'Erro no sistema, tente novamente.'], 200);
+        // verificando se houve upload de um anexo
+        if(Input::file('anexo')->isValid()){
+            $input['file'] = Input::file('anexo');
         }
 
+        // chamando o metodo que salva os dados no banco
+        $resp = $this->arq->newArq($input);
+
+        // se os dados foram salvos com sucesso, redireciona para pagina principal
+        if($resp){
+            return redirect('/home#/st/1');
+        }
+
+        // em caso de erro
+        return redirect('/home#/st/2');
     }
 
     /*

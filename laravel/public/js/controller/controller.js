@@ -14,7 +14,7 @@ function TopoController($scope, ADM){
 /*
  * HOME CONTROLLER
  */
-function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN){
+function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $routeParams, $location){
     $scope.listCat = {};
     $scope.arq = {};
     $scope.csrf = CSRF_TOKEN;
@@ -31,8 +31,9 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN){
         if(resp.success){
             $(".formAddArq").submit();
             return;
-            $scope.hasError = false;
 
+
+            $scope.hasError = false;
 
             Request.get_request("arqAdd", $scope.arq, "POST")
                 .success(function (data, status) {
@@ -99,6 +100,12 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN){
     datapicker();
     toggleMenu();
     chamaEditor();
+
+    // verifica se o arquivo foi criado com successo
+    if($routeParams.st != undefined){
+        validaFormArq.resp($routeParams.st);
+        $location.url('/');
+    }
 }
 
 /*

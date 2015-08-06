@@ -18,26 +18,46 @@ class Arquivo extends Model
         // formatando a data
         $input['dataHora'] = $this->formataDataHora($input['dataHora']);
 
-        // salvando o anexo
-        if(isset($input['anexo'])){
-            $this->salvaAnexo();
-        }
-
         // setando id do adm e data da criacao
         $input['dataHoraCriacao'] = date('Y-m-d H:i:s');
         $input['id_adm'] = Auth::user()->idAdm;
 
+        // Verifica se existe upload de anexo
+        if(isset($input['file'])){
+            // chama o metodo que salva o anexo e retorna o caminho do arquivo anexo
+            $anexo = $this->salvaAnexo($input['file'], $input['id_adm']);
+
+            // seta o caminho completo do arquivo anexo
+            $input['anexo'] = $anexo;
+        }
+
+        // salva os dados no banco
         $resp = $this->create($input);
-        return $resp;
+
+        // verifica se os dodos foram salvos e retorna TRUE em caso de sucesso
+        return isset($resp['idArquivo']);
     }
 
-    private function salvaAnexo(){
+    private function salvaAnexo($file, $idAdm){
+        // monta a pasta onde sera salvo o anexo
+        $destination = 'anexo/' . date('Y') . '/' . date('m') . '/' . date('d');
 
+        // recupera a extensao original do arquivo
+        $ext = $file->getClientOriginalExtension();
+
+        // monta o nome do arquivo
+        $fileName = $idAdm . '-' .date('YmdHis') . '.' . $ext;
+
+        // move o arquivo para a pasta escolhida, com o nome escolhido
+        $file->move($destination, $fileName);
+
+        // retorna o destino completo do arquivo no sistema
+        return $destination . '/' . $fileName;
     }
 
     private function formataDataHora($dataHora){
         $dataHora .= ':00';
-        $data1 = \DateTime::createFromFormat("d/m/Y H:i:s", $dataHora);
-        return $data1->format("Y-m-d H:i:s");
+        $data = \DateTime::createFromFormat("d/m/Y H:i:s", $dataHora);
+        return $data->format("Y-m-d H:i:s");
     }
 }

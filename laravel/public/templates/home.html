@@ -29,8 +29,8 @@
                                 <th>Edição</th>
                                 <th>Título</th>
                                 <th>Categoria</th>
-                                <th>Data</th>
-                                <th>Hora</th>
+                                <th>Data e hora</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -39,22 +39,31 @@
                                 <td>001</td>
                                 <td>Título 1</td>
                                 <td>Cat um</td>
-                                <td>15/05/2015</td>
-                                <td>08:30</td>
+                                <td>15/05/2015 08:30</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>002</td>
                                 <td>Título dois</td>
                                 <td>Categoria 2</td>
-                                <td>15/05/2015</td>
-                                <td>08:30</td>
+                                <td>15/05/2015 08:30</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>003</td>
                                 <td>Titulo 3</td>
                                 <td>C 3</td>
-                                <td>15/05/2015</td>
-                                <td>08:30</td>
+                                <td>15/05/2015 08:30</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
+                                    <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -63,7 +72,7 @@
                 <!-- BOX 2 -->
                 <div class="accordion-header">Criar novo documento</div>
                 <div class="accordion-content open">
-                    <form class="form-group formAddArq" action="/arq/create" method="post">
+                    <form class="form-group formAddArq" action="/arq/create" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{ csrf }}" />
 
                         <div class="form-group form-inline has-error col-md-12" ng-show="hasError">
@@ -145,7 +154,7 @@
 
                         <!-- CONTEUDO -->
                         <div class="textareaHome col-md-12">
-                            <textarea id="inpConteudo" name="conteudo"></textarea>
+                            <textarea id="inpConteudo" name="conteudo" ng-model="arq.conteudo"></textarea>
                         </div>
                     </form>
                 </div>
