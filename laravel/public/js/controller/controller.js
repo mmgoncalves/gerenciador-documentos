@@ -19,6 +19,11 @@ function HomeController($scope, Request, Dialog, validaFormArq){
     $scope.arq = {};
 
     $scope.enviar = function () {
+
+        //Recuperando o conteudo por jquery
+        $scope.arq.conteudo = $("#inpConteudo").val();
+        $scope.arq.dataHora = $("#inpData").val();
+
         console.log($scope.arq);
         var resp = validaFormArq.do($scope.arq);
 
@@ -57,6 +62,8 @@ function HomeController($scope, Request, Dialog, validaFormArq){
             Request.get_request("findSubCat", values, "GET")
                 .success(function (data, status) {
                     if(status == 201 && data != ""){
+                        console.log(data[1].idSubCategoria);
+                        $scope.arq.id_subCategoria = data[1].idSubCategoria;
                         $scope.listSub = data;
                     }else{
                         // entra aqui caso nao exista sub categoria
@@ -70,6 +77,8 @@ function HomeController($scope, Request, Dialog, validaFormArq){
 
     $scope.limpar = function(){
         $scope.arq = {};
+        $("#inpConteudo").val('');
+        $("#inpData").val('');
     };
 
     $scope.anexo = function(){

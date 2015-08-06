@@ -118,11 +118,13 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
 
             if(values.id_categoria == undefined || values.id_categoria == ""){resp.push({erro:'Escolha a categoria deste arquivo.'})}
 
-            if(values.id_subCategoria != undefined || values.id_subCategoria == ""){resp.push({erro:'Escolha a sub categoria deste arquivo.'})}
+            //else if(values.id_subCategoria != undefined && values.id_subCategoria == ""){resp.push({erro:'Escolha a sub categoria deste arquivo.'})}
 
             if(values.titulo == undefined || values.titulo == ""){resp.push({erro:'Digite o título deste arquivo.'})}
 
             if(values.dataHora == undefined || values.dataHora == ""){resp.push({erro:'Preencha o horário corretamente.'})}
+
+            if(values.conteudo == undefined || values.conteudo == ""){resp.push({erro:'Preencha o conteúdo corretamente.'})}
 
             if(resp.length > 0){
                 return {success:false, resp:resp}

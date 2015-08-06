@@ -36,7 +36,7 @@ Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 // ARQUIVOS
 Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
     Route::get('', 'ArquivoController@index');
-    Route::get('create', 'ArquivoController@create');
+    Route::post('create', 'ArquivoController@onCreate');
     Route::get('find/{id}', 'ArquivoController@find');
     Route::get('listAll', 'ArquivoController@listAll');
     Route::post('search', 'ArquivoController@search');

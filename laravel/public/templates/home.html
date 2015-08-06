@@ -62,8 +62,8 @@
 
                 <!-- BOX 2 -->
                 <div class="accordion-header">Criar novo documento</div>
-                <div class="accordion-content">
-                    <form class="form-group">
+                <div class="accordion-content open">
+                    <form class="form-group" action="/arq/create" method="post">
                         <div class="form-group form-inline has-error col-md-12" ng-show="hasError">
                             <label class="control-label col-sm-6">
                                 <span class="glyphicon glyphicon-warning-sign"></span>
@@ -75,31 +75,31 @@
                         </div>
                         <!-- BTN SALVAR -->
                         <div class="form-group pull-right">
-                            <button class="btn btn-warning" ng-click="enviar()">SALVAR</button>
-                            <button class="btn btn-warning" ng-click="limpar()">LIMPAR</button>
+                            <button type="button" class="btn btn-warning" ng-click="enviar()">SALVAR</button>
+                            <button type="button" class="btn btn-warning" ng-click="limpar()">LIMPAR</button>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
                             <!-- EDICAO -->
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control" placeholder="Edição" ng-model="arq.edicao">
+                                <input type="text" class="form-control" placeholder="Edição" name="edicao" ng-model="arq.edicao" maxlength="10">
                             </div>
 
                             <!-- CERTIFICADO -->
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control" placeholder="Certificado" ng-model="arq.certificado">
+                                <input type="text" class="form-control" placeholder="Certificado" name="certificado" ng-model="arq.certificado" maxlength="128">
                             </div>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
                             <!-- DESCRICAO -->
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control " placeholder="Descrição" ng-model="arq.descricao">
+                                <input type="text" class="form-control " placeholder="Descrição" name="descricao" ng-model="arq.descricao" maxlength="240">
                             </div>
 
                             <!-- CATEGORIA -->
                             <div class="form-group col-md-3">
-                                <select class="form-control" ng-model="arq.id_categoria" ng-change="buscaSub()">
+                                <select class="form-control" name="id_categoria" ng-model="arq.id_categoria" ng-change="buscaSub()">
                                     <option value="">Escolha uma categoria</option>
                                     <option ng-repeat="cat in listCat" value="{{ cat.idCategoria }}" >{{ cat.nome }}</option>
                                 </select>
@@ -107,9 +107,10 @@
 
                             <!-- SUB CATEGORIA -->
                             <div class="form-group col-md-3" ng-hide="listSub == undefined">
-                                <select class="form-control" ng-model="arq.id_subCategoria">
-                                    <option value="">Sub Categoria</option>
+                                <select class="form-control" name="id_subCategoria" ng-model="arq.id_subCategoria">
+                                    <option value=""></option>
                                     <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
+
                                 </select>
                             </div>
                         </div>
@@ -117,13 +118,13 @@
                         <div class=" form-group form-inline col-md-12">
                             <!-- TITULO -->
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control " placeholder="Título" ng-model="arq.titulo">
+                                <input type="text" class="form-control" placeholder="Título" name="titulo" ng-model="arq.titulo" maxlength="60">
                             </div>
 
                             <!-- DATA E HORA -->
                             <div class="form-group col-md-3">
                                 <div class='input-group date' id='datetimepicker2'>
-                                    <input type='text' class="form-control" id="inpData" placeholder="Data e hora" ng-model="arq.dataHora"/>
+                                    <input type='text' class="form-control" placeholder="Data e hora" id="inpData" name="dataHora" ng-model="arq.dataHora" maxlength="16"/>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -141,8 +142,8 @@
                         </div>
 
                         <!-- CONTEUDO -->
-                        <div class="textareaHome">
-                            <textarea class="" id="inpConteudo" ng-model="arq.conteudo"></textarea>
+                        <div class="textareaHome col-md-12">
+                            <textarea id="inpConteudo"></textarea>
                         </div>
                     </form>
                 </div>

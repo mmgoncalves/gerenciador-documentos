@@ -17,7 +17,7 @@ class ArquivoController extends Controller
     /*
      * CRIA NOVO ARQUIVO
      */
-    public function create(Request $request){
+    public function onCreate(Request $request){
         $input = $request->json()->all();
 
         $resp = $this->arq->newArq($input);

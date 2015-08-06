@@ -35,17 +35,15 @@
         <script src="js/lib/util.js" type="text/javascript"></script>
 
 
-        <!-- TINY_MCE EDITOR -->
-        <script src="js/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+        <!-- CLEditor EDITOR HTML -->
+        <link href="js/CLEditor/jquery.cleditor.css" rel="stylesheet" type="text/css">
+        <script src="js/CLEditor/jquery.cleditor.min.js" type="text/javascript"></script>
 
         <!-- BOOTSTRAP DATEPICKER -->
         <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
         <script type="text/javascript" src="/bower_components/moment/locale/pt-br.js"></script>
         <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
         <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-
-
-
     </head>
     <body ng-app="App">
         <menu-principal></menu-principal>
