@@ -10,5 +10,7 @@ class Arquivo extends Model
     protected $primaryKey = 'idArquivo';
     protected $fillable = ['edicao', 'titulo', 'descricao', 'anexo', 'certificado', 'dataHora', 'dataHoraCriacao', 'id_adm', 'id_categoria', 'id_subCategoria', 'status'];
 
+    public function newArq($input){
 
+    }
 }

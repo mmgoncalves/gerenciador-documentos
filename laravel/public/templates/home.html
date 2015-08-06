@@ -64,9 +64,19 @@
                 <div class="accordion-header">Criar novo documento</div>
                 <div class="accordion-content">
                     <form class="form-group">
+                        <div class="form-group form-inline has-error col-md-12" ng-show="hasError">
+                            <label class="control-label col-sm-6">
+                                <span class="glyphicon glyphicon-warning-sign"></span>
+                                Erro ao enviar <br/>
+                                <ul>
+                                    <li ng-repeat="e in erro"> {{ e.erro }}</li>
+                                </ul>
+                            </label>
+                        </div>
                         <!-- BTN SALVAR -->
-                        <div class="form-group pull-right" ng-click="enviar()">
-                            <button class="btn btn-warning">SALVAR</button>
+                        <div class="form-group pull-right">
+                            <button class="btn btn-warning" ng-click="enviar()">SALVAR</button>
+                            <button class="btn btn-warning" ng-click="limpar()">LIMPAR</button>
                         </div>
 
                         <div class="form-group form-inline col-md-12">
@@ -96,7 +106,7 @@
                             </div>
 
                             <!-- SUB CATEGORIA -->
-                            <div class="form-group col-md-3" ng-hide="listSub == '' || listSub == undefined">
+                            <div class="form-group col-md-3" ng-hide="listSub == undefined">
                                 <select class="form-control" ng-model="arq.id_subCategoria">
                                     <option value="">Sub Categoria</option>
                                     <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
@@ -111,12 +121,21 @@
                             </div>
 
                             <!-- DATA E HORA -->
-                            <div class="form-group col-md-5">
+                            <div class="form-group col-md-3">
                                 <div class='input-group date' id='datetimepicker2'>
                                     <input type='text' class="form-control" id="inpData" placeholder="Data e hora" ng-model="arq.dataHora"/>
                                     <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
+                                </div>
+                            </div>
+
+                            <!-- ANEXO -->
+                            <div class="form-group col-md-3">
+                                <input style="float:right; margin-top:-1000px; z-index:-999;" placeholder="Enviar anexo"  id="anexo" accept=".pdf" type="file" name="file[]" ng-model="arq.anexo"/>
+
+                                <div id="foto_perfil" ng-click="anexo()">
+                                    <i class="glyphicon glyphicon-file"></i> Inserir anexo {{ arq.anexo }}
                                 </div>
                             </div>
                         </div>

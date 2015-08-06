@@ -65,7 +65,8 @@ class SubController extends Controller
 
     public function find($id){
         $sub = $this->sub->where(['status' => 'A', 'idSubCategoria' => $id])->get();
-        return response()->json($sub, 201);
-
+        if(count($sub) > 0){
+            return response()->json($sub, 201);
+        }
     }
 }

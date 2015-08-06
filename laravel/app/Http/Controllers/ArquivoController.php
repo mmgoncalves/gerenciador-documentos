@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Arquivo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,11 +10,17 @@ use App\Http\Controllers\Controller;
 
 class ArquivoController extends Controller
 {
+    public function __construct(Arquivo $arquivo){
+        $this->arq = $arquivo;
+    }
+
     /*
      * CRIA NOVO ARQUIVO
      */
-    public function create(){
-        return array('create' => false);
+    public function create(Request $request){
+        $input = $request->json()->all();
+
+        $resp = $this->arq->newArq($input);
     }
 
     /*

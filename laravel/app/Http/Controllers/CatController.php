@@ -65,13 +65,16 @@ class CatController extends Controller
 
     public function find($id){
         $cat = $this->cat->where(['status' => 'A', 'idCategoria' => $id])->get();
-        return response()->json($cat, 201);
+        if(count($cat) > 0){
+            return response()->json($cat, 201);
+        }
     }
 
     public function inCat($id){
         $cat = $this->cat->buscaSubCategoria($id);
-
-        return response()->json($cat, 201);
+        if(count($cat) > 0){
+            return response()->json($cat, 201);
+        }
     }
 
 }

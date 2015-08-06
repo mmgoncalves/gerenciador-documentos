@@ -9,6 +9,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
             switch (tipo){
                 // ARQUIVOS
                 case 'arqListCat':  var url = URL + '/arq/listAll'; break;
+                case 'arqAdd':      var url = URL + '/arq/create'; break;
 
                 // AREA PUBLICA FIND
                 case 'findSubCat':  var url = URL + '/find/subInCat/'+value.id; break;
@@ -109,15 +110,19 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
         do: function(values){
             var resp = [];
 
-            if(values.nome == undefined || values.nome == ""){resp.push({erro:'Digite o nome corretamente.'})}
+            if(values.edicao == undefined || values.edica == ""){resp.push({erro:'Digite um número de edição.'})}
 
-            if(values.login == undefined || values.login == "" || values.login.length != 11){resp.push({erro:'Digite o CPF corretamente.'})}
+            if(values.certificado == undefined || values.certificado == ""){resp.push({erro:'Digite o certificado digital.'})}
 
-            else if(!ValidarCPF(values.login)){resp.push({erro:'CPF inválido.'})}
+            if(values.descricao == undefined || values.descricao == ""){resp.push({erro:'Digite a descrição do arquivo.'})}
 
-            if(values.senha == undefined || values.senha == "" || values.senha.length > 20 || values.senha.length < 6){resp.push({erro:'A senha deve conter entre 6 e 20 caracteres.'})}
+            if(values.id_categoria == undefined || values.id_categoria == ""){resp.push({erro:'Escolha a categoria deste arquivo.'})}
 
-            else if(values.senha != values.reSenha){resp.push({erro:'Os campos SENHA e REPETIR SENHA estão diferentes.'})}
+            if(values.id_subCategoria != undefined || values.id_subCategoria == ""){resp.push({erro:'Escolha a sub categoria deste arquivo.'})}
+
+            if(values.titulo == undefined || values.titulo == ""){resp.push({erro:'Digite o título deste arquivo.'})}
+
+            if(values.dataHora == undefined || values.dataHora == ""){resp.push({erro:'Preencha o horário corretamente.'})}
 
             if(resp.length > 0){
                 return {success:false, resp:resp}

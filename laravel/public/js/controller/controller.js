@@ -16,8 +16,27 @@ function TopoController($scope, ADM){
  */
 function HomeController($scope, Request, Dialog, validaFormArq){
     $scope.listCat = {};
-    $scope.listSub = {};
     $scope.arq = {};
+
+    $scope.enviar = function () {
+        console.log($scope.arq);
+        var resp = validaFormArq.do($scope.arq);
+
+        if(resp.success){
+            $scope.hasError = false;
+            Request.get_request("arqAdd", $scope.arq, "POST")
+                .success(function (data, status) {
+                    if(status == 201){
+                        Dialog.show({tipo:'notify', titulo:"Arquivo criado com sucesso."});
+                    }else{
+                        //
+                    }
+                });
+        }else{
+            $scope.erro = resp.resp;
+            $scope.hasError = true;
+        }
+    };
 
     // Buscando todas as categorias
     $scope.buscaCat = function(){
@@ -37,17 +56,28 @@ function HomeController($scope, Request, Dialog, validaFormArq){
             var values = {id:$scope.arq.id_categoria};
             Request.get_request("findSubCat", values, "GET")
                 .success(function (data, status) {
-                    if(status == 201){
+                    if(status == 201 && data != ""){
                         $scope.listSub = data;
                     }else{
-                        // sub categoria nao encontrada
+                        // entra aqui caso nao exista sub categoria
+                        delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
                     }
                 });
         }else{
-            $scope.listSub = {}
+            delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
         }
     };
+
+    $scope.limpar = function(){
+        $scope.arq = {};
+    };
+
+    $scope.anexo = function(){
+        $('#anexo').click();
+    };
+
     $scope.buscaCat();
+    datapicker();
     toggleMenu();
     chamaEditor();
 }
