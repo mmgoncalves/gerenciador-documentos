@@ -14,9 +14,10 @@ function TopoController($scope, ADM){
 /*
  * HOME CONTROLLER
  */
-function HomeController($scope, Request, Dialog, validaFormArq){
+function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN){
     $scope.listCat = {};
     $scope.arq = {};
+    $scope.csrf = CSRF_TOKEN;
 
     $scope.enviar = function () {
 
@@ -28,7 +29,11 @@ function HomeController($scope, Request, Dialog, validaFormArq){
         var resp = validaFormArq.do($scope.arq);
 
         if(resp.success){
+            $(".formAddArq").submit();
+            return;
             $scope.hasError = false;
+
+
             Request.get_request("arqAdd", $scope.arq, "POST")
                 .success(function (data, status) {
                     if(status == 201){
@@ -73,6 +78,11 @@ function HomeController($scope, Request, Dialog, validaFormArq){
         }else{
             delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
         }
+    };
+
+    // Funcao que forca o campo cpf para ter apenas numeros
+    $scope.validaNumero = function(){
+        $scope.arq.edicao = apenasNumero($scope.arq.edicao);
     };
 
     $scope.limpar = function(){

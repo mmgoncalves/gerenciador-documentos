@@ -63,7 +63,9 @@
                 <!-- BOX 2 -->
                 <div class="accordion-header">Criar novo documento</div>
                 <div class="accordion-content open">
-                    <form class="form-group" action="/arq/create" method="post">
+                    <form class="form-group formAddArq" action="/arq/create" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf }}" />
+
                         <div class="form-group form-inline has-error col-md-12" ng-show="hasError">
                             <label class="control-label col-sm-6">
                                 <span class="glyphicon glyphicon-warning-sign"></span>
@@ -82,7 +84,7 @@
                         <div class="form-group form-inline col-md-12">
                             <!-- EDICAO -->
                             <div class="form-group col-md-5">
-                                <input type="text" class="form-control" placeholder="Edição" name="edicao" ng-model="arq.edicao" maxlength="10">
+                                <input type="text" class="form-control" ng-keyup="validaNumero()" placeholder="Número da Edição" name="edicao" ng-model="arq.edicao" maxlength="10">
                             </div>
 
                             <!-- CERTIFICADO -->
@@ -133,7 +135,7 @@
 
                             <!-- ANEXO -->
                             <div class="form-group col-md-3">
-                                <input style="float:right; margin-top:-1000px; z-index:-999;" placeholder="Enviar anexo"  id="anexo" accept=".pdf" type="file" name="file[]" ng-model="arq.anexo"/>
+                                <input style="float:right; margin-top:-1000px; z-index:-999;" placeholder="Enviar anexo"  id="anexo" accept=".pdf" type="file" name="anexo" ng-model="arq.anexo"/>
 
                                 <div id="foto_perfil" ng-click="anexo()">
                                     <i class="glyphicon glyphicon-file"></i> Inserir anexo {{ arq.anexo }}
@@ -143,7 +145,7 @@
 
                         <!-- CONTEUDO -->
                         <div class="textareaHome col-md-12">
-                            <textarea id="inpConteudo"></textarea>
+                            <textarea id="inpConteudo" name="conteudo"></textarea>
                         </div>
                     </form>
                 </div>

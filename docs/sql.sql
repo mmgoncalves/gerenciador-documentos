@@ -61,13 +61,12 @@ CREATE TABLE IF NOT EXISTS `arquivos` (
   `dataHoraCriacao` DATETIME 		NULL 						COMMENT 'Data e hora da criacao do arquivo no sistema',
   `id_adm` 			INT 			NULL 						COMMENT 'Chave estrangeira do administrador no sistema ',
   `id_categoria` 	INT 			NULL 						COMMENT 'Chave estrangeira da categoria',
-  `id_subCategoria` INT 			NULL 						COMMENT 'Chave estrangeira da sub categoria',
+  `id_subCategoria` INT 			NULL 						COMMENT 'Chave estrangeira nao indexada de sub categoria',
   `status` 			CHAR 			NULL DEFAULT 'A'			COMMENT 'Status do arquivo no sistema. A = ATIVO, I = INATIVO ',
   PRIMARY KEY (`idArquivo`)  									COMMENT '',
   INDEX `fk_arquivos_adms1_idx` (`id_adm` ASC)  				COMMENT '',
   INDEX `fk_arquivos_categoria1_idx` (`id_categoria` ASC)  		COMMENT '',
-  INDEX `fk_arquivos_subCategoria1_idx` (`id_subCategoria` ASC) COMMENT '',
-  CONSTRAINT `fk_arquivos_adms1`
+    CONSTRAINT `fk_arquivos_adms1`
     FOREIGN KEY (`id_adm`)
     REFERENCES `adms` (`idAdm`)
     ON DELETE NO ACTION
@@ -75,11 +74,6 @@ CREATE TABLE IF NOT EXISTS `arquivos` (
   CONSTRAINT `fk_arquivos_categoria1`
     FOREIGN KEY (`id_categoria`)
     REFERENCES `categorias` (`idCategoria`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_arquivos_subCategorias1`
-    FOREIGN KEY (`id_subCategoria`)
-    REFERENCES `sub_categorias` (`idSubCategoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

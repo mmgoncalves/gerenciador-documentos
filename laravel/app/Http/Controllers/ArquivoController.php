@@ -18,9 +18,17 @@ class ArquivoController extends Controller
      * CRIA NOVO ARQUIVO
      */
     public function onCreate(Request $request){
-        $input = $request->json()->all();
+        $input = $request->all();
 
         $resp = $this->arq->newArq($input);
+
+        if(isset($resp['idArquivo'])){
+            return redirect('/home#/');
+            //return response()->json($resp, 201);
+        }else{
+            return response()->json(['errorMsg' => 'Erro no sistema, tente novamente.'], 200);
+        }
+
     }
 
     /*
