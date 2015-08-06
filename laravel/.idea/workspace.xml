@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="646eedea-23c0-4bee-8862-5b6f8cd5f5b9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Arquivo.php" afterPath="$PROJECT_DIR$/app/Arquivo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controller/controller.js" afterPath="$PROJECT_DIR$/public/js/controller/controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/templates/home.html" afterPath="$PROJECT_DIR$/public/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/service/services.js" afterPath="$PROJECT_DIR$/public/js/service/services.js" />
     </list>
     <ignored path="laravel.iws" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.961538">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state vertical-scroll-proportion="-22.23077">
+              <caret line="44" column="57" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -51,21 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CatController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CatController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.0">
-              <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArquivoController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ArquivoController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075">
-              <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.78571427">
+              <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
               <folding>
                 <element signature="e#40#56#0#PHP" expanded="true" />
               </folding>
@@ -73,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52380955">
-              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
+            <state vertical-scroll-proportion="-22.23077">
+              <caret line="44" column="105" selection-start-line="44" selection-start-column="98" selection-end-line="44" selection-end-column="105" />
               <folding />
             </state>
           </provider>
@@ -87,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/public/js/controller/controller.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+              <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -96,8 +84,8 @@
       <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/service/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.793103">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="32" />
+            <state vertical-scroll-proportion="-7.034483">
+              <caret line="12" column="75" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -166,10 +154,10 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Arquivo.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/public/js/service/services.js" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php" />
-        <option value="$PROJECT_DIR$/public/js/controller/controller.js" />
         <option value="$PROJECT_DIR$/public/templates/home.html" />
+        <option value="$PROJECT_DIR$/public/js/service/services.js" />
+        <option value="$PROJECT_DIR$/public/js/controller/controller.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php" />
       </list>
     </option>
   </component>
@@ -804,26 +792,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/SysLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30952382">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/adm.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60784316">
+          <caret line="41" column="115" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.23077">
+          <caret line="44" column="105" selection-start-line="44" selection-start-column="98" selection-end-line="44" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/service/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.793103">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="32" />
+        <state vertical-scroll-proportion="-7.034483">
+          <caret line="12" column="75" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.961538">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state vertical-scroll-proportion="-22.23077">
+          <caret line="44" column="57" selection-start-line="44" selection-start-column="49" selection-end-line="44" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/SysLog.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30952382">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.6554622">
+          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -838,45 +850,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CatController.php">
+    <entry file="file://$PROJECT_DIR$/public/js/controller/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.0">
-          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ArquivoController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.78571427">
+          <caret line="82" column="31" selection-start-line="82" selection-start-column="31" selection-end-line="82" selection-end-column="31" />
           <folding>
             <element signature="e#40#56#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/templates/adm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60784316">
-          <caret line="41" column="115" selection-start-line="41" selection-start-column="28" selection-end-line="41" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controller/controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52380955">
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>

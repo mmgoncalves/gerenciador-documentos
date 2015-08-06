@@ -15,7 +15,7 @@
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Busca por documentos">
+                                <input type="search" class="form-control" placeholder="Busca por documentos" ng-model="search">
                                 <div class="input-group-addon btn"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                         </div>
@@ -35,11 +35,11 @@
                         </thead>
 
                         <tbody>
-                            <tr dir-paginate="a in listArq | filter:q | itemsPerPage: 5" current-page="currentPage">
+                            <tr dir-paginate="a in listArq | filter:search | itemsPerPage: 5" current-page="currentPage">
                                 <td>{{ a.edicao }}</td>
                                 <td>{{ a.titulo }}</td>
                                 <td>{{ a.id_categoria }}</td>
-                                <td>{{ a.dataHora }}</td>
+                                <td>{{ a.dataHora | date:"yyyy-dd-MM" }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
                                     <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>

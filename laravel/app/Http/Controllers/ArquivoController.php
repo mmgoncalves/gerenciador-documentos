@@ -80,6 +80,11 @@ class ArquivoController extends Controller
      * DESABILITA UM REGISTRO
      */
     public function onDelete($id){
+        $arq = $this->arq->find($id);
+        $arq->status = "I";
 
+        $arq->save();
+
+        return response()->json([], 201);
     }
 }

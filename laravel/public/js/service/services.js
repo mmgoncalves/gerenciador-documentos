@@ -10,6 +10,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
                 // ARQUIVOS
                 case 'arqListCat':  var url = URL + '/arq/listAll'; break;
                 case 'arqAdd':      var url = URL + '/arq/create'; break;
+                case 'arqDelete':   var url = URL + '/arq/delete/'+value.id; break;
 
                 // AREA PUBLICA FIND
                 case 'findSubCat':  var url = URL + '/find/subInCat/'+value.id; break;

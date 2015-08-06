@@ -21,6 +21,20 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
     $scope.currentPage = 1;
     $scope.csrf = CSRF_TOKEN;
 
+    // EXCLUIR UM REGISTRO \\
+    $scope.excluir = function ($index) {
+        Dialog.show({tipo:"confirm", titulo:"Deseja remover este arquivo ?"})
+            .then(function(r){
+                var values = {id:$scope.listArq[$index].idArquivo};
+                Request.get_request("arqDelete", values, "GET")
+                    .success(function (data, status) {
+                        if(status == 201){
+                            $scope.listArq.splice($index, 1);
+                        }
+                    });
+            });
+    };
+
     // FAZ A BUSCA POR TODOS OS ARQUIVOS \\
     $scope.buscaArq = function () {
         Request.get_request("findArqAll", "", "GET")
