@@ -12,6 +12,13 @@ class Arquivo extends Model
     protected $fillable = ['idArquivo', 'edicao', 'titulo', 'conteudo', 'descricao', 'anexo', 'certificado', 'dataHora', 'dataHoraCriacao', 'id_adm', 'id_categoria', 'id_subCategoria', 'status'];
 
     /*
+     * Metodo que faz a busca por filtros
+     */
+    public function busca($input){
+
+    }
+
+    /*
      * Metodo que cria um novo arquivo
      */
     public function newArq($input){

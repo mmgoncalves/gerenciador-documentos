@@ -24,6 +24,8 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('cat/{id}', 'CatController@find');
     Route::get('sub/{id}', 'SubController@find');
     Route::get('subInCat/{id}', 'CatController@inCat');
+    Route::post('arq', 'ArquivoController@search');
+    Route::get('allArq', 'ArquivoController@index');
 });
 
 
@@ -35,7 +37,6 @@ Route::get('/home', ['middleware' => 'auth', 'uses' => 'HomeController@index']);
 
 // ARQUIVOS
 Route::group(['middleware' => 'auth', 'prefix' => 'arq'], function(){
-    Route::get('', 'ArquivoController@index');
     Route::post('create', 'ArquivoController@onCreate');
     Route::get('find/{id}', 'ArquivoController@find');
     Route::get('listAll', 'ArquivoController@listAll');

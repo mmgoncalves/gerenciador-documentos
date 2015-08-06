@@ -16,6 +16,15 @@ class ArquivoController extends Controller
     }
 
     /*
+     * RETORNA TODOS OS ARQUIVOS
+     */
+    public function index(){
+        $arq = $this->arq->where(['status' => 'A'])->get();
+
+        return response()->json($arq, 201);
+    }
+
+    /*
      * CRIA NOVO ARQUIVO
      */
     public function onCreate(Request $request){
@@ -57,7 +66,7 @@ class ArquivoController extends Controller
      * BUSCA POR FILTROS
      */
     public function search(Request $request){
-
+        $input = $request->json()->all();
     }
 
     /*

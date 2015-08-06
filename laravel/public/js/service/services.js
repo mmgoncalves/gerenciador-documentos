@@ -13,6 +13,7 @@ Mod.factory('Request', ['RequestHttp', function(RequestHttp){
 
                 // AREA PUBLICA FIND
                 case 'findSubCat':  var url = URL + '/find/subInCat/'+value.id; break;
+                case 'findArqAll':      var url = URL + '/find/allArq/'; break;
 
                 // SUB CATEGORIA
                 case 'subAdd':      var url = URL + '/sub/create'; break;

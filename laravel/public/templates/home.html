@@ -35,31 +35,11 @@
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>001</td>
-                                <td>Título 1</td>
-                                <td>Cat um</td>
-                                <td>15/05/2015 08:30</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>002</td>
-                                <td>Título dois</td>
-                                <td>Categoria 2</td>
-                                <td>15/05/2015 08:30</td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
-                                    <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>003</td>
-                                <td>Titulo 3</td>
-                                <td>C 3</td>
-                                <td>15/05/2015 08:30</td>
+                            <tr dir-paginate="a in listArq | filter:q | itemsPerPage: 5" current-page="currentPage">
+                                <td>{{ a.edicao }}</td>
+                                <td>{{ a.titulo }}</td>
+                                <td>{{ a.id_categoria }}</td>
+                                <td>{{ a.dataHora }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
                                     <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>
@@ -67,6 +47,10 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="text-center" ng-show="listArq">
+                        <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
                 </div>
 
                 <!-- BOX 2 -->
