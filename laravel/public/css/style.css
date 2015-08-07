@@ -28,6 +28,7 @@ legend{border: none;}
 .navbar-nav>li>a{padding-top: 0;}
 .titulo{color: #464646}
 #inpTitulo{width: 80%}
+.formFilter{display: none}
 
 /* Accordion */
 #accordion{min-height: 300px;}

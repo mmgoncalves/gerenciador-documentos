@@ -15,11 +15,21 @@ function TopoController($scope, ADM){
  * HOME CONTROLLER
  */
 function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $routeParams, $location){
-    $scope.listCat = {};
-    $scope.listArq = {};
+    //$scope.listCat = {};
+    //$scope.listArq = {};
     $scope.arq = {};
     $scope.currentPage = 1;
     $scope.csrf = CSRF_TOKEN;
+
+    // BUSCA POR FILTROS \\
+    $scope.search = function () {
+        console.log($scope.filtro);
+        Request.get_request("findArq", $scope.filtro, "POST")
+            .success(function (data, status) {
+                console.log(data);
+                $scope.listArq = data;
+            });
+    };
 
     // EXCLUIR UM REGISTRO \\
     $scope.excluir = function ($index) {
@@ -35,12 +45,14 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
             });
     };
 
-    // FAZ A BUSCA POR TODOS OS ARQUIVOS \\
-    $scope.buscaArq = function () {
-        Request.get_request("findArqAll", "", "GET")
+    // RETORNA TODOS OS DADOS NECESSARIOS PARA O FILTRO DE BUSCA \\
+    $scope.buscaFiltros = function () {
+        Request.get_request("findFilters", "", "GET")
             .success(function (data, status) {
                 if(status == 201){
-                    $scope.listArq = data;
+                    $scope.listArq = data.arq;
+                    $scope.listCat = data.cat;
+                    $scope.listEdc = data.edicoes;
                 }
             });
     };
@@ -51,7 +63,6 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
         $scope.arq.conteudo = $("#inpConteudo").val();
         $scope.arq.dataHora = $("#inpData").val();
 
-        console.log($scope.arq);
         var resp = validaFormArq.do($scope.arq);
 
         // se o form for valido, faz o submit
@@ -65,6 +76,7 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
         $scope.hasError = true;
     };
 
+    /*
     // BUSCA POR TODAS AS CATEGORIAS \\
     $scope.buscaCat = function(){
         Request.get_request("catList", "", "GET")
@@ -76,6 +88,7 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
                 }
             });
     };
+    */
 
     // BUSCA TODAS AS SUBCATEGORIAS, DE UMA DETERMINADA CATEGORIA \\
     $scope.buscaSub = function () {
@@ -97,6 +110,11 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
         }
     };
 
+    // TOGGLEFILTER \\
+    $scope.toggleFilter = function () {
+        $('.formFilter').slideToggle('fast');
+    };
+
     // FORCA O CAMPO CPF A TER APENAS NUMEROS
     $scope.validaNumero = function(){
         $scope.arq.edicao = apenasNumero($scope.arq.edicao);
@@ -113,11 +131,10 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
         $('#anexo').click();
     };
 
-    $scope.buscaCat();  // chama a funcao que faz a busca por categorias
     datapicker();       // chama a funcao que inicia o calendario
     toggleMenu();       // chama a funcao que gerencia o menu
     chamaEditor();      // chama a funcao que inicia o editor html
-    $scope.buscaArq();  // chama a funcao que lista todos os arquivos
+    $scope.buscaFiltros();  // chama a funcao que lista todos os arquivos
 
     // verifica se o arquivo foi criado com successo
     if($routeParams.st != undefined){

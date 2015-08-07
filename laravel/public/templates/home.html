@@ -9,20 +9,63 @@
 
                 <!-- BOX 1 -->
                 <div class="accordion-header">Buscar por documentos</div>
-                <div class="accordion-content">
+                <div class="accordion-content open">
 
-
+                    <!-- FORM DE BUSCA -->
                     <form class="form-inline">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="search" class="form-control" placeholder="Busca por documentos" ng-model="search">
-                                <div class="input-group-addon btn"><i class="glyphicon glyphicon-search"></i></div>
+                                <input type="search" class="form-control" placeholder="Titulo do documento" ng-model="filtro.titulo" maxlength="40">
+                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
                             </div>
+                            <div class="btn btn-info" title="Filtros" ng-click="toggleFilter()"><i class="glyphicon glyphicon-filter"></i></div>
                         </div>
+
+                        <!-- FILTROS -->
+                        <div class="form-inline formFilter">
+                            <hr/>
+                            <!-- DATA -->
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Data" ng-model="filtro.data"/>
+                            </div>
+
+                            <!-- DESCRICAO -->
+                            <div class="form-group">
+                                <input class="form-control" type="text" placeholder="Descrição" ng-model="filtro.descricao" maxlength="50"/>
+                            </div>
+
+                            <!-- EDICAO -->
+                            <div class="form-group">
+                                <select class="form-control" ng-model="filtro.edicao">
+                                    <option value="">EDIÇÕES</option>
+                                    <option ng-repeat="e in listEdc">{{ e.edicao }}</option>
+                                </select>
+                            </div>
+
+                            <!-- CATEGORIA -->
+                            <div class="form-group">
+                                <select class="form-control" ng-model="filtro.id_categoria">
+                                    <option value="">CATEGORIAS</option>
+                                    <option ng-repeat="c in listCat" value="{{ c.idCategoria }}">{{ c.nome }}</option>
+                                </select>
+                            </div>
+
+                            <!-- SUB CATEGORIA -->
+                            <div class="form-group" ng-show="">
+                                <select class="form-control" ng-model="filtro.sub">
+                                    <option>Sub Categoria</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-warning" ng-click="search()">Buscar</button>
+
+                        </div>
+
+                        <hr/>
+
                     </form>
 
-                    <hr/>
-
+                    <!-- LISTA DE ARQUIVOS -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -35,7 +78,7 @@
                         </thead>
 
                         <tbody>
-                            <tr dir-paginate="a in listArq | filter:search | itemsPerPage: 5" current-page="currentPage">
+                            <tr dir-paginate="a in listArq | filter:search.titulo | itemsPerPage: 5" current-page="currentPage">
                                 <td>{{ a.edicao }}</td>
                                 <td>{{ a.titulo }}</td>
                                 <td>{{ a.id_categoria }}</td>
@@ -128,7 +171,7 @@
 
                             <!-- ANEXO -->
                             <div class="form-group col-md-3">
-                                <input style="float:right; margin-top:-1000px; z-index:-999;" placeholder="Enviar anexo"  id="anexo" accept=".pdf" type="file" name="anexo" ng-model="arq.anexo"/>
+                                <input class="hidden" placeholder="Enviar anexo"  id="anexo" accept=".pdf" type="file" name="anexo" ng-model="arq.anexo"/>
 
                                 <div id="foto_perfil" ng-click="anexo()">
                                     <i class="glyphicon glyphicon-file"></i> Inserir anexo {{ arq.anexo }}

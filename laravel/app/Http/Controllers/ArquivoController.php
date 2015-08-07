@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Arquivo;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -52,21 +53,36 @@ class ArquivoController extends Controller
      * BUCSA ARQUIVO PELO ID
      */
     public function find($id){
+        $arq = $this->arq->where(["status" => "a"])->get();
 
+        return response()->json($arq, 201);
     }
 
     /*
      * RETORNA TODOS OS REGISTROS
      */
-    public function listAll(){
+    public function search(Request $request){
+        $input = $request->json()->all();
 
+        $resp = $this->arq->buscaFiltro($input);
+
+        return response()->json($resp, 201);
     }
 
     /*
      * BUSCA POR FILTROS
      */
-    public function search(Request $request){
-        $input = $request->json()->all();
+    public function filters(){
+        // recuperando os arquivos
+        $arq = $this->arq->where(['status' => 'A'])->get();
+
+        // recuperando as edicoes cadastradas
+        $edc = $this->arq->edicoes();
+
+        // categorias
+        $cat = Categoria::where(["status" => "A"])->get();
+
+        return response()->json(['edicoes' => $edc, 'cat' => $cat, 'arq' => $arq], 201);
     }
 
     /*

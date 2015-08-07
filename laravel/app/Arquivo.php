@@ -4,18 +4,51 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Arquivo extends Model
 {
     public $timestamps = false;
     protected $primaryKey = 'idArquivo';
     protected $fillable = ['idArquivo', 'edicao', 'titulo', 'conteudo', 'descricao', 'anexo', 'certificado', 'dataHora', 'dataHoraCriacao', 'id_adm', 'id_categoria', 'id_subCategoria', 'status'];
+    protected $hidden = ['dataHoraCriacao', 'status', 'id_adm'];
 
     /*
      * Metodo que faz a busca por filtros
      */
-    public function busca($input){
+    public function buscaFiltro($input){
+        $sql = 'SELECT idArquivo, edicao, titulo,   anexo, certificado, dataHora, id_categoria, id_subCategoria FROM arquivos ';
+        $where = ' WHERE status = "A" ';
 
+        if(isset($input['id_categoria']) && $input['id_categoria'] != ""){
+            $where .= ' AND id_categoria = '. $input['id_categoria'];
+        }
+
+        if(isset($input['edicao']) && $input['edicao'] != ""){
+            $where .= ' AND edicao = '. $input['edicao'];
+        }
+
+        if(isset($input['titulo']) && $input['titulo'] != ""){
+            $where .= ' AND titulo LIKE "%' . $input['titulo'] . '%"';
+        }
+
+        $sql .= $where;
+
+        
+        $query = DB::select($sql);
+
+        return $query;
+    }
+
+
+    /*
+     * Metodo que faz a busca por filtros
+     */
+    public function edicoes(){
+        $sql = 'SELECT DISTINCT(edicao) FROM arquivos WHERE status = "A"';
+        $query = DB::select($sql);
+
+        return $query;
     }
 
     /*

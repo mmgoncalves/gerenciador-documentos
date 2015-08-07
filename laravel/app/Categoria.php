@@ -10,6 +10,7 @@ class Categoria extends Model
     public $timestamps = false;
     protected $primaryKey = 'idCategoria';
     protected $fillable = ['nome', 'status'];
+    protected $hidden = ['status'];
 
     /*
      * Metodo que cria uma nova categoria no sistema
@@ -45,9 +46,13 @@ class Categoria extends Model
     public function buscaSubCategoria($id){
         $sql = 'SELECT cat.nome AS categoria, sub.nome, idSubCategoria FROM categorias AS cat INNER JOIN sub_categorias AS sub ON cat.idCategoria = sub.id_categoria WHERE idCategoria = :id';
 
-        $query = DB::select($sql, [':id' => $id]);
+        return DB::select($sql, [':id' => $id]);
+    }
 
-        return $query;
+    // NAO USADA
+    public function categoriasESub(){
+        $sql = 'SELECT idCategoria, cat.nome AS categoria, sub.nome AS sub, idSubCategoria FROM sub_categorias AS sub right JOIN categorias AS cat ON id_categoria = idCategoria WHERE sub.status = "A" OR cat.status = "A"';
+        return DB::select($sql);
     }
 
     /*

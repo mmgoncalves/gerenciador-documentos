@@ -26,6 +26,7 @@ Route::group(['prefix' => 'find'], function(){
     Route::get('subInCat/{id}', 'CatController@inCat');
     Route::post('arq', 'ArquivoController@search');
     Route::get('allArq', 'ArquivoController@index');
+    Route::get('filters', 'ArquivoController@filters');
 });
 
 
