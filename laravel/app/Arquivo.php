@@ -17,8 +17,8 @@ class Arquivo extends Model
      * Metodo que faz a busca por filtros
      */
     public function buscaFiltro($input){
-        $sql = 'SELECT idArquivo, edicao, titulo, conteudo, descricao, anexo, certificado, dataHora, id_categoria, id_subCategoria FROM arquivos ';
-        $where = ' WHERE status = "A" ';
+        $sql = 'SELECT idArquivo, edicao, titulo, conteudo, descricao, anexo, certificado, DATE_FORMAT(dataHora, "%d/%m/%Y %H:%i") AS dataHora, id_categoria, id_subCategoria, cat.nome AS categoria FROM arquivos AS a INNER JOIN categorias AS cat ON cat.idCategoria = a.id_categoria ';
+        $where = ' WHERE a.status = "A" ';
 
         if(isset($input['id_categoria']) && $input['id_categoria'] != ""){
             $where .= ' AND id_categoria = '. $input['id_categoria'];

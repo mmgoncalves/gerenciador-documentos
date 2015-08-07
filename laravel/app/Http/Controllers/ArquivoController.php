@@ -74,7 +74,7 @@ class ArquivoController extends Controller
      */
     public function filters(){
         // recuperando os arquivos
-        $arq = $this->arq->where(['status' => 'A'])->get();
+        $arq = $this->arq->buscaFiltro([]);
 
         // recuperando as edicoes cadastradas
         $edc = $this->arq->edicoes();

@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="search" class="form-control" placeholder="Titulo do documento" ng-model="filtro.titulo" maxlength="40">
-                                <div class="input-group-addon btn" ng-click=""><i class="glyphicon glyphicon-search"></i></div>
+                                <div class="input-group-addon btn" ng-click="searchFiltro()"><i class="glyphicon glyphicon-search"></i></div>
                             </div>
                             <div class="btn btn-info" title="Filtros" ng-click="toggleFilter()"><i class="glyphicon glyphicon-filter"></i></div>
                         </div>
@@ -65,7 +65,7 @@
                                 </select>
                             </div>
 
-                            <button class="btn btn-warning" ng-click="search()">Buscar</button>
+                            <button class="btn btn-warning" ng-click="searchFiltro()">Buscar</button>
 
                         </div>
 
@@ -86,11 +86,11 @@
                         </thead>
 
                         <tbody>
-                            <tr dir-paginate="a in listArq | filter:search.titulo | itemsPerPage: 5" current-page="currentPage">
+                            <tr dir-paginate="a in listArq | filter:filtro.titulo | itemsPerPage: 5" current-page="currentPage">
                                 <td>{{ a.edicao }}</td>
                                 <td>{{ a.titulo }}</td>
-                                <td>{{ a.id_categoria }}</td>
-                                <td>{{ a.dataHora | date:"yyyy-dd-MM" }}</td>
+                                <td>{{ a.categoria }}</td>
+                                <td>{{ a.dataHora }}</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" title="Editar" ng-click="editar($index)"> <i class="glyphicon glyphicon-pencil"></i></button>
                                     <button class="btn btn-sm btn-info" title="Excluir" ng-click="excluir($index)"> <i class="glyphicon glyphicon-remove"></i></button>

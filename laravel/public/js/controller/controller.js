@@ -21,7 +21,7 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
     $scope.csrf = CSRF_TOKEN;
 
     // BUSCA POR FILTROS \\
-    $scope.search = function () {
+    $scope.searchFiltro = function () {
         $scope.filtro.data = $("#inpDataFiltro").val();
         Request.get_request("findArq", $scope.filtro, "POST")
             .success(function (data, status) {
