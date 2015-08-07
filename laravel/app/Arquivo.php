@@ -17,11 +17,15 @@ class Arquivo extends Model
      * Metodo que faz a busca por filtros
      */
     public function buscaFiltro($input){
-        $sql = 'SELECT idArquivo, edicao, titulo,   anexo, certificado, dataHora, id_categoria, id_subCategoria FROM arquivos ';
+        $sql = 'SELECT idArquivo, edicao, titulo, conteudo, descricao, anexo, certificado, dataHora, id_categoria, id_subCategoria FROM arquivos ';
         $where = ' WHERE status = "A" ';
 
         if(isset($input['id_categoria']) && $input['id_categoria'] != ""){
             $where .= ' AND id_categoria = '. $input['id_categoria'];
+        }
+
+        if(isset($input['id_subCategoria']) && $input['id_subCategoria'] != ""){
+            $where .= ' AND id_subCategoria = '. $input['id_subCategoria'];
         }
 
         if(isset($input['edicao']) && $input['edicao'] != ""){
@@ -32,9 +36,18 @@ class Arquivo extends Model
             $where .= ' AND titulo LIKE "%' . $input['titulo'] . '%"';
         }
 
+        if(isset($input['descricao']) && $input['descricao'] != ""){
+            $where .= ' AND descricao LIKE "%' . $input['descricao'] . '%"';
+        }
+
+        if(isset($input['data']) && $input['data'] != ""){
+            $data = $this->formataData($input['data']);
+            $where .= ' AND DATE(dataHora) = "' . $data . '"';
+        }
+
         $sql .= $where;
 
-        
+
         $query = DB::select($sql);
 
         return $query;
@@ -99,5 +112,10 @@ class Arquivo extends Model
         $dataHora .= ':00';
         $data = \DateTime::createFromFormat("d/m/Y H:i:s", $dataHora);
         return $data->format("Y-m-d H:i:s");
+    }
+
+    private function formataData($data_BR){
+        $data_US = implode('-', array_reverse(explode('/', $data_BR)));
+        return $data_US;
     }
 }

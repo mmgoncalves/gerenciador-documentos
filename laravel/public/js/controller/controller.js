@@ -15,18 +15,16 @@ function TopoController($scope, ADM){
  * HOME CONTROLLER
  */
 function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $routeParams, $location){
-    //$scope.listCat = {};
-    //$scope.listArq = {};
+    $scope.filtro = {};
     $scope.arq = {};
     $scope.currentPage = 1;
     $scope.csrf = CSRF_TOKEN;
 
     // BUSCA POR FILTROS \\
     $scope.search = function () {
-        console.log($scope.filtro);
+        $scope.filtro.data = $("#inpDataFiltro").val();
         Request.get_request("findArq", $scope.filtro, "POST")
             .success(function (data, status) {
-                console.log(data);
                 $scope.listArq = data;
             });
     };
@@ -76,20 +74,6 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
         $scope.hasError = true;
     };
 
-    /*
-    // BUSCA POR TODAS AS CATEGORIAS \\
-    $scope.buscaCat = function(){
-        Request.get_request("catList", "", "GET")
-            .success(function (data, status) {
-                if(status == 201){
-                    $scope.listCat = data;
-                }else{
-                    // categoria nao encontrada
-                }
-            });
-    };
-    */
-
     // BUSCA TODAS AS SUBCATEGORIAS, DE UMA DETERMINADA CATEGORIA \\
     $scope.buscaSub = function () {
         if($scope.arq.id_categoria != undefined && $scope.arq.id_categoria != ''){
@@ -97,7 +81,6 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
             Request.get_request("findSubCat", values, "GET")
                 .success(function (data, status) {
                     if(status == 201 && data != ""){
-                        console.log(data[1].idSubCategoria);
                         $scope.arq.id_subCategoria = data[1].idSubCategoria;
                         $scope.listSub = data;
                     }else{
@@ -107,6 +90,25 @@ function HomeController($scope, Request, Dialog, validaFormArq, CSRF_TOKEN, $rou
                 });
         }else{
             delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
+        }
+    };
+
+    $scope.buscaSubFiltro = function () {
+        if($scope.filtro.id_categoria != undefined && $scope.filtro.id_categoria != ''){
+            var values = {id:$scope.filtro.id_categoria};
+            Request.get_request("findSubCat", values, "GET")
+                .success(function (data, status) {
+                    if(status == 201 && data != ""){
+                        $scope.filtro.id_subCategoria = data[1].idSubCategoria;
+                        $scope.listSub = data;
+                    }else{
+                        // entra aqui caso nao exista sub categoria
+                        delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
+                    }
+                });
+        }else{
+            delete $scope.listSub; // deleta a variavel para esconder o select de subcategorias
+            delete $scope.filtro.id_subCategoria;
         }
     };
 

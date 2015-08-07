@@ -3,6 +3,11 @@ function datapicker(){
         sideBySide: true,
         locale:"pt-br"
     });
+
+    $('#datetimepicker').datetimepicker({
+        sideBySide: true,
+        locale:"pt-br"
+    });
 }
 
 function toggleMenu(){
@@ -53,4 +58,24 @@ function ValidarCPF(cpf) {
     if (Resto != parseInt(strCPF.substring(10, 11) ) )
         return false;
     return true;
+}
+
+function mostraCalendario(){
+    $("#datepicker").datepicker({
+        dateFormat: 'dd/mm/yy',
+        showAnim: 'drop',
+        autoSize: true,
+        dayNames: [ "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado" ],
+        dayNamesMin: [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb" ],
+        maxDate: "+1y",
+        minDate: "0",
+        monthNames: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+        monthNamesShort: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
+        onSelect: function(data, obj){
+            verificaDiasDisponiveis(obj);
+        },
+        onClose: function(){
+            validaData();
+        }
+    });
 }

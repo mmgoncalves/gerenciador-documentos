@@ -9,7 +9,7 @@
 
                 <!-- BOX 1 -->
                 <div class="accordion-header">Buscar por documentos</div>
-                <div class="accordion-content open">
+                <div class="accordion-content">
 
                     <!-- FORM DE BUSCA -->
                     <form class="form-inline">
@@ -24,9 +24,15 @@
                         <!-- FILTROS -->
                         <div class="form-inline formFilter">
                             <hr/>
-                            <!-- DATA -->
+
+                            <!-- DATA-->
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Data" ng-model="filtro.data"/>
+                                <div class='input-group date' id='datetimepicker'>
+                                    <input type='text' class="form-control" placeholder="Data" id="inpDataFiltro" data-date-format="DD/MM/YYYY" ng-model="filtro.data" maxlength="10"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- DESCRICAO -->
@@ -44,16 +50,18 @@
 
                             <!-- CATEGORIA -->
                             <div class="form-group">
-                                <select class="form-control" ng-model="filtro.id_categoria">
+                                <select class="form-control" ng-model="filtro.id_categoria" ng-change="buscaSubFiltro()">
                                     <option value="">CATEGORIAS</option>
                                     <option ng-repeat="c in listCat" value="{{ c.idCategoria }}">{{ c.nome }}</option>
                                 </select>
                             </div>
 
                             <!-- SUB CATEGORIA -->
-                            <div class="form-group" ng-show="">
-                                <select class="form-control" ng-model="filtro.sub">
-                                    <option>Sub Categoria</option>
+                            <div class="form-group" ng-hide="listSub == undefined">
+                                <select class="form-control" name="id_subCategoria" ng-model="filtro.id_subCategoria">
+                                    <option value="">SUB CATEGORIAS</option>
+                                    <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
+
                                 </select>
                             </div>
 
@@ -66,7 +74,7 @@
                     </form>
 
                     <!-- LISTA DE ARQUIVOS -->
-                    <table class="table table-striped">
+                    <table class="table table-striped" ng-show="listArq">
                         <thead>
                             <tr>
                                 <th>Edição</th>
