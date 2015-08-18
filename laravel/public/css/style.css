@@ -87,3 +87,8 @@ legend{border: none;}
 /* TELA LOGIN */
 .boxLogin{margin-top: 10%;border-radius: 6px;box-shadow: 0 0 13px 2px #d5d5d5;padding: 28px;}
 .boxLogin img{ margin-right: 15px;}
+
+/* TELA MAIN */
+.mainTopo{min-height: 120px}
+.mainTopo img{margin: 10px 0}
+.mainConteudo{min-height: 300px; margin-top: 30px;}

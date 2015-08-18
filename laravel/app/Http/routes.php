@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function(){
+Route::get('adm', function(){
     return view('auth.login');
 });
 
 /*
  * AREA PUBLICA
  */
-
+Route::get('/', 'MainController@index');
 Route::group(['prefix' => 'find'], function(){
     Route::get('allCat', 'CatController@index');
     Route::get('cat/{id}', 'CatController@find');
