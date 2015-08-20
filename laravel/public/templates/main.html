@@ -1,10 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<section class="col-md-12 mainConteudo">
+    <div class="col-md-1"></div>
+    <div class="col-md-9">
+        <!-- FORM DE BUSCA -->
+        <form class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Titulo do documento" ng-model="filtro.titulo" maxlength="40">
+                    <div class="input-group-addon btn" ng-click="searchFiltro()"><i class="glyphicon glyphicon-search"></i></div>
+                </div>
+                <div class="btn btn-info" title="Filtros" ng-click="toggleFilter()"><i class="glyphicon glyphicon-filter"></i></div>
+            </div>
 
-</body>
-</html>
+            <!-- FILTROS -->
+            <div class="form-inline formFilter">
+                <hr/>
+
+                <!-- DATA-->
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker'>
+                        <input type='text' class="form-control" placeholder="Data" id="inpDataFiltro" data-date-format="DD/MM/YYYY" ng-model="filtro.data" maxlength="10"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                    </div>
+                </div>
+
+                <!-- DESCRICAO -->
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Descrição" ng-model="filtro.descricao" maxlength="50"/>
+                </div>
+
+                <!-- EDICAO -->
+                <div class="form-group">
+                    <select class="form-control" ng-model="filtro.edicao">
+                        <option value="">EDIÇÕES</option>
+                        <option ng-repeat="e in listEdc">{{ e.edicao }}</option>
+                    </select>
+                </div>
+
+                <!-- CATEGORIA -->
+                <div class="form-group">
+                    <select class="form-control" ng-model="filtro.id_categoria" ng-change="buscaSubFiltro()">
+                        <option value="">CATEGORIAS</option>
+                        <option ng-repeat="c in listCat" value="{{ c.idCategoria }}">{{ c.nome }}</option>
+                    </select>
+                </div>
+
+                <!-- SUB CATEGORIA -->
+                <div class="form-group" ng-hide="listSub == undefined">
+                    <select class="form-control" name="id_subCategoria" ng-model="filtro.id_subCategoria">
+                        <option value="">SUB CATEGORIAS</option>
+                        <option ng-repeat="sub in listSub" value="{{ sub.idSubCategoria }}">{{ sub.nome }}</option>
+
+                    </select>
+                </div>
+
+                <button class="btn btn-warning" ng-click="searchFiltro()">Buscar</button>
+
+            </div>
+
+            <hr/>
+        </form>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Edição</th>
+                <th>Título</th>
+                <th>Categoria</th>
+                <th>Data e Hora</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr dir-paginate="a in listArq | filter:filtro.titulo | itemsPerPage: 5" current-page="currentPage">
+                <td>{{ a.edicao }}</td>
+                <td>{{ a.titulo }}</td>
+                <td>{{ a.categoria }}</td>
+                <td>{{ a.dataHora }}</td>
+                <td>
+                    <button class="btn btn-info" ng-click="visualizar($index)"><i class="glyphicon glyphicon-file"></i></button>
+                    <button class="btn btn-info" ng-click="imprimir($index)"><i class="glyphicon glyphicon-download"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center" ng-show="listArq">
+            <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+    </div>
+</section>

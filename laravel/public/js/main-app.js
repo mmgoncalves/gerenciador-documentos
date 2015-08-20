@@ -4,11 +4,19 @@ var Mod = angular.module('App', ['ngRoute', 'angularUtils.directives.dirPaginati
 
    $routeProvider
     .when('/', {
-      templateUrl : 'templates/main.html'
+      templateUrl : 'templates/main.html',
+      controller: 'MainController'
    })
 
    // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
+}]);
+
+Mod.constant("CSRF_TOKEN", CONSTTK);
+delete CONSTTK;
+
+Mod.run(['$http', 'CSRF_TOKEN', function($http, CSRF_TOKEN) {
+    $http.defaults.headers.common['X-Csrf-Token'] = CSRF_TOKEN;
 }])
 
 .run(['$templateCache',function($templateCache){
