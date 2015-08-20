@@ -1,29 +1,7 @@
-# README #
+# Gerenciador de documentos #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Este projeto consiste na criação e gerenciamento de arquivos, o sistema possui uma área administrativa onde cada administrador pode criar ou anexar um arquivo PDF. Os arquivos pode ser divididos por categorias, número da edição ou data da publicação.
 
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+### Observações: ###
+* Na pasta docs, existe um arquivo chamado sql.sql, que serve para criar as tabelas já formatadas para o sistema.
+* Este projeto foi desenvolvido em PHP com o framework Laravel 5.1, ou seja, é preciso fazer as configurações básicas do framework, como criação do arquivo .ENV, rodar as migrations e rodar o composer.
