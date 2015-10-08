@@ -80,7 +80,7 @@ legend{border: none;}
 
 /* TELA CONFIGURACOES */
 .imgLogo{width: 50%;}
-.formEndereco .form-inline .form-control{width: 100%; !important}
+.formEndereco .form-inline .form-control{width: 100% !important}
 #foto_perfil{cursor: pointer}
 #show-picture{max-width: 175px;}
 
